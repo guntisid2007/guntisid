@@ -12,6 +12,8 @@ import {
 } from "@phosphor-icons/react";
 
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
+const EMAIL = "sgunti@purdue.edu";
+const EMAIL_LINK = `mailto:${EMAIL}`;
 const ASSET_BASE = import.meta.env.BASE_URL;
 
 const projects = [
@@ -194,7 +196,7 @@ function App() {
           <a href="#experience">Experience</a>
           <a href="#about">About</a>
         </nav>
-        <a className="header-contact" href="mailto:guntisid2007@gmail.com">
+        <a className="header-contact" href={EMAIL_LINK}>
           Contact <ArrowUpRight size={16} weight="bold" />
         </a>
       </header>
@@ -330,7 +332,7 @@ function App() {
             </div>
             <div className="contact-copy">
               <p>I’m looking for Computer Engineering internship opportunities where I can learn from experienced builders and contribute to real systems.</p>
-              <MagneticLink href="mailto:guntisid2007@gmail.com" className="button button-light">
+              <MagneticLink href={EMAIL_LINK} className="button button-light">
                 Start a conversation <EnvelopeSimple size={19} weight="bold" />
               </MagneticLink>
             </div>
@@ -343,7 +345,7 @@ function App() {
         <div className="footer-location"><MapPin size={16} weight="fill" /> West Lafayette, Indiana</div>
         <div className="footer-links">
           <a href={LINKEDIN} target="_blank" rel="noreferrer"><LinkedinLogo size={18} weight="fill" />LinkedIn</a>
-          <a href="mailto:guntisid2007@gmail.com"><EnvelopeSimple size={18} />Email</a>
+          <a href={EMAIL_LINK}><EnvelopeSimple size={18} />{EMAIL}</a>
         </div>
       </footer>
     </div>
