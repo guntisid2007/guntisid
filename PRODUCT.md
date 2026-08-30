@@ -25,6 +25,8 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - Name: Siddharth “Sid” Gunti
 - Purdue University engineering student
 - Contact email: sgunti@purdue.edu
+- Personal email: sid.gunti@gmail.com
+- Contact phone: +1 (484)-716-9530
 - LinkedIn: https://www.linkedin.com/in/siddharth-gunti-66ba212b8/
 - GitHub: https://github.com/guntisid2007
 - Current résumé source: `/Users/tarushvkosgi/Downloads/Siddharth_Gunti_Resume_Purdue_Email (1).html`

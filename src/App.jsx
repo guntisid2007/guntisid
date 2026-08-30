@@ -9,6 +9,7 @@ import {
   GithubLogo,
   LinkedinLogo,
   Pause,
+  Phone,
   Play,
 } from "@phosphor-icons/react";
 
@@ -20,6 +21,7 @@ const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
 const GITHUB = "https://github.com/guntisid2007";
 const EMAIL = "sgunti@purdue.edu";
+const PERSONAL_EMAIL = "sid.gunti@gmail.com";
 
 const projects = [
   {
@@ -404,6 +406,8 @@ function App() {
           </div>
           <div className="contact-links" data-reveal>
             <a href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />{EMAIL}</a>
+            <a href={`mailto:${PERSONAL_EMAIL}`}><EnvelopeSimple size={20} />{PERSONAL_EMAIL}</a>
+            <a href="tel:+14847169530"><Phone size={20} />+1 (484)-716-9530</a>
             <a href={LINKEDIN} target="_blank" rel="noreferrer"><LinkedinLogo size={20} weight="fill" />LinkedIn<ArrowUpRight size={16} /></a>
             <a href={GITHUB} target="_blank" rel="noreferrer"><GithubLogo size={20} weight="fill" />GitHub<ArrowUpRight size={16} /></a>
           </div>
