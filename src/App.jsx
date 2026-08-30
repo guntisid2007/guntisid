@@ -379,6 +379,12 @@ function App() {
             <div><span>SID / 2026</span><span>PURDUE UNIVERSITY</span></div>
           </div>
           <div className="profile-copy" data-reveal>
+            <div className="university-affiliation">
+              <a href="https://www.purdue.edu/" target="_blank" rel="noreferrer" aria-label="Purdue University (opens in a new tab)">
+                <img src={`${ASSET_BASE}purdue-logo.svg`} alt="Purdue University" width="200" height="36" loading="lazy" />
+              </a>
+              <span>Engineering student</span>
+            </div>
             <h2>Curious enough to measure.<br /><span>Practical enough to build.</span></h2>
             <p>
               Sid’s path into engineering started with robotics, research, and the satisfaction of making a real mechanism work. At Purdue, he is going deeper into embedded systems, computer hardware, and the code that connects them.

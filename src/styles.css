@@ -738,6 +738,32 @@ h3 {
   font-size: clamp(2.8rem, 4.5vw, 4.5rem);
 }
 
+.university-affiliation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  margin-bottom: 32px;
+}
+
+.university-affiliation a {
+  display: flex;
+  min-height: 60px;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.university-affiliation img {
+  display: block;
+  width: 200px;
+  height: auto;
+}
+
+.university-affiliation span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
 .profile-copy > p {
   max-width: 66ch;
   margin: clamp(28px, 4vw, 52px) 0;

@@ -148,4 +148,5 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - Preserve: anchor IDs, nav labels, content provenance, social/contact links, research limitations, reduced-motion fallback, keyboard focus, page metadata, and résumé URL.
 - Evolve: gold action/highlight color, smaller section headings, sentence-case project/experience titles, original-color portrait, shorter first-person contact copy.
 - Asset limit: only the existing portrait is supplied. Do not present generated or stock hardware pictures as Sid’s projects. Add authentic project photography when supplied.
+- University affiliation: use the unmodified official Purdue logo beside “Engineering student” in the About section, separate from the site identity. Source: https://www.purdue.edu/purdue/images/logo.svg. Usage reference: https://www.purdue.edu/brand-studio/brand/logos-usage/. Do not recolor or distort it, or describe this personal portfolio as an official university site.
 - User-approved alternating surfaces and existing 3D visual take precedence over generic skill defaults for a single theme and generated hero imagery.
