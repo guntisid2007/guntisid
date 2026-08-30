@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siddharth Gunti - Resume</title>
+  <style>
+    :root {
+      --text: #111;
+      --rule: #222;
+      --link: #1e4a8d;
+    }
+
+    * { box-sizing: border-box; font-family: "Times New Roman", Times, serif; }
+
+    body {
+      margin: 0;
+      background: #f3f3f3;
+      color: var(--text);
+      font-family: "Times New Roman", Times, serif;
+      line-height: 1.15;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 8.5in;
+      min-height: 11in;
+      margin: 0.3in auto;
+      background: #fff;
+      padding: 0.45in 0.55in 0.5in;
+    }
+
+    h1 {
+      margin: 0;
+      text-align: center;
+      font-size: 3.15rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .contact {
+      margin-top: 0.45rem;
+      text-align: center;
+      font-size: 1.08rem;
+    }
+
+    .contact a {
+      color: var(--link);
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-top: 1rem;
+    }
+
+    .section-title {
+      margin: 0 0 0.24rem;
+      border-bottom: 2px solid var(--rule);
+      padding-bottom: 0.08rem;
+      font-size: 1.08rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      line-height: 1;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.99rem;
+      text-align: left;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .row .left,
+    .row .right {
+      font-weight: 700;
+      font-size: 1.03rem;
+    }
+
+    .row .right {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .italic {
+      font-style: italic;
+      font-size: 0.99rem;
+    }
+
+    .role-row { margin-top: 0; }
+
+    .dates {
+      font-size: 0.99rem;
+      white-space: nowrap;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      font-size: 0.99rem;
+    }
+
+    li { margin: 0.08rem 0; }
+
+    ul ul {
+      list-style-type: circle;
+      padding-left: 1.25rem;
+      margin-top: 0;
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        font-size: 13px;
+        line-height: 1.03;
+      }
+
+      .page {
+        width: auto;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 { font-size: 1.55rem; }
+
+      .contact {
+        margin-top: 0.1rem;
+        font-size: 0.72rem;
+      }
+
+      .section {
+        margin-top: 0.24rem;
+        break-inside: avoid;
+      }
+
+      .section-title {
+        font-size: 0.75rem;
+        margin-bottom: 0.08rem;
+        border-bottom-width: 1px;
+      }
+
+      p,
+      ul,
+      .row .left,
+      .row .right,
+      .italic,
+      .dates {
+        font-size: 0.72rem;
+      }
+
+      .row { margin-top: 0.04rem; }
+
+      li {
+        margin: 0;
+        line-height: 1;
+      }
+
+      ul { padding-left: 0.86rem; }
+      ul ul { padding-left: 0.92rem; }
+
+      @page {
+        size: letter;
+        margin: 0.18in 0.28in 0.2in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Siddharth Sharma Gunti</h1>
+    <div class="contact">
+      Email: <a href="mailto:guntisid2007@gmail.com">guntisid2007@gmail.com</a> |
+      <a href="tel:+14847169530">(484) 716-9530</a> |
+      West Lafayette, IN
+    </div>
+
+    <section class="section">
+      <h2 class="section-title">Profile</h2>
+      <p>
+        Purdue University First-Year Engineering student intending to pursue Computer Engineering, with experience in robotics,
+        engineering research, web content, and software development. Interested in embedded systems, computer hardware, and hands-on technical projects.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+
+      <div class="row">
+        <div class="left">Purdue University</div>
+        <div class="right">West Lafayette, Indiana</div>
+      </div>
+      <div class="row role-row">
+        <div class="italic">First-Year Engineering; Intended Computer Engineering</div>
+        <div class="dates">2026 - 2030</div>
+      </div>
+
+      <div class="row">
+        <div class="left">Spring-Ford Area Senior High School</div>
+        <div class="right">Royersford, Pennsylvania</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Skills</h2>
+      <ul>
+        <li><strong>Languages &amp; tools:</strong> Java, Python, C++, HTML/CSS, Git, GitHub, Pandas, Matplotlib, Microsoft Excel</li>
+        <li><strong>Focus areas:</strong> Robotics, embedded systems, data analysis, web development, engineering design</li>
+        <li><strong>Strengths:</strong> Leadership, problem solving, teamwork, technical communication</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Leadership &amp; Experience</h2>
+
+      <div class="row">
+        <div class="left">The Station Food Market</div>
+        <div class="right">West Lafayette, Indiana</div>
+      </div>
+      <div class="row role-row">
+        <div class="italic">Digital Media &amp; Web Intern</div>
+        <div class="dates">August 2026 - Present</div>
+      </div>
+      <ul>
+        <li>Manage and update website content while creating short-form digital media for products, events, and promotions</li>
+        <li>Collaborate with photography and social media team members to plan and produce cohesive marketing content</li>
+      </ul>
+
+      <div class="row">
+        <div class="left">Research Support India</div>
+        <div class="right">Hosur, India</div>
+      </div>
+      <div class="row role-row">
+        <div class="italic">Engineering Research Intern</div>
+        <div class="dates">Summer 2025</div>
+      </div>
+      <ul>
+        <li>Collected and analyzed data from 50+ trials across 5+ alkaline electrolyzer systems, tracking voltage, current, power, pressure, and hydrogen flow rate</li>
+        <li>Used Python, Pandas, and Matplotlib to visualize performance trends and contribute findings to a 20-page technical research paper reviewed by engineers</li>
+      </ul>
+
+      <div class="row">
+        <div class="left">DSAT Hackers</div>
+        <div class="right">Remote</div>
+      </div>
+      <div class="row role-row">
+        <div class="italic">Student Tutor Specialist (SAT)</div>
+        <div class="dates">November 2025 - March 2026</div>
+      </div>
+      <ul>
+        <li>Tutored students in SAT Math and Reading with individualized instruction in algebra, grammar, reading comprehension, and test strategy</li>
+        <li>Diagnosed recurring errors and provided targeted feedback to improve accuracy, pacing, and problem-solving</li>
+      </ul>
+
+      <div class="row">
+        <div class="left">VEX Robotics - Team 3327C</div>
+        <div class="right">Royersford, Pennsylvania</div>
+      </div>
+      <div class="row role-row">
+        <div class="italic">Team Captain, Build Lead &amp; Treasurer</div>
+        <div class="dates">September 2022 - March 2026</div>
+      </div>
+      <ul>
+        <li>Led mechanical design, construction, testing, and competition strategy for a 5+ member robotics team</li>
+        <li>Diagnosed mechanical failures, redesigned drivetrain and structural components, and integrated pneumatic mechanisms through iterative prototyping</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Selected Projects</h2>
+      <ul>
+        <li><strong>Java Swing Idle Game | Developer</strong>
+          <ul>
+            <li>Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations</li>
+          </ul>
+        </li>
+        <li><strong>Raspberry Pi Embedded Systems | Developer</strong>
+          <ul>
+            <li>Integrated temperature and motion sensors with GPIO-controlled hardware and scripts responding to real-time inputs</li>
+          </ul>
+        </li>
+        <li><strong>Eagle Scout Service Project | Project Lead</strong>
+          <ul>
+            <li>Directed 20+ volunteers to refurbish 13 community benches and construct a public information kiosk for a township park</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Awards &amp; Honors</h2>
+      <ul>
+        <li>Eagle Scout, Scouting America</li>
+        <li>State-Level VEX Design Award</li>
+        <li>AP Scholar with Distinction; PSAT/NMSQT Commended Student</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
