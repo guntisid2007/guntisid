@@ -7,14 +7,14 @@
 - Field-research logs: measurements arrive in disciplined rows, with provenance close to every claim.
 - Scientific journal figures: captions, axes, and limitations make evidence inspectable.
 - Calibration strips and instrument labels: narrow typographic bands help readers scan a complex surface.
-- Data-sublime installations: high-contrast bar fields and signal traces turn quantity into atmosphere.
+- Data-sublime installations: restrained signal traces turn quantity into atmosphere.
 - Modernist engineering manuals: strict composition supports both dense technical detail and quiet reading.
 - Hydrogen-system telemetry: voltage, current, power, pressure, and flow become a product-specific visual grammar.
 - Purdue-era student life: one candid portrait keeps the system human rather than anonymous.
 
 ### Design thesis
 
-Build a black-and-white evidence field where Sid’s engineering work is read by signal, sample, and result—not by card collection. Dense barcodes and traces provide scale; open typographic intervals provide calm. The interface should feel like a research instrument translated into an editorial portfolio.
+Build a charcoal, warm ivory, and muted gold portfolio where Sid’s engineering work is read by signal, sample, and result—not by card collection. Dense barcodes and traces provide scale; open typographic intervals provide calm. The interface should feel like a research instrument translated into an editorial portfolio.
 
 ### Category baseline
 
@@ -35,12 +35,14 @@ Every major claim resolves into inspectable evidence: a method, a measured quant
 
 ### Color
 
-- `--ink: #050505` — dominant ground and text on inverted surfaces
-- `--paper: #f4f4ef` — readable paper surface, intentionally not optic white
-- `--white: #ffffff` — active inversion and high-priority text
+- `--ink: #1c1e1b` — dominant ground and text on inverted surfaces
+- `--paper: #f3f0e8` — readable paper surface, intentionally not optic white
+- `--white: #faf8f2` — active inversion and high-priority text
 - `--line: rgba(5, 5, 5, 0.22)` — structure on paper
 - `--line-inverse: rgba(255, 255, 255, 0.26)` — structure on ink
-- No chromatic accent. Selection is communicated through inversion, not color.
+- `--accent: #cfb46a` - muted gold for primary actions and research highlights on charcoal
+- `--accent-ink: #756024` - a darker gold for accessible text and icons on ivory
+- Gold stays restrained; full-color personal photography adds natural variety.
 
 ### Typography
 
@@ -68,14 +70,14 @@ Every major claim resolves into inspectable evidence: a method, a measured quant
 
 - Square geometry; 0–2px radii only where native controls require relief.
 - One-pixel rules, no decorative shadows.
-- Paper and ink invert at major section boundaries.
-- The barcode is a structural texture generated from fixed CSS/JS sequences, never a scannable claim.
+- Use warm ivory for projects, experience, and contact; charcoal for the hero and research; a softer charcoal for the portrait section. This section contrast follows the user-approved direction.
+- Barcode texture is limited to the existing identity mark and hero. Project rows use Phosphor icons; buttons and contact use clean backgrounds.
 
 ## 3. Interaction Grammar
 
 ### Primary action
 
-Outlined instrument label with barcode caps. On hover/focus it inverts immediately, then the inner label shifts by 2px over 180ms.
+Simple outlined link with a directional arrow. The primary hero action is filled with muted gold. Hover and focus use a contrasting fill; a short transform gives interaction feedback.
 
 ### Secondary action
 
@@ -131,8 +133,19 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 ## 7. Governance
 
 - New sections must identify the evidence they contribute before being added.
-- Do not introduce a second accent, rounded card family, glass surface, or generic gradient.
+- Keep gold as the only UI accent. Do not introduce a rounded card family, glass surface, or generic gradient.
 - Reuse the signal/bar vocabulary sparingly; open areas are part of the system.
 - Do not fabricate project metrics or research conclusions.
 - Any new animation must explain change, order, or scale and must define a reduced-motion outcome.
 - Any Three.js expansion must preserve one focal scene and meet the same pause, fallback, DPR, and disposal requirements.
+
+
+## August 2026 visual refresh
+
+- Design read: engineering portfolio for recruiters and collaborators; warmer technical style, preserving information architecture and recognizable identity.
+- Dials: DESIGN_VARIANCE 6 / MOTION_INTENSITY 4 / VISUAL_DENSITY 4. Retain existing pauseable 3D hero and reveal behavior; add no new continuous animation.
+- Audit: existing palette was #050505 / #f4f4ef, Barlow Condensed + Manrope + IBM Plex Mono, square corners, oversized uppercase titles, repeated barcodes. Main paths are work, research, web résumé, and contact.
+- Preserve: anchor IDs, nav labels, content provenance, social/contact links, research limitations, reduced-motion fallback, keyboard focus, page metadata, and résumé URL.
+- Evolve: gold action/highlight color, smaller section headings, sentence-case project/experience titles, original-color portrait, shorter first-person contact copy.
+- Asset limit: only the existing portrait is supplied. Do not present generated or stock hardware pictures as Sid’s projects. Add authentic project photography when supplied.
+- User-approved alternating surfaces and existing 3D visual take precedence over generic skill defaults for a single theme and generated hero imagery.

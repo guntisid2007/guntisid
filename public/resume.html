@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#050505">
+  <meta name="theme-color" content="#1c1e1b">
   <meta name="description" content="The web résumé of Siddharth Sharma Gunti, Purdue engineering student.">
   <title>Résumé — Siddharth Gunti</title>
   <style>
@@ -11,7 +11,7 @@
     @font-face { font-family: "Manrope"; src: url("fonts/manrope-400.woff2") format("woff2"); font-display: swap; font-weight: 400; }
     @font-face { font-family: "IBM Plex Mono"; src: url("fonts/ibm-plex-mono-400.woff2") format("woff2"); font-display: swap; font-weight: 400; }
 
-    :root { --ink: #050505; --paper: #f4f4ef; --line: rgba(5,5,5,.24); --page: clamp(18px, 4vw, 56px); }
+    :root { --ink: #1c1e1b; --paper: #f3f0e8; --line: rgba(5,5,5,.24); --page: clamp(18px, 4vw, 56px); }
     * { box-sizing: border-box; }
     html { background: var(--ink); scroll-behavior: smooth; }
     body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); font-family: "Manrope", Arial, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
@@ -51,6 +51,9 @@
     .research-link:hover { background: var(--ink); color: var(--paper); }
     .research-link strong { font-family: "Barlow Condensed", sans-serif; font-size: 1.8rem; font-weight: 500; text-transform: uppercase; }
     footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px var(--page); background: var(--ink); color: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: .62rem; text-transform: uppercase; }
+
+    .resume-section > h2, .contact a:hover { color: #756024; }
+    .bar-actions button { background: #cfb46a; color: var(--ink); border-color: #cfb46a; }
 
     @media (max-width: 720px) {
       .resume-bar { grid-template-columns: 1fr; gap: 10px; padding-block: 14px; }

@@ -6,6 +6,9 @@ import {
   ArrowDown,
   ArrowUpRight,
   EnvelopeSimple,
+  Cpu,
+  Code,
+  Tree,
   GithubLogo,
   LinkedinLogo,
   Pause,
@@ -25,21 +28,24 @@ const PERSONAL_EMAIL = "sid.gunti@gmail.com";
 
 const projects = [
   {
-    signal: "GPIO / SENSORS / REAL-TIME INPUT",
+    signal: "Embedded systems",
+    icon: Cpu,
     title: "Raspberry Pi embedded systems",
     description:
       "Integrated temperature and motion sensors with GPIO-controlled hardware, then wrote scripts that respond to changing physical inputs.",
     tools: "Python · Raspberry Pi · GPIO",
   },
   {
-    signal: "OBJECT MODEL / TIMERS / PROGRESSION",
+    signal: "Software",
+    icon: Code,
     title: "Java Swing idle game",
     description:
       "Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations.",
     tools: "Java · Swing · OOP",
   },
   {
-    signal: "20+ VOLUNTEERS / 13 BENCHES / 1 KIOSK",
+    signal: "Community leadership",
+    icon: Tree,
     title: "Eagle Scout service project",
     description:
       "Directed a volunteer team to refurbish thirteen community benches and construct a public information kiosk for a township park.",
@@ -49,7 +55,7 @@ const projects = [
 
 const experience = [
   {
-    period: "AUG 2026 — PRESENT",
+    period: "AUG 2026 - PRESENT",
     role: "Digital Media & Web Intern",
     organization: "The Station Food Market · West Lafayette, IN",
     summary:
@@ -63,14 +69,14 @@ const experience = [
       "Collected and analyzed alkaline-electrolyzer operating data, visualized performance trends, and documented findings for engineering review.",
   },
   {
-    period: "NOV 2025 — MAR 2026",
+    period: "NOV 2025 - MAR 2026",
     role: "Student Tutor Specialist",
     organization: "DSAT Hackers · Remote",
     summary:
       "Delivered individualized SAT instruction, diagnosed recurring errors, and developed targeted practice for accuracy, pacing, and strategy.",
   },
   {
-    period: "SEP 2022 — MAR 2026",
+    period: "SEP 2022 - MAR 2026",
     role: "Team Captain, Build Lead & Treasurer",
     organization: "VEX Robotics · Team 3327C",
     summary:
@@ -142,7 +148,6 @@ function EvidenceLink({ href, children, external = false, className = "" }) {
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
     >
-      <Barcode count={13} seed={children.length} />
       <span>{children}</span>
       {external ? <ArrowUpRight size={17} weight="bold" /> : <ArrowDown size={17} weight="bold" />}
     </a>
@@ -154,7 +159,7 @@ function ResearchChart() {
     <div className="research-chart" aria-label="Reported voltage, current, and power trend lines over the 721-second monitoring window">
       <div className="chart-head">
         <span>REPORTED TREND LINES</span>
-        <span>0 — 721 S</span>
+        <span>0 - 721 S</span>
       </div>
       <svg viewBox="0 0 760 420" role="img" aria-labelledby="chart-title chart-desc">
         <title id="chart-title">Electrolyzer operating trend lines</title>
@@ -178,7 +183,7 @@ function ResearchChart() {
       </svg>
       <div className="chart-foot">
         <span>NORMALIZED FOR COMPARISON</span>
-        <Barcode count={42} seed={721} />
+        <span>Voltage / Current / Power</span>
       </div>
     </div>
   );
@@ -227,18 +232,6 @@ function App() {
           scrollTrigger: { trigger: ".research-chart", start: "top 72%", once: true },
         });
       });
-
-      gsap.fromTo(
-        ".research-chart .barcode i",
-        { scaleY: 0.1, transformOrigin: "bottom" },
-        {
-          scaleY: 1,
-          duration: 0.45,
-          ease: "power3.out",
-          stagger: { each: 0.008, from: "random" },
-          scrollTrigger: { trigger: ".research-chart", start: "top 78%", once: true },
-        },
-      );
     },
     { scope },
   );
@@ -276,10 +269,10 @@ function App() {
       <main id="main">
         <section className="hero" id="top">
           <div className="hero-copy">
-            <h1 data-intro="title">Engineering across hardware, data, and code.</h1>
+            <h1 data-intro="title">Engineering across <span>hardware,</span> data, and code.</h1>
             <div className="hero-support" data-intro="copy">
               <p>
-                I’m Sid, a Purdue engineering student working toward Computer Engineering. I build physical systems, test how they behave, and make the result understandable.
+                I’m Sid, a Purdue engineering student exploring embedded systems, robotics, and the software that connects them.
               </p>
               <div className="hero-actions">
                 <EvidenceLink href="#work">Inspect the work</EvidenceLink>
@@ -308,7 +301,7 @@ function App() {
             {projects.map((project) => (
               <article className="project-row" key={project.title} data-reveal>
                 <div className="project-signal">
-                  <Barcode count={22} seed={project.title.length} />
+                  <project.icon size={36} weight="duotone" aria-hidden="true" />
                   <span>{project.signal}</span>
                 </div>
                 <h3>{project.title}</h3>
@@ -322,13 +315,13 @@ function App() {
         <section className="research-section" id="research">
           <div className="research-intro" data-reveal>
             <div>
-              <h2>One system. 721 seconds of evidence.</h2>
+              <h2>One system.<br /><span>721 seconds</span> of evidence.</h2>
               <p className="research-deck">
-                At Research Support India, Sid studied an alkaline electrolyzer in operation—tracking how its electrical characteristics moved alongside hydrogen production.
+                At Research Support India, Sid studied an alkaline electrolyzer in operation, tracking how its electrical characteristics moved alongside hydrogen production.
               </p>
             </div>
             <EvidenceLink href={`${ASSET_BASE}RSI-Research-Paper.pdf`} external>
-              Read the 18-page paper
+              Read the research paper
             </EvidenceLink>
           </div>
 
@@ -363,7 +356,7 @@ function App() {
 
         <section className="experience-section paper-section" id="experience">
           <div className="section-title" data-reveal>
-            <h2>Experience log</h2>
+            <h2>Experience</h2>
             <p>Technical work, team leadership, instruction, and public-facing communication.</p>
           </div>
           <div className="experience-log">
@@ -380,13 +373,13 @@ function App() {
           </div>
         </section>
 
-        <section className="profile-section paper-section" id="about">
+        <section className="profile-section" id="about">
           <div className="profile-image" data-reveal>
             <img src={`${ASSET_BASE}sid-gunti.jpg`} alt="Siddharth Gunti" loading="lazy" />
             <div><span>SID / 2026</span><span>PURDUE UNIVERSITY</span></div>
           </div>
           <div className="profile-copy" data-reveal>
-            <h2>Curious enough to measure. Practical enough to build.</h2>
+            <h2>Curious enough to measure.<br /><span>Practical enough to build.</span></h2>
             <p>
               Sid’s path into engineering started with robotics, research, and the satisfaction of making a real mechanism work. At Purdue, he is going deeper into embedded systems, computer hardware, and the code that connects them.
             </p>
@@ -399,10 +392,10 @@ function App() {
         </section>
 
         <section className="contact-section" id="contact">
-          <Barcode count={92} seed={2027} className="contact-bars" />
           <div data-reveal>
-            <h2>Let’s build something that has to work.</h2>
-            <p>Sid is interested in Summer 2027 Computer Engineering opportunities and conversations with people building real systems.</p>
+            <span className="contact-intro">Have a project in mind?</span>
+            <h2>Let’s build something.</h2>
+            <p>I’m looking for Summer 2027 Computer Engineering opportunities. If you’re building something interesting, I’d love to hear about it.</p>
           </div>
           <div className="contact-links" data-reveal>
             <a href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />{EMAIL}</a>

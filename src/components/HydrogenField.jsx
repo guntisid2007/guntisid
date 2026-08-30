@@ -68,7 +68,7 @@ export default function HydrogenField({ paused = false, fallback = null }) {
 
       const pointGeometry = new THREE.BufferGeometry();
       pointGeometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-      const pointMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: compact ? 0.035 : 0.045, transparent: true, opacity: 0.8 });
+      const pointMaterial = new THREE.PointsMaterial({ color: 0xf3f0e8, size: compact ? 0.035 : 0.045, transparent: true, opacity: 0.8 });
       field.add(new THREE.Points(pointGeometry, pointMaterial));
 
       const curve = new THREE.CatmullRomCurve3(
@@ -78,11 +78,11 @@ export default function HydrogenField({ paused = false, fallback = null }) {
         }),
       );
       const curveGeometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(180));
-      const curveMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.95 });
+      const curveMaterial = new THREE.LineBasicMaterial({ color: 0xcfb46a, transparent: true, opacity: 0.95 });
       field.add(new THREE.Line(curveGeometry, curveMaterial));
 
       const barGeometry = new THREE.BoxGeometry(0.025, 1, 0.025);
-      const barMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.28 });
+      const barMaterial = new THREE.MeshBasicMaterial({ color: 0xcfb46a, transparent: true, opacity: 0.15 });
       const barCount = compact ? 48 : 86;
       const bars = new THREE.InstancedMesh(barGeometry, barMaterial, barCount);
       const matrix = new THREE.Matrix4();

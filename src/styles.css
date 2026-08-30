@@ -23,11 +23,15 @@
 }
 
 :root {
-  --ink: #050505;
-  --paper: #f4f4ef;
-  --white: #fff;
-  --line: rgb(5 5 5 / 24%);
-  --line-inverse: rgb(255 255 255 / 28%);
+  --ink: #1c1e1b;
+  --paper: #f3f0e8;
+  --white: #faf8f2;
+  --accent: #cfb46a;
+  --accent-ink: #756024;
+  --surface: #262923;
+  --muted: #c4c5bb;
+  --line: rgb(28 30 27 / 20%);
+  --line-inverse: rgb(243 240 232 / 22%);
   --display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --body: "Manrope", Arial, sans-serif;
   --mono: "IBM Plex Mono", "SFMono-Regular", monospace;
@@ -78,7 +82,7 @@ button {
 }
 
 ::selection {
-  background: var(--white);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -101,7 +105,7 @@ button {
 }
 
 .site {
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow: clip;
   background: var(--ink);
 }
@@ -113,7 +117,7 @@ button {
   left: 12px;
   padding: 10px 14px;
   transform: translateY(-180%);
-  background: var(--white);
+  background: var(--accent);
   color: var(--ink);
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -182,7 +186,7 @@ button {
 }
 
 .status-readout span {
-  color: rgb(244 244 239 / 58%);
+  color: var(--muted);
 }
 
 .status-readout strong {
@@ -210,7 +214,7 @@ button {
 
 .desktop-nav a:hover,
 .desktop-nav a:focus-visible {
-  background: var(--paper);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -220,7 +224,7 @@ button {
 
 .hero {
   display: grid;
-  min-height: min(820px, calc(100svh - 70px));
+  min-height: min(720px, calc(100svh - 70px));
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 1fr auto;
   border-bottom: 1px solid var(--line-inverse);
@@ -235,7 +239,7 @@ button {
   flex-direction: column;
   justify-content: center;
   border-right: 1px solid var(--line-inverse);
-  padding: clamp(72px, 10vw, 150px) var(--page) clamp(56px, 7vw, 100px);
+  padding: clamp(56px, 6vw, 88px) var(--page);
 }
 
 h1,
@@ -252,21 +256,21 @@ h3 {
 }
 
 .hero h1 {
-  max-width: 9.5ch;
-  margin-bottom: clamp(32px, 5vw, 70px);
+  max-width: 18ch;
+  margin-bottom: 36px;
   font-family: var(--display);
-  font-size: clamp(4rem, 9.25vw, 8.6rem);
+  font-size: clamp(3.6rem, 7.3vw, 6.8rem);
   font-weight: 500;
   letter-spacing: -0.025em;
-  line-height: 0.83;
+  line-height: 0.97;
   text-transform: uppercase;
 }
 
 .hero-support {
   display: grid;
   max-width: 720px;
-  grid-template-columns: minmax(220px, 1.1fr) minmax(200px, 0.9fr);
-  gap: clamp(24px, 4vw, 64px);
+  grid-template-columns: 1fr;
+  gap: 28px;
   align-items: end;
 }
 
@@ -284,7 +288,7 @@ h3 {
 .evidence-link {
   display: grid;
   min-height: 48px;
-  grid-template-columns: 54px 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 14px;
   border: 1px solid currentColor;
@@ -298,14 +302,10 @@ h3 {
   transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.evidence-link .barcode {
-  width: 52px;
-  height: 20px;
-}
 
 .evidence-link:hover,
 .evidence-link:focus-visible {
-  background: var(--white);
+  background: var(--accent);
   color: var(--ink);
   transform: translateY(-2px);
 }
@@ -335,7 +335,7 @@ h3 {
   position: absolute;
   z-index: 2;
   top: 18px;
-  color: rgb(244 244 239 / 72%);
+  color: var(--muted);
   font-family: var(--mono);
   font-size: 0.6rem;
   letter-spacing: 0.06em;
@@ -348,7 +348,7 @@ h3 {
 
 .field-stage::after {
   right: 18px;
-  content: "721 / ACTIVE";
+  content: none;
 }
 
 .field-control {
@@ -402,7 +402,7 @@ h3 {
 
 .signal-fallback path {
   fill: none;
-  stroke: var(--paper);
+  stroke: var(--accent);
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
@@ -454,7 +454,7 @@ h3 {
 
 .section-title {
   display: grid;
-  grid-template-columns: minmax(250px, 1.6fr) minmax(240px, 0.8fr);
+  grid-template-columns: 1fr;
   gap: 32px;
   align-items: end;
   border-bottom: 1px solid var(--ink);
@@ -467,16 +467,16 @@ h3 {
 .contact-section h2 {
   margin-bottom: 0;
   font-family: var(--display);
-  font-size: clamp(3.5rem, 8vw, 7.4rem);
+  font-size: clamp(3rem, 5.4vw, 5rem);
   font-weight: 500;
   letter-spacing: -0.025em;
-  line-height: 0.88;
+  line-height: 1.02;
   text-transform: uppercase;
 }
 
 .section-title > p {
-  max-width: 46ch;
-  margin: 0 0 4px auto;
+  max-width: 62ch;
+  margin: 0;
 }
 
 .project-index {
@@ -485,8 +485,8 @@ h3 {
 
 .project-row {
   display: grid;
-  min-height: 230px;
-  grid-template-columns: 1fr 1.25fr 1fr 0.8fr;
+  min-height: 190px;
+  grid-template-columns: 0.65fr 1.1fr 1.25fr 0.75fr;
   align-items: start;
   border-bottom: 1px solid var(--line);
   gap: clamp(22px, 3vw, 48px);
@@ -501,12 +501,6 @@ h3 {
   min-width: 0;
 }
 
-.project-signal .barcode {
-  width: 100%;
-  max-width: 220px;
-  height: 54px;
-  color: var(--ink);
-}
 
 .project-signal > span,
 .project-tools,
@@ -560,7 +554,7 @@ h3 {
 }
 
 .research-intro h2 {
-  max-width: 10ch;
+  max-width: 18ch;
 }
 
 .research-deck {
@@ -608,11 +602,6 @@ h3 {
   border-top: 1px solid var(--line-inverse);
 }
 
-.chart-foot .barcode {
-  width: 45%;
-  height: 22px;
-  color: var(--paper);
-}
 
 .research-chart > svg {
   display: block;
@@ -629,7 +618,7 @@ h3 {
 
 .chart-series path {
   fill: none;
-  stroke: var(--white);
+  stroke: var(--paper);
   stroke-width: 2;
   vector-effect: non-scaling-stroke;
 }
@@ -732,7 +721,6 @@ h3 {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
-  filter: grayscale(1) contrast(1.05);
   object-fit: cover;
   object-position: 50% 20%;
 }
@@ -746,8 +734,8 @@ h3 {
 }
 
 .profile-copy h2 {
-  max-width: 11ch;
-  font-size: clamp(3.3rem, 7vw, 6.6rem);
+  max-width: 19ch;
+  font-size: clamp(2.8rem, 4.5vw, 4.5rem);
 }
 
 .profile-copy > p {
@@ -779,28 +767,21 @@ h3 {
 .contact-section {
   position: relative;
   display: grid;
-  min-height: 680px;
-  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+  min-height: 460px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
   gap: 48px;
   align-items: end;
   overflow: hidden;
   border-top: 1px solid var(--line-inverse);
-  padding: clamp(90px, 12vw, 180px) var(--page) clamp(72px, 8vw, 120px);
-}
-
-.contact-bars {
-  position: absolute;
-  inset: 0 0 auto;
-  width: 100%;
-  height: clamp(130px, 22vw, 300px);
-  justify-content: space-around;
-  color: rgb(244 244 239 / 18%);
+  padding: clamp(64px, 8vw, 110px) var(--page);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .contact-section h2 {
   position: relative;
   z-index: 1;
-  max-width: 10ch;
+  max-width: 18ch;
 }
 
 .contact-section p {
@@ -835,7 +816,7 @@ h3 {
 .contact-links a:hover,
 .contact-links a:focus-visible {
   padding-left: 10px;
-  background: var(--paper);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -854,6 +835,57 @@ footer {
 footer a {
   text-decoration: none;
 }
+
+/* Warm technical palette: gold guides actions and research highlights. */
+.hero h1 span,
+.research-intro h2 span,
+.ledger-key,
+.identity .barcode { color: var(--accent); }
+.hero-support > p { color: var(--muted); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero-actions .evidence-link { min-width: 185px; }
+.hero-actions .evidence-link:first-child { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+.hero-actions .evidence-link:first-child:hover { background: var(--paper); border-color: var(--paper); }
+.evidence-link:active { transform: translateY(1px); }
+.evidence-link span { white-space: nowrap; }
+.hero-ledger { background: var(--surface); }
+.hero-ledger span:last-child { color: var(--accent); }
+.hero-field { background: var(--surface); }
+.section-title { gap: 18px; padding-bottom: 30px; border-color: var(--line); }
+.project-signal svg { display: block; color: var(--accent-ink); margin-bottom: 22px; }
+.project-signal > span { color: var(--accent-ink); }
+.project-tools { color: #595b52; line-height: 1.8; }
+.project-row h3 { font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.08; text-transform: none; }
+.project-row > p { color: #4c5047; }
+.research-chart { background: var(--surface); }
+.chart-series path:last-child { stroke: var(--accent); stroke-width: 3; }
+.chart-series path:nth-child(2) { opacity: 0.55; }
+.chart-head { color: var(--accent); }
+.chart-foot { color: var(--muted); }
+.research-ledger .limitation { background: var(--surface); color: var(--paper); border-left: 2px solid var(--accent); }
+.research-ledger .limitation p { color: var(--muted); }
+.experience-log h3 { font-family: var(--body); font-size: clamp(1.3rem, 2vw, 1.7rem); line-height: 1.3; text-transform: none; }
+.experience-log article > span { color: var(--accent-ink); }
+.experience-log article > p { color: #4c5047; }
+.experience-section { padding-bottom: 72px; }
+.profile-section { background: var(--surface); border-top: 0; align-items: center; }
+.profile-copy h2 span { color: var(--accent); }
+.profile-copy > p { color: var(--muted); }
+.profile-image { max-width: 440px; }
+.profile-image div { border-color: var(--line-inverse); color: var(--muted); }
+.toolbox { border-color: var(--line-inverse); }
+.toolbox > div { border-color: var(--line-inverse); }
+.toolbox span { color: var(--accent); }
+.contact-section { align-items: center; gap: clamp(40px, 7vw, 110px); }
+.contact-intro { display: block; color: var(--accent-ink); margin-bottom: 20px; font-size: 0.95rem; }
+.contact-section h2 { max-width: 15ch; font-size: clamp(3rem, 5.5vw, 5rem); text-transform: none; }
+.contact-section p { max-width: 43ch; color: #4c5047; margin-top: 24px; }
+.contact-links, .contact-links a { border-color: var(--line); }
+.contact-links a { min-height: 64px; font-size: 0.8rem; transition: background-color 160ms ease; }
+.contact-links a svg { flex-shrink: 0; color: var(--accent-ink); }
+.contact-links a:hover, .contact-links a:focus-visible { padding-left: 0; background: #e8e0c9; }
+footer { color: var(--muted); }
+footer a:hover { color: var(--accent); }
 
 @media (max-width: 1120px) {
   .status-rail {
@@ -959,8 +991,8 @@ footer a {
   }
 
   .hero h1 {
-    max-width: 8.5ch;
-    font-size: clamp(4rem, 15vw, 7rem);
+    max-width: 15ch;
+    font-size: clamp(3.6rem, 10vw, 6rem);
   }
 
   .hero-field {
@@ -1030,7 +1062,7 @@ footer a {
   }
 
   .contact-section {
-    min-height: 720px;
+    min-height: auto;
   }
 }
 
@@ -1061,7 +1093,7 @@ footer a {
 
   .hero h1 {
     margin-bottom: 36px;
-    font-size: clamp(3.55rem, 18.5vw, 5.4rem);
+    font-size: clamp(3.1rem, 14vw, 4.5rem);
   }
 
   .hero-support {
@@ -1100,7 +1132,7 @@ footer a {
   .research-intro h2,
   .profile-copy h2,
   .contact-section h2 {
-    font-size: clamp(3rem, 15vw, 4.5rem);
+    font-size: clamp(2.8rem, 11vw, 3.8rem);
   }
 
   .project-row {
@@ -1113,14 +1145,9 @@ footer a {
     grid-column: 1;
   }
 
-  .project-signal .barcode {
-    height: 38px;
-  }
 
-  .project-row h3,
-  .experience-log h3 {
-    font-size: 2.55rem;
-  }
+  .project-row h3 { font-size: 2.25rem; }
+  .experience-log h3 { font-size: 1.4rem; }
 
   .chart-labels text {
     font-size: 12px;
@@ -1132,9 +1159,6 @@ footer a {
     gap: 8px;
   }
 
-  .chart-foot .barcode {
-    width: 100%;
-  }
 
   .research-ledger strong {
     font-size: 2.75rem;
@@ -1154,7 +1178,7 @@ footer a {
   }
 
   .contact-section {
-    min-height: 680px;
+    min-height: 460px;
     padding-bottom: 68px;
   }
 
