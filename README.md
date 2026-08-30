@@ -1,13 +1,16 @@
 # Sid Gunti — Portfolio
 
-A responsive React portfolio for Siddharth Sharma Gunti, built around his work in embedded systems, robotics, engineering research, and digital media.
+A responsive React portfolio for Siddharth “Sid” Gunti, built around inspectable engineering evidence: embedded systems, robotics, data analysis, and research.
+
+The repository includes a standalone web résumé at `public/resume.html` and Sid’s alkaline-electrolyzer research paper at `public/RSI-Research-Paper.pdf`.
 
 ## Stack
 
 - React 19 and Vite
-- Tailwind CSS 4
-- Framer Motion
+- GSAP and ScrollTrigger
+- Three.js, lazy-loaded with a static fallback
 - Phosphor Icons
+- Self-hosted Barlow Condensed, Manrope, and IBM Plex Mono
 
 ## Run locally
 
