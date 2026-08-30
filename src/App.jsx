@@ -408,8 +408,8 @@ function App() {
             <a href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />{EMAIL}</a>
             <a href={`mailto:${PERSONAL_EMAIL}`}><EnvelopeSimple size={20} />{PERSONAL_EMAIL}</a>
             <a href="tel:+14847169530"><Phone size={20} />+1 (484)-716-9530</a>
-            <a href={LINKEDIN} target="_blank" rel="noreferrer"><LinkedinLogo size={20} weight="fill" />LinkedIn<ArrowUpRight size={16} /></a>
-            <a href={GITHUB} target="_blank" rel="noreferrer"><GithubLogo size={20} weight="fill" />GitHub<ArrowUpRight size={16} /></a>
+            <a href={LINKEDIN} target="_blank" rel="noreferrer"><LinkedinLogo size={20} weight="fill" />LinkedIn<ArrowUpRight className="contact-arrow" size={16} /></a>
+            <a href={GITHUB} target="_blank" rel="noreferrer"><GithubLogo size={20} weight="fill" />GitHub<ArrowUpRight className="contact-arrow" size={16} /></a>
           </div>
         </section>
       </main>

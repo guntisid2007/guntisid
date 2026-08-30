@@ -828,7 +828,7 @@ h3 {
   text-decoration: none;
 }
 
-.contact-links a svg:last-child {
+.contact-links .contact-arrow {
   margin-left: auto;
 }
 
