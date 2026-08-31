@@ -177,3 +177,5 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - `public/research-voltage.png` is the unchanged embedded image from page 13 of `RSI-Research-Paper.pdf` (598 × 290). Preserve its axes, legend, and data; link to the full-size asset for inspection.
 - Attribute automated data collection to site engineers and describe Sid’s contribution as Python analysis, visualization, trend fitting, and documentation, supported by pages 12, 16, and 18.
 - Keep the short observation window and unrecorded temperature limitation below the findings, beside the paper link. Do not claim proven efficiency or durability.
+
+- Research palette refinement: apply an SVG color matrix to the displayed PNG only, mapping white to charcoal, black to ivory, and blue readings to gold. Preserve source pixels, plot geometry, labels, and the unchanged downloadable original; the caption discloses the color adaptation.

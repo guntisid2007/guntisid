@@ -586,11 +586,14 @@ h3 {
   text-decoration: none;
 }
 
+.research-palette { position: absolute; pointer-events: none; }
+
 .research-figure img {
   display: block;
   width: 100%;
   height: auto;
-  background: white;
+  background: var(--ink);
+  filter: url(#research-palette);
 }
 
 .research-figure-link > span {
