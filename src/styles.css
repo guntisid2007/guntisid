@@ -325,10 +325,15 @@ h3 {
 }
 
 .chip-assembly canvas {
+  cursor: grab;
+  touch-action: none;
   display: block;
   width: 100%;
   height: 100%;
 }
+
+.chip-assembly canvas.is-dragging { cursor: grabbing; }
+.chip-assembly canvas:focus-visible { outline-offset: -4px; }
 
 .model-caption {
   position: absolute;
@@ -361,6 +366,11 @@ h3 {
   flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
+}
+
+@media (max-width: 560px) {
+  .field-controls { left: 10px; right: 10px; gap: 6px; justify-content: center; }
+  .field-controls .field-control { padding-inline: 8px; font-size: 0.6rem; gap: 6px; }
 }
 
 .field-stage:has(.chip-fallback) .field-controls { display: none; }

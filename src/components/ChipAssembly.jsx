@@ -1,17 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
 // Conceptual processor package, not a model of a specific product or project.
-export default function ChipAssembly({ paused = false, exploded = true, fallback = null }) {
+export default function ChipAssembly({ paused = false, exploded = true, resetKey = 0, onInteract, fallback = null }) {
   const hostRef = useRef(null);
   const stateRef = useRef({ paused, exploded });
   const wakeRef = useRef(() => {});
+  const resetRef = useRef(() => {});
+  const interactRef = useRef(onInteract);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     stateRef.current = { paused, exploded };
     wakeRef.current();
   }, [paused, exploded]);
+
+  useEffect(() => { interactRef.current = onInteract; }, [onInteract]);
+  useEffect(() => { resetRef.current(); }, [resetKey]);
 
   useEffect(() => {
     const host = hostRef.current;
@@ -23,8 +29,7 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
     let visible = true;
     let previousTime = 0;
     let elapsed = 0;
-    let targetX = 0;
-    let targetY = 0;
+    let distance = 9.8;
     let separation = stateRef.current.exploded ? 1 : 0;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const geometries = new Set();
@@ -36,6 +41,7 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
       disposed = true;
       cancelAnimationFrame(frame);
       wakeRef.current = () => {};
+      resetRef.current = () => {};
       cleanup.forEach((fn) => fn());
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((material) => material.dispose());
@@ -53,11 +59,26 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.35;
-      renderer.domElement.setAttribute("aria-hidden", "true");
+      renderer.domElement.tabIndex = 0;
+      renderer.domElement.setAttribute("role", "img");
+      renderer.domElement.setAttribute("aria-label", "3D microchip. Drag to rotate, or use arrow keys. Press Home to reset the view.");
+      renderer.domElement.setAttribute("aria-keyshortcuts", "ArrowLeft ArrowRight ArrowUp ArrowDown Home");
       host.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 60);
+      const homeDirection = new THREE.Vector3(0.58, 0.48, 0.72).normalize();
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.set(0, 0.15, 0);
+      camera.position.copy(homeDirection).multiplyScalar(distance).add(controls.target);
+      controls.enableZoom = false;
+      controls.enablePan = false;
+      controls.enableDamping = false;
+      controls.rotateSpeed = 0.65;
+      controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: null, RIGHT: null };
+      controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: null };
+      controls.update();
+      cleanup.push(() => controls.dispose());
       const assembly = new THREE.Group();
       assembly.rotation.y = -0.28;
       scene.add(assembly);
@@ -182,8 +203,7 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
         positionLayers();
         if (moving) {
           elapsed += delta;
-          assembly.rotation.y += (-0.28 + targetX + Math.sin(elapsed * 0.35) * 0.18 - assembly.rotation.y) * ease;
-          assembly.rotation.x += (targetY - assembly.rotation.x) * ease;
+          assembly.rotation.y += (-0.28 + Math.sin(elapsed * 0.35) * 0.18 - assembly.rotation.y) * ease;
         }
         renderer.render(scene, camera);
         if (moving || separation !== wanted) frame = requestAnimationFrame(renderFrame);
@@ -193,6 +213,52 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
         if (!frame && !disposed && visible && !document.hidden) frame = requestAnimationFrame(renderFrame);
       };
       wakeRef.current = wake;
+      const stopAmbientMotion = () => {
+        stateRef.current.paused = true;
+        interactRef.current?.();
+        wake();
+      };
+      const onDragStart = () => {
+        renderer.domElement.focus({ preventScroll: true });
+        renderer.domElement.classList.add("is-dragging");
+        stopAmbientMotion();
+      };
+      const onDragEnd = () => renderer.domElement.classList.remove("is-dragging");
+      controls.addEventListener("change", wake);
+      controls.addEventListener("start", onDragStart);
+      controls.addEventListener("end", onDragEnd);
+      cleanup.push(() => {
+        controls.removeEventListener("change", wake);
+        controls.removeEventListener("start", onDragStart);
+        controls.removeEventListener("end", onDragEnd);
+      });
+      const resetView = () => {
+        controls.target.set(0, 0.15, 0);
+        camera.position.copy(homeDirection).multiplyScalar(distance).add(controls.target);
+        assembly.rotation.set(0, -0.28, 0);
+        elapsed = 0;
+        controls.update();
+        wake();
+      };
+      resetRef.current = resetView;
+      const onKeyDown = (event) => {
+        const rotations = {
+          ArrowLeft: ["rotateLeft", Math.PI / 18],
+          ArrowRight: ["rotateLeft", -Math.PI / 18],
+          ArrowUp: ["rotateUp", Math.PI / 18],
+          ArrowDown: ["rotateUp", -Math.PI / 18],
+        };
+        if (!rotations[event.key] && event.key !== "Home") return;
+        event.preventDefault();
+        stopAmbientMotion();
+        if (event.key === "Home") resetView();
+        else {
+          const [method, angle] = rotations[event.key];
+          controls[method](angle);
+        }
+      };
+      renderer.domElement.addEventListener("keydown", onKeyDown);
+      cleanup.push(() => renderer.domElement.removeEventListener("keydown", onKeyDown));
 
       const resize = () => {
         const { width, height } = host.getBoundingClientRect();
@@ -200,9 +266,10 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
         renderer.setSize(width, height, false);
         camera.aspect = width / height;
         // Fit the full exploded assembly into narrow desktop and mobile panels.
-        const distance = Math.max(9.8, 8 / camera.aspect);
-        camera.position.set(distance * 0.58, distance * 0.48, distance * 0.72);
-        camera.lookAt(0, 0.15, 0);
+        distance = Math.max(10.2, 8.5 / camera.aspect);
+        const direction = camera.position.clone().sub(controls.target).normalize();
+        camera.position.copy(direction).multiplyScalar(distance).add(controls.target);
+        controls.update();
         camera.updateProjectionMatrix();
         wake();
       };
@@ -217,28 +284,16 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
       observer.observe(host);
       cleanup.push(() => observer.disconnect());
 
-      const onPointerMove = (event) => {
-        if (event.pointerType === "touch") return;
-        const rect = host.getBoundingClientRect();
-        targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 0.7;
-        targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 0.18;
-        wake();
-      };
-      const onPointerLeave = () => { targetX = 0; targetY = 0; wake(); };
       const onVisibilityChange = () => {
         if (document.hidden) { cancelAnimationFrame(frame); frame = 0; previousTime = 0; }
         else wake();
       };
       const onMotionChange = () => { previousTime = 0; wake(); };
       const onContextLost = (event) => { event.preventDefault(); dispose(); setFailed(true); };
-      host.addEventListener("pointermove", onPointerMove, { passive: true });
-      host.addEventListener("pointerleave", onPointerLeave);
       document.addEventListener("visibilitychange", onVisibilityChange);
       motion.addEventListener("change", onMotionChange);
       renderer.domElement.addEventListener("webglcontextlost", onContextLost);
       cleanup.push(() => {
-        host.removeEventListener("pointermove", onPointerMove);
-        host.removeEventListener("pointerleave", onPointerLeave);
         document.removeEventListener("visibilitychange", onVisibilityChange);
         motion.removeEventListener("change", onMotionChange);
         renderer.domElement.removeEventListener("webglcontextlost", onContextLost);
@@ -254,5 +309,5 @@ export default function ChipAssembly({ paused = false, exploded = true, fallback
   }, []);
 
   if (failed) return fallback;
-  return <div className="chip-assembly" ref={hostRef} aria-hidden="true" />;
+  return <div className="chip-assembly" ref={hostRef} />;
 }

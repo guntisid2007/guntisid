@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import {
   ArrowDown,
   ArrowUpRight,
+  ArrowCounterClockwise,
   EnvelopeSimple,
   Cpu,
   Code,
@@ -116,17 +117,26 @@ function ChipFallback({ status = "3D unavailable" }) {
 function FieldStage() {
   const [paused, setPaused] = useState(false);
   const [exploded, setExploded] = useState(true);
+  const [resetKey, setResetKey] = useState(0);
 
   return (
     <div className="field-stage" role="group" aria-label="Interactive conceptual microchip assembly">
       <div className="model-caption">
         <span>MICROCHIP / CONCEPT MODEL</span>
-        <p>Hardware, layer by layer.</p>
+        <p>Drag or swipe to rotate.</p>
       </div>
       <Suspense fallback={<ChipFallback status="Loading 3D model" />}>
-        <ChipAssembly paused={paused} exploded={exploded} fallback={<ChipFallback />} />
+        <ChipAssembly paused={paused} exploded={exploded} resetKey={resetKey} onInteract={() => setPaused(true)} fallback={<ChipFallback />} />
       </Suspense>
       <div className="field-controls">
+        <button
+          className="field-control"
+          type="button"
+          onClick={() => { setPaused(true); setResetKey((value) => value + 1); }}
+        >
+          <ArrowCounterClockwise size={15} />
+          Reset view
+        </button>
         <button
           className="field-control"
           type="button"

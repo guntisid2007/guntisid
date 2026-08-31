@@ -156,6 +156,6 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 
 - Replaces the sine-wave field at the user’s request. The layered assembly is a conceptual illustration, not a claim about a specific project or chip architecture.
 - Three.js solid geometry: substrate, contact pads, processor package, bonding wires, silicon blocks, and metal lid. Retain the charcoal/gold palette.
-- Assemble/explode button exposes the layers; pointer movement tilts the object. Pause stops ambient motion. Under reduced motion, ambient rotation stops and layer changes are immediate.
-- Fit the complete model to its container; keep mobile touch scrolling native. Rendering stops offscreen, while the document is hidden, and after a paused view settles.
+- Assemble/explode button exposes the layers; click-and-drag (or one-finger touch drag) freely orbits the camera. Arrow keys rotate when the canvas is focused; Home and Reset view restore the initial angle. Manual interaction pauses ambient rotation and retains the chosen view. Pause stops ambient motion. Under reduced motion, ambient rotation stops and layer changes are immediate.
+- Fit the complete model to its container; capture touch gestures only on the model canvas, leaving the rest of the page available for scrolling. Rendering stops offscreen, while the document is hidden, and after a paused view settles.
 - WebGL or loading failure uses a Phosphor CPU illustration with explanatory text. All geometries/materials, animation frames, listeners, and observers are disposed on cleanup.
