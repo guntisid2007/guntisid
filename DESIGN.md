@@ -150,3 +150,12 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - Asset limit: only the existing portrait is supplied. Do not present generated or stock hardware pictures as Sid’s projects. Add authentic project photography when supplied.
 - University affiliation: use the unmodified official Purdue logo beside “Engineering student” in the About section, separate from the site identity. Source: https://www.purdue.edu/purdue/images/logo.svg. Usage reference: https://www.purdue.edu/brand-studio/brand/logos-usage/. Do not recolor or distort it, or describe this personal portfolio as an official university site.
 - User-approved alternating surfaces and existing 3D visual take precedence over generic skill defaults for a single theme and generated hero imagery.
+
+
+## Interactive microchip hero
+
+- Replaces the sine-wave field at the user’s request. The layered assembly is a conceptual illustration, not a claim about a specific project or chip architecture.
+- Three.js solid geometry: substrate, contact pads, processor package, bonding wires, silicon blocks, and metal lid. Retain the charcoal/gold palette.
+- Assemble/explode button exposes the layers; pointer movement tilts the object. Pause stops ambient motion. Under reduced motion, ambient rotation stops and layer changes are immediate.
+- Fit the complete model to its container; keep mobile touch scrolling native. Rendering stops offscreen, while the document is hidden, and after a paused view settles.
+- WebGL or loading failure uses a Phosphor CPU illustration with explanatory text. All geometries/materials, animation frames, listeners, and observers are disposed on cleanup.

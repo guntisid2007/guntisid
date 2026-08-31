@@ -18,7 +18,7 @@ import {
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const HydrogenField = lazy(() => import("./components/HydrogenField"));
+const ChipAssembly = lazy(() => import("./components/ChipAssembly"));
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
@@ -104,38 +104,50 @@ function Barcode({ count = 34, seed = 7, className = "" }) {
   );
 }
 
-function SignalFallback({ status = "STATIC FIELD" }) {
+function ChipFallback({ status = "3D unavailable" }) {
   return (
-    <div className="signal-fallback" aria-hidden="true">
-      <Barcode count={74} seed={31} />
-      <svg viewBox="0 0 800 360" preserveAspectRatio="none">
-        <path d="M0 218 C95 218 108 85 205 88 S310 278 411 238 S540 45 635 104 S714 272 800 184" />
-      </svg>
-      <div className="signal-fallback-label">
-        <span>H₂ / FIELD MODEL</span>
-        <span>{status}</span>
-      </div>
+    <div className="chip-fallback">
+      <Cpu size={140} weight="duotone" aria-hidden="true" />
+      <p>Microchip assembly<br /><span>{status}</span></p>
     </div>
   );
 }
 
 function FieldStage() {
   const [paused, setPaused] = useState(false);
+  const [exploded, setExploded] = useState(true);
 
   return (
-    <div className="field-stage">
-      <Suspense fallback={<SignalFallback status="LOADING MODEL" />}>
-        <HydrogenField paused={paused} fallback={<SignalFallback status="WEBGL UNAVAILABLE" />} />
+    <div className="field-stage" role="group" aria-label="Interactive conceptual microchip assembly">
+      <div className="model-caption">
+        <span>MICROCHIP / CONCEPT MODEL</span>
+        <p>Hardware, layer by layer.</p>
+      </div>
+      <Suspense fallback={<ChipFallback status="Loading 3D model" />}>
+        <ChipAssembly paused={paused} exploded={exploded} fallback={<ChipFallback />} />
       </Suspense>
-      <button
-        className="field-control"
-        type="button"
-        aria-pressed={paused}
-        onClick={() => setPaused((value) => !value)}
-      >
-        {paused ? <Play size={15} weight="fill" /> : <Pause size={15} weight="fill" />}
-        {paused ? "Resume field" : "Pause field"}
-      </button>
+      <div className="field-controls">
+        <button
+          className="field-control"
+          type="button"
+          aria-label="Exploded view"
+          aria-pressed={exploded}
+          onClick={() => setExploded((value) => !value)}
+        >
+          <Cpu size={17} />
+          {exploded ? "Assemble" : "Explode"}
+        </button>
+        <button
+          className="field-control"
+          type="button"
+          aria-label="Pause animation"
+          aria-pressed={paused}
+          onClick={() => setPaused((value) => !value)}
+        >
+          {paused ? <Play size={15} weight="fill" /> : <Pause size={15} weight="fill" />}
+          {paused ? "Resume" : "Pause"}
+        </button>
+      </div>
     </div>
   );
 }

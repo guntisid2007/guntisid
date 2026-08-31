@@ -318,44 +318,54 @@ h3 {
 }
 
 .field-stage,
-.hydrogen-field,
-.signal-fallback {
+.chip-assembly,
+.chip-fallback {
   position: absolute;
   inset: 0;
 }
 
-.hydrogen-field canvas {
+.chip-assembly canvas {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-.field-stage::before,
-.field-stage::after {
+.model-caption {
   position: absolute;
   z-index: 2;
-  top: 18px;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.6rem;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  pointer-events: none;
+}
+
+.model-caption span {
+  color: var(--accent);
+  font: 0.6rem var(--mono);
   letter-spacing: 0.06em;
 }
 
-.field-stage::before {
-  left: 18px;
-  content: "FIELD / H₂ FORMATION";
+.model-caption p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
-.field-stage::after {
-  right: 18px;
-  content: none;
-}
-
-.field-control {
+.field-controls {
   position: absolute;
   z-index: 3;
   right: 18px;
   bottom: 18px;
+  left: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.field-stage:has(.chip-fallback) .field-controls { display: none; }
+
+.field-control {
   display: flex;
   min-height: 44px;
   align-items: center;
@@ -378,47 +388,17 @@ h3 {
   color: var(--ink);
 }
 
-.signal-fallback {
-  display: grid;
-  overflow: hidden;
-  place-items: center;
-}
-
-.signal-fallback > .barcode {
-  position: absolute;
-  inset: 12% 6%;
-  width: 88%;
-  height: 76%;
-  justify-content: space-between;
-  color: rgb(244 244 239 / 24%);
-}
-
-.signal-fallback svg {
-  position: absolute;
-  inset: 16% 0;
-  width: 100%;
-  height: 68%;
-}
-
-.signal-fallback path {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 2;
-  vector-effect: non-scaling-stroke;
-}
-
-.signal-fallback-label {
-  position: absolute;
-  right: 18px;
-  bottom: 74px;
-  left: 18px;
+.chip-fallback {
   display: flex;
-  justify-content: space-between;
-  border-top: 1px solid var(--line-inverse);
-  padding-top: 9px;
-  font-family: var(--mono);
-  font-size: 0.58rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--accent);
 }
+
+.chip-fallback p { margin: 0; text-align: center; }
+.chip-fallback span { color: var(--muted); font-size: 0.8rem; }
 
 .hero-ledger {
   display: grid;
