@@ -159,3 +159,12 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - Assemble/explode button exposes the layers; click-and-drag (or one-finger touch drag) freely orbits the camera. Arrow keys rotate when the canvas is focused; Home and Reset view restore the initial angle. Manual interaction pauses ambient rotation and retains the chosen view. Pause stops ambient motion. Under reduced motion, ambient rotation stops and layer changes are immediate.
 - Fit the complete model to its container; capture touch gestures only on the model canvas, leaving the rest of the page available for scrolling. Rendering stops offscreen, while the document is hidden, and after a paused view settles.
 - WebGL or loading failure uses a Phosphor CPU illustration with explanatory text. All geometries/materials, animation frames, listeners, and observers are disposed on cleanup.
+
+
+## Microchip realism refinement
+
+- Model stays explicitly conceptual, with no invented manufacturer or component specification.
+- Use real mounting holes, a textured solder-mask/laminate board, solder joints, fine routed traces, plated vias, silkscreen footprints, and small passives.
+- Processor has a continuous textured die, 64 thin formed leads, fine curved bond wires, and a brushed/chamfered metal lid with concept markings.
+- Studio environment reflections and soft component shadows distinguish ceramic, silicon, metal, and solder. Repeated pads and components use instancing; textures are generated locally and GPU resources are disposed.
+- Preserve drag orbit, chosen angle, reset, assemble/explode, pause, keyboard controls, and reduced motion.

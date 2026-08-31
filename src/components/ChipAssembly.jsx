@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { createDetailedChip } from "./createDetailedChip";
 
 // Conceptual processor package, not a model of a specific product or project.
 export default function ChipAssembly({ paused = false, exploded = true, resetKey = 0, onInteract, fallback = null }) {
@@ -34,6 +36,7 @@ export default function ChipAssembly({ paused = false, exploded = true, resetKey
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const geometries = new Set();
     const materials = new Set();
+    const textures = new Set();
     const cleanup = [];
 
     const dispose = () => {
@@ -45,6 +48,7 @@ export default function ChipAssembly({ paused = false, exploded = true, resetKey
       cleanup.forEach((fn) => fn());
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((material) => material.dispose());
+      textures.forEach((texture) => texture.dispose());
       if (renderer) {
         renderer.dispose();
         renderer.forceContextLoss();
@@ -58,7 +62,9 @@ export default function ChipAssembly({ paused = false, exploded = true, resetKey
       renderer.setClearColor(0x000000, 0);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.35;
+      renderer.toneMappingExposure = 1.08;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFShadowMap;
       renderer.domElement.tabIndex = 0;
       renderer.domElement.setAttribute("role", "img");
       renderer.domElement.setAttribute("aria-label", "3D microchip. Drag to rotate, or use arrow keys. Press Home to reset the view.");
@@ -66,6 +72,13 @@ export default function ChipAssembly({ paused = false, exploded = true, resetKey
       host.appendChild(renderer.domElement);
 
       const scene = new THREE.Scene();
+      const environmentRoom = new RoomEnvironment();
+      const environmentGenerator = new THREE.PMREMGenerator(renderer);
+      cleanup.push(() => environmentRoom.dispose(), () => environmentGenerator.dispose());
+      const environment = environmentGenerator.fromScene(environmentRoom, 0.04);
+      scene.environment = environment.texture;
+      scene.environmentIntensity = 0.85;
+      cleanup.push(() => environment.dispose());
       const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 60);
       const homeDirection = new THREE.Vector3(0.58, 0.48, 0.72).normalize();
       const controls = new OrbitControls(camera, renderer.domElement);
@@ -82,108 +95,29 @@ export default function ChipAssembly({ paused = false, exploded = true, resetKey
       const assembly = new THREE.Group();
       assembly.rotation.y = -0.28;
       scene.add(assembly);
-      scene.add(new THREE.HemisphereLight(0xfff4dc, 0x454a40, 2.6));
-      const key = new THREE.DirectionalLight(0xffedca, 4);
+      scene.add(new THREE.HemisphereLight(0xf4f5f0, 0x363c36, 0.6));
+      const key = new THREE.DirectionalLight(0xfff1dd, 3.2);
       key.position.set(3, 7, 5);
+      key.castShadow = true;
+      key.shadow.mapSize.set(1024, 1024);
+      key.shadow.camera.left = key.shadow.camera.bottom = -4;
+      key.shadow.camera.right = key.shadow.camera.top = 4;
+      key.shadow.camera.near = 0.5;
+      key.shadow.camera.far = 18;
+      key.shadow.bias = -0.0001;
+      key.shadow.normalBias = 0.015;
+      cleanup.push(() => key.shadow.dispose());
       scene.add(key);
-      const fill = new THREE.DirectionalLight(0xf2f4ee, 2.5);
+      const fill = new THREE.DirectionalLight(0xe8edf0, 1.6);
       fill.position.set(-5, 2, -3);
       scene.add(fill);
 
-      const material = (color, metalness = 0, roughness = 0.45) => {
-        const result = new THREE.MeshStandardMaterial({ color, metalness, roughness });
-        materials.add(result);
-        return result;
-      };
-      const boardMaterial = material(0x343e31, 0.25, 0.6);
-      const ceramic = material(0x222722, 0.3, 0.4);
-      const gold = material(0xcfb46a, 0.65, 0.28);
-      const darkGold = material(0x8f753b, 0.55, 0.4);
-      const silicon = material(0x646b61, 0.7, 0.22);
-      const lidMaterial = material(0xa9aea1, 0.65, 0.32);
-      const unitBox = new THREE.BoxGeometry(1, 1, 1);
-      geometries.add(unitBox);
-      const box = (parent, width, height, depth, x, y, z, surface) => {
-        const mesh = new THREE.Mesh(unitBox, surface);
-        mesh.scale.set(width, height, depth);
-        mesh.position.set(x, y, z);
-        parent.add(mesh);
-        return mesh;
-      };
-
-      const board = new THREE.Group();
-      const chip = new THREE.Group();
-      const lid = new THREE.Group();
-      assembly.add(board, chip, lid);
-      box(board, 3.35, 0.16, 3.35, 0, 0, 0, boardMaterial);
-      box(board, 2.12, 0.035, 2.12, 0, 0.098, 0, darkGold);
-      box(board, 1.94, 0.04, 1.94, 0, 0.12, 0, ceramic);
-
-      // Etched traces and contact pads make the bottom layer readable as a PCB.
-      for (let side = 0; side < 4; side += 1) {
-        const edge = new THREE.Group();
-        edge.rotation.y = side * Math.PI / 2;
-        board.add(edge);
-        for (let pin = 0; pin < 10; pin += 1) {
-          const x = (pin - 4.5) * 0.19;
-          const reach = 0.27 + (pin % 3) * 0.09;
-          box(edge, 0.075, 0.025, 0.18, x, 0.104, 1.17, gold);
-          box(edge, 0.018, 0.009, reach, x, 0.085, 1.25 + reach / 2, darkGold);
-          box(edge, 0.07, 0.009, 0.07, x, 0.088, 1.25 + reach, gold);
-        }
-      }
-      const ringGeometry = new THREE.TorusGeometry(0.095, 0.022, 6, 20);
-      geometries.add(ringGeometry);
-      for (const x of [-1.42, 1.42]) {
-        for (const z of [-1.42, 1.42]) {
-          const ring = new THREE.Mesh(ringGeometry, gold);
-          ring.rotation.x = Math.PI / 2;
-          ring.position.set(x, 0.091, z);
-          board.add(ring);
-        }
-      }
-
-      box(chip, 1.9, 0.18, 1.9, 0, 0, 0, ceramic);
-      box(chip, 1.0, 0.075, 1.0, 0, 0.13, 0, silicon);
-      // Individual die blocks and bonding wires reveal the scale of the package.
-      for (let x = 0; x < 4; x += 1) {
-        for (let z = 0; z < 4; z += 1) {
-          box(chip, 0.175, 0.012, 0.175, (x - 1.5) * 0.225, 0.174, (z - 1.5) * 0.225, (x + z) % 3 === 0 ? gold : ceramic);
-        }
-      }
-      for (let side = 0; side < 4; side += 1) {
-        const edge = new THREE.Group();
-        edge.rotation.y = side * Math.PI / 2;
-        chip.add(edge);
-        for (let pin = 0; pin < 10; pin += 1) {
-          const x = (pin - 4.5) * 0.165;
-          box(edge, 0.06, 0.05, 0.22, x, -0.03, 1.04, gold);
-          box(edge, 0.06, 0.14, 0.06, x, -0.1, 1.12, gold);
-          if (pin > 0 && pin < 9) {
-            const wirePath = new THREE.QuadraticBezierCurve3(
-              new THREE.Vector3(x * 0.57, 0.17, 0.48),
-              new THREE.Vector3(x * 0.8, 0.36, 0.68),
-              new THREE.Vector3(x, 0.105, 0.87),
-            );
-            const wireGeometry = new THREE.TubeGeometry(wirePath, 8, 0.007, 4, false);
-            geometries.add(wireGeometry);
-            edge.add(new THREE.Mesh(wireGeometry, gold));
-          }
-        }
-      }
-
-      box(lid, 1.84, 0.15, 1.84, 0, 0, 0, lidMaterial);
-      box(lid, 1.64, 0.045, 1.64, 0, 0.096, 0, silicon);
-      // Machined parallel channels catch the light without a fabricated brand.
-      for (let index = 0; index < 7; index += 1) {
-        box(lid, 1.25, 0.008, 0.023, 0, 0.122, (index - 3) * 0.16, ceramic);
-      }
-      box(lid, 0.12, 0.008, 0.12, -0.64, 0.123, -0.64, gold);
+      const { board, chip, lid } = createDetailedChip(assembly, { geometries, materials, textures });
 
       const positionLayers = () => {
         board.position.y = -0.52 - separation * 0.26;
         chip.position.y = -0.27 + separation * 0.32;
-        lid.position.y = -0.01 + separation * 1.22;
+        lid.position.y = 0.08 + separation * 1.13;
       };
       positionLayers();
 
