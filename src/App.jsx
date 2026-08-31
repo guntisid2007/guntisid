@@ -30,12 +30,12 @@ const PERSONAL_EMAIL = "sid.gunti@gmail.com";
 
 const projects = [
   {
-    signal: "Embedded systems",
-    icon: Cpu,
-    title: "Raspberry Pi embedded systems",
+    signal: "Community leadership",
+    icon: Tree,
+    title: "Eagle Scout service project",
     description:
-      "Integrated temperature and motion sensors with GPIO-controlled hardware, then wrote scripts that respond to changing physical inputs.",
-    tools: "Python · Raspberry Pi · GPIO",
+      "Led 20+ volunteers to refurbish 13 community benches and construct a public information kiosk for a township park. Handled all volunteer logistics and managed a $500+ project budget.",
+    tools: "Volunteer logistics · Budget management · Leadership",
   },
   {
     signal: "Software",
@@ -44,14 +44,6 @@ const projects = [
     description:
       "Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations.",
     tools: "Java · Swing · OOP",
-  },
-  {
-    signal: "Community leadership",
-    icon: Tree,
-    title: "Eagle Scout service project",
-    description:
-      "Directed a volunteer team to refurbish thirteen community benches and construct a public information kiosk for a township park.",
-    tools: "Planning · Fabrication · Leadership",
   },
 ];
 
@@ -272,7 +264,7 @@ function App() {
         <section className="project-section paper-section" id="work">
           <div className="section-title" data-reveal>
             <h2>Selected work</h2>
-            <p>Three ways the same practice shows up: instrument the system, iterate the mechanism, communicate the result.</p>
+            <p>Community leadership and software projects, from organizing volunteers to building interactive applications.</p>
           </div>
 
           <div className="project-index">
