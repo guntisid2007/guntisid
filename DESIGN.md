@@ -103,10 +103,10 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 
 - Hero entry: 500–750ms, `power3.out`, short overlap between status strip, headline, and proof links.
 - Scroll reveals: 420–560ms, `power2.out`, 12–20px travel, no blur.
-- Signal draw: scale/clip or SVG dash movement triggered once when the research figure enters.
+- Research figure: static original plot from the paper, with the shared section reveal only.
 - Barcode drift: very low amplitude and decoration-only; disabled under reduced motion.
 - Continuous 3D motion is slow and has a visible pause control. It also pauses offscreen and when the document is hidden.
-- Mobile avoids pinning. Desktop uses CSS sticky positioning for the research visual rather than ScrollTrigger pinning.
+- Research content scrolls normally on desktop and mobile; no sticky figure.
 
 ## 5. Responsive and Accessibility Rules
 
@@ -125,7 +125,7 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - `SignalField`: barcode/lattice composition with semantic fallback
 - `EvidenceLink`: primary/secondary link styles with clear source destination
 - `ProjectIndex`: asymmetrical rows with role, tools, and proof point
-- `ResearchPlate`: paper abstract, method ledger, animated chart, limitations, and PDF link
+- `ResearchPlate`: question, personal contribution, finding, original paper figure, limitations, and PDF link
 - `ExperienceLog`: ruled chronological experience list
 - `ResumePage`: standalone accessible HTML résumé with print action and portfolio return path
 - `ContactBand`: concise closing statement and direct contact channels
@@ -168,3 +168,12 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - Processor has a continuous textured die, 64 thin formed leads, fine curved bond wires, and a brushed/chamfered metal lid with concept markings.
 - Studio environment reflections and soft component shadows distinguish ceramic, silicon, metal, and solder. Repeated pads and components use instancing; textures are generated locally and GPU resources are disposed.
 - Preserve drag orbit, chosen angle, reset, assemble/explode, pause, keyboard controls, and reduced motion.
+
+
+## Compact research case study
+
+- Preserve the charcoal/gold palette, typography, research anchor, PDF URL, and existing hero. Dials remain 6 / 4 / 4; add no new animation.
+- Replace the oversized sticky illustrative chart and tall ledger with a compact narrative on the left and a smaller original figure on the right. Stack on mobile.
+- `public/research-voltage.png` is the unchanged embedded image from page 13 of `RSI-Research-Paper.pdf` (598 × 290). Preserve its axes, legend, and data; link to the full-size asset for inspection.
+- Attribute automated data collection to site engineers and describe Sid’s contribution as Python analysis, visualization, trend fitting, and documentation, supported by pages 12, 16, and 18.
+- Keep the short observation window and unrecorded temperature limitation below the findings, beside the paper link. Do not claim proven efficiency or durability.

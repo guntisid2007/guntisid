@@ -67,7 +67,7 @@ const experience = [
     role: "Engineering Research Intern",
     organization: "Research Support India · Hosur, India",
     summary:
-      "Collected and analyzed alkaline-electrolyzer operating data, visualized performance trends, and documented findings for engineering review.",
+      "Analyzed alkaline-electrolyzer operating data supplied by site engineers, visualized performance trends, and documented findings for engineering review.",
   },
   {
     period: "NOV 2025 - MAR 2026",
@@ -176,41 +176,6 @@ function EvidenceLink({ href, children, external = false, className = "" }) {
   );
 }
 
-function ResearchChart() {
-  return (
-    <div className="research-chart" aria-label="Reported voltage, current, and power trend lines over the 721-second monitoring window">
-      <div className="chart-head">
-        <span>REPORTED TREND LINES</span>
-        <span>0 - 721 S</span>
-      </div>
-      <svg viewBox="0 0 760 420" role="img" aria-labelledby="chart-title chart-desc">
-        <title id="chart-title">Electrolyzer operating trend lines</title>
-        <desc id="chart-desc">Three normalized rising lines represent the voltage, current, and power linear trends reported in Sid Gunti’s research paper.</desc>
-        <g className="chart-grid">
-          <path d="M48 60H730M48 150H730M48 240H730M48 330H730" />
-          <path d="M48 30V366M218 30V366M389 30V366M559 30V366M730 30V366" />
-        </g>
-        <g className="chart-series">
-          <path data-chart-line d="M48 286 L730 214" />
-          <path data-chart-line d="M48 316 L730 228" />
-          <path data-chart-line d="M48 338 L730 101" />
-        </g>
-        <g className="chart-labels">
-          <text x="54" y="278">VOLTAGE / 0.0008x + 2.46</text>
-          <text x="54" y="308">CURRENT / 0.0009x + 0.40</text>
-          <text x="54" y="348">POWER / 0.0029x + 0.93</text>
-          <text x="48" y="394">START</text>
-          <text x="688" y="394">STOP</text>
-        </g>
-      </svg>
-      <div className="chart-foot">
-        <span>NORMALIZED FOR COMPARISON</span>
-        <span>Voltage / Current / Power</span>
-      </div>
-    </div>
-  );
-}
-
 function App() {
   const scope = useRef(null);
 
@@ -244,16 +209,6 @@ function App() {
         );
       });
 
-      gsap.utils.toArray("[data-chart-line]").forEach((line) => {
-        const length = line.getTotalLength();
-        gsap.set(line, { strokeDasharray: length, strokeDashoffset: length });
-        gsap.to(line, {
-          strokeDashoffset: 0,
-          duration: 1.1,
-          ease: "power2.out",
-          scrollTrigger: { trigger: ".research-chart", start: "top 72%", once: true },
-        });
-      });
     },
     { scope },
   );
@@ -334,45 +289,51 @@ function App() {
           </div>
         </section>
 
-        <section className="research-section" id="research">
+        <section className="research-section" id="research" aria-labelledby="research-title">
           <div className="research-intro" data-reveal>
-            <div>
-              <h2>One system.<br /><span>721 seconds</span> of evidence.</h2>
-              <p className="research-deck">
-                At Research Support India, Sid studied an alkaline electrolyzer in operation, tracking how its electrical characteristics moved alongside hydrogen production.
-              </p>
-            </div>
-            <EvidenceLink href={`${ASSET_BASE}RSI-Research-Paper.pdf`} external>
-              Read the research paper
-            </EvidenceLink>
+            <h2 id="research-title">Analyzing an <span>alkaline electrolyzer.</span></h2>
+            <p className="research-deck">Research Support India · Hosur, India · Summer 2025</p>
           </div>
 
           <div className="research-layout">
-            <div className="research-sticky" data-reveal>
-              <ResearchChart />
-            </div>
-            <div className="research-ledger">
-              <article data-reveal>
-                <span className="ledger-key">METHOD</span>
-                <strong>1 sample / second</strong>
-                <p>Voltage, current, power, flowmeter pressure, and hydrogen flow rate were recorded during a roughly twelve-minute operating window.</p>
-              </article>
-              <article data-reveal>
-                <span className="ledger-key">TOOLCHAIN</span>
-                <strong>Python → evidence</strong>
-                <p>Pandas, Matplotlib, and scikit-learn supported cleaning, visualization, and linear trend analysis.</p>
-              </article>
-              <article data-reveal>
-                <span className="ledger-key">OBSERVATION</span>
-                <strong>Stable, gradual trends</strong>
-                <p>The paper reports controlled operation with gradual increases in electrical characteristics over the monitored interval.</p>
-              </article>
-              <article className="limitation" data-reveal>
-                <span className="ledger-key">LIMITS</span>
-                <strong>What the run cannot prove</strong>
-                <p>Cell temperature was not recorded, the window was short, and a single field run cannot establish long-term durability or causal efficiency.</p>
-              </article>
-            </div>
+            <dl className="research-story" data-reveal>
+              <div>
+                <dt>The question</dt>
+                <dd>How do voltage, current, and power change during hydrogen production?</dd>
+              </div>
+              <div>
+                <dt>My contribution</dt>
+                <dd>I analyzed 721 seconds of operating data supplied by the site’s engineers, using Pandas, Matplotlib, and scikit-learn to visualize measurements and fit linear trends.</dd>
+              </div>
+              <div>
+                <dt>What I found</dt>
+                <dd>Voltage, current, and power increased gradually during the run. I documented those trends and the study’s limitations in a research paper.</dd>
+              </div>
+            </dl>
+
+            <figure className="research-figure" data-reveal>
+              <a href={`${ASSET_BASE}research-voltage.png`} target="_blank" rel="noreferrer" className="research-figure-link">
+                <img
+                  src={`${ASSET_BASE}research-voltage.png`}
+                  width="598"
+                  height="290"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Voltage versus time from the research paper: readings step from about 2.5 to 3.0 volts over 721 seconds, alongside a rising linear fit."
+                />
+                <span>View full-size figure <ArrowUpRight size={16} aria-hidden="true" /></span>
+              </a>
+              <figcaption>
+                Original voltage plot from page 13 of my paper. Blue shows the recorded values; black shows the fitted trend.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div className="research-footer" data-reveal>
+            <EvidenceLink href={`${ASSET_BASE}RSI-Research-Paper.pdf`} external>
+              Read the research paper
+            </EvidenceLink>
+            <p><strong>Study limits.</strong> A short observation window and no recorded cell temperature mean these trends cannot establish long-term durability or explain changes in efficiency.</p>
           </div>
         </section>
 
