@@ -179,3 +179,5 @@ The hero contains one purposeful Three.js formation: a sparse hydrogen/electroly
 - Keep the short observation window and unrecorded temperature limitation below the findings, beside the paper link. Do not claim proven efficiency or durability.
 
 - Research palette refinement: apply an SVG color matrix to the displayed PNG only, mapping white to charcoal, black to ivory, and blue readings to gold. Preserve source pixels, plot geometry, labels, and the unchanged downloadable original; the caption discloses the color adaptation.
+
+- Research graph build: remove the 430px cap and allocate more of the existing row to the figure. Keep normal scrolling. Reveal the unchanged plot left-to-right over 2.4 seconds after it enters view, with axes/grid visible first and a Replay control. This animates a clipping rectangle, not the underlying values. Reduced motion shows the complete plot and hides Replay; the animation and media-query listeners are cleaned up on unmount.

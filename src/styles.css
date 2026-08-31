@@ -549,8 +549,8 @@ h3 {
 
 .research-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  gap: clamp(32px, 6vw, 88px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+  gap: clamp(32px, 4vw, 56px);
   align-items: start;
   padding-block: 32px;
 }
@@ -576,36 +576,56 @@ h3 {
 
 .research-figure {
   width: 100%;
-  max-width: 430px;
+  min-width: 0;
   margin: 0;
-  justify-self: end;
+  justify-self: stretch;
 }
 
-.research-figure-link {
-  display: block;
-  text-decoration: none;
-}
-
-.research-palette { position: absolute; pointer-events: none; }
-
-.research-figure img {
+.research-plot {
   display: block;
   width: 100%;
   height: auto;
   background: var(--ink);
-  filter: url(#research-palette);
 }
 
-.research-figure-link > span {
+.research-plot-grid {
+  stroke: #686a63;
+  stroke-width: 0.8;
+}
+
+.research-figure-controls {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin-block: 8px;
+}
+
+.research-figure-controls a,
+.research-replay {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   min-height: 44px;
   color: var(--accent);
   font-size: 0.85rem;
+  text-decoration: none;
 }
 
-.research-figure-link:hover > span { text-decoration: underline; }
+.research-replay {
+  padding: 0 12px;
+  border: 1px solid var(--line-inverse);
+  background: transparent;
+  cursor: pointer;
+}
+
+.research-figure-controls a:hover { text-decoration: underline; }
+.research-replay:hover { background: var(--surface); }
+
+@media (prefers-reduced-motion: reduce) {
+  .research-replay { display: none; }
+}
 
 .research-figure figcaption {
   color: var(--muted);

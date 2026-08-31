@@ -1,6 +1,7 @@
 import { lazy, Suspense, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ResearchFigure from "./components/ResearchFigure";
 import { useGSAP } from "@gsap/react";
 import {
   ArrowDown,
@@ -311,35 +312,7 @@ function App() {
               </div>
             </dl>
 
-            <figure className="research-figure" data-reveal>
-              {/* Display-only palette mapping preserves the original plot pixels and geometry. */}
-              <svg className="research-palette" aria-hidden="true" focusable="false" width="0" height="0">
-                <defs>
-                  <filter id="research-palette" colorInterpolationFilters="sRGB">
-                    <feColorMatrix type="matrix" values="
-                      -1.02 0 0.177 0 0.953
-                      -0.86 0 0.036 0 0.941
-                      -0.45 0 -0.353 0 0.910
-                      0 0 0 1 0
-                    " />
-                  </filter>
-                </defs>
-              </svg>
-              <a href={`${ASSET_BASE}research-voltage.png`} target="_blank" rel="noreferrer" className="research-figure-link">
-                <img
-                  src={`${ASSET_BASE}research-voltage.png`}
-                  width="598"
-                  height="290"
-                  loading="lazy"
-                  decoding="async"
-                  alt="Voltage versus time from the research paper: readings step from about 2.5 to 3.0 volts over 721 seconds, alongside a rising linear fit."
-                />
-                <span>View original figure <ArrowUpRight size={16} aria-hidden="true" /></span>
-              </a>
-              <figcaption>
-                Voltage plot from page 13 of my paper, adapted to the site’s colors. Gold shows the recorded values; ivory shows the fitted trend.
-              </figcaption>
-            </figure>
+            <ResearchFigure />
           </div>
 
           <div className="research-footer" data-reveal>
