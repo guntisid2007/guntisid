@@ -384,6 +384,7 @@ function App() {
 
       <footer>
         <span>© 2026 SIDDHARTH SHARMA GUNTI</span>
+        <span className="site-credit">a site by <a href="https://tarushv.com" target="_blank" rel="noreferrer">tarushv</a></span>
         <a href="#top">RETURN TO TOP ↑</a>
       </footer>
     </div>

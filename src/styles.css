@@ -843,6 +843,17 @@ footer a {
   text-decoration: none;
 }
 
+.site-credit {
+  text-transform: lowercase;
+}
+
+.site-credit a {
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-color: var(--line-inverse);
+  text-underline-offset: 0.28em;
+}
+
 /* Warm technical palette: gold guides actions and research highlights. */
 .hero h1 span,
 .research-intro h2 span,
