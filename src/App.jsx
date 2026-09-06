@@ -2,9 +2,12 @@ import { lazy, Suspense, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ResearchFigure from "./components/ResearchFigure";
+import MobileNavigation from "./components/MobileNavigation";
+import ModelBoundary from "./components/ModelBoundary";
 import { useGSAP } from "@gsap/react";
 import {
   ArrowDown,
+  ArrowRight,
   ArrowUpRight,
   ArrowCounterClockwise,
   EnvelopeSimple,
@@ -27,6 +30,13 @@ const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
 const GITHUB = "https://github.com/guntisid2007";
 const EMAIL = "sgunti@purdue.edu";
 const PERSONAL_EMAIL = "sid.gunti@gmail.com";
+const navigation = [
+  { href: "#work", label: "Work" },
+  { href: "#research", label: "Research" },
+  { href: "#experience", label: "Experience" },
+  { href: `${ASSET_BASE}resume.html`, label: "Résumé" },
+  { href: "#contact", label: "Contact" },
+];
 
 const projects = [
   {
@@ -118,9 +128,11 @@ function FieldStage() {
         <span>MICROCHIP / CONCEPT MODEL</span>
         <p>Drag or swipe to rotate.</p>
       </div>
-      <Suspense fallback={<ChipFallback status="Loading 3D model" />}>
-        <ChipAssembly paused={paused} exploded={exploded} resetKey={resetKey} onInteract={() => setPaused(true)} fallback={<ChipFallback />} />
-      </Suspense>
+      <ModelBoundary fallback={<ChipFallback />}>
+        <Suspense fallback={<ChipFallback status="Loading 3D model" />}>
+          <ChipAssembly paused={paused} exploded={exploded} resetKey={resetKey} onInteract={() => setPaused(true)} fallback={<ChipFallback />} />
+        </Suspense>
+      </ModelBoundary>
       <div className="field-controls">
         <button
           className="field-control"
@@ -156,6 +168,7 @@ function FieldStage() {
 }
 
 function EvidenceLink({ href, children, external = false, className = "" }) {
+  const DirectionIcon = external ? ArrowUpRight : href.startsWith("#") ? ArrowDown : ArrowRight;
   return (
     <a
       className={`evidence-link ${className}`}
@@ -164,7 +177,7 @@ function EvidenceLink({ href, children, external = false, className = "" }) {
       rel={external ? "noreferrer" : undefined}
     >
       <span>{children}</span>
-      {external ? <ArrowUpRight size={17} weight="bold" /> : <ArrowDown size={17} weight="bold" />}
+      <DirectionIcon size={17} weight="bold" aria-hidden="true" />
     </a>
   );
 }
@@ -174,34 +187,30 @@ function App() {
 
   useGSAP(
     () => {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap
+          .timeline({ defaults: { ease: "power3.out" } })
+          .fromTo("[data-intro='rail']", { y: -18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.48 })
+          .fromTo("[data-intro='title']", { y: 28 }, { y: 0, duration: 0.58 }, "-=0.2")
+          .fromTo("[data-intro='copy']", { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.52 }, "-=0.42")
+          .fromTo("[data-intro='field']", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.84 }, "-=0.52");
 
-      if (reduced) {
-        gsap.set("[data-intro], [data-reveal]", { clearProps: "all" });
-        return;
-      }
-
-      gsap
-        .timeline({ defaults: { ease: "power3.out" } })
-        .fromTo("[data-intro='rail']", { y: -18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.48 })
-        .fromTo("[data-intro='title']", { y: 28 }, { y: 0, duration: 0.58 }, "-=0.2")
-        .fromTo("[data-intro='copy']", { y: 22, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.52 }, "-=0.42")
-        .fromTo("[data-intro='field']", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.84 }, "-=0.52");
-
-      gsap.utils.toArray("[data-reveal]").forEach((element) => {
-        gsap.fromTo(
-          element,
-          { y: 24, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.55,
-            ease: "power2.out",
-            scrollTrigger: { trigger: element, start: "top 88%", once: true },
-          },
-        );
+        gsap.utils.toArray("[data-reveal]").forEach((element) => {
+          gsap.fromTo(
+            element,
+            { y: 24, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.55,
+              ease: "power2.out",
+              scrollTrigger: { trigger: element, start: "top 88%", once: true },
+            },
+          );
+        });
       });
-
+      return () => media.revert();
     },
     { scope },
   );
@@ -220,32 +229,22 @@ function App() {
           <span>BASE</span><strong>WEST LAFAYETTE, IN</strong>
         </div>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#work">Work</a>
-          <a href="#research">Research</a>
-          <a href={`${ASSET_BASE}resume.html`}>Résumé</a>
-          <a href="#contact">Contact</a>
+          {navigation.map(({ href, label }) => <a key={href} href={href}>{label}</a>)}
         </nav>
-        <details className="mobile-nav">
-          <summary>Menu</summary>
-          <div>
-            <a href="#work">Work</a>
-            <a href="#research">Research</a>
-            <a href={`${ASSET_BASE}resume.html`}>Résumé</a>
-            <a href="#contact">Contact</a>
-          </div>
-        </details>
+        <MobileNavigation links={navigation} />
       </header>
 
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <section className="hero" id="top">
           <div className="hero-copy">
+            <a className="hero-availability" href="#contact">Open to Summer 2027 internships <ArrowUpRight size={16} aria-hidden="true" /></a>
             <h1 data-intro="title">Engineering across <span>hardware,</span> data, and code.</h1>
             <div className="hero-support" data-intro="copy">
               <p>
                 I’m Sid, a Purdue engineering student exploring embedded systems, robotics, and the software that connects them.
               </p>
               <div className="hero-actions">
-                <EvidenceLink href="#work">Inspect the work</EvidenceLink>
+                <EvidenceLink href="#work">Explore my work</EvidenceLink>
                 <EvidenceLink href={`${ASSET_BASE}resume.html`}>Read résumé</EvidenceLink>
               </div>
             </div>
@@ -261,9 +260,9 @@ function App() {
           </div>
         </section>
 
-        <section className="project-section paper-section" id="work">
+        <section className="project-section paper-section" id="work" tabIndex={-1} aria-labelledby="work-title">
           <div className="section-title" data-reveal>
-            <h2>Selected work</h2>
+            <h2 id="work-title">Selected work</h2>
             <p>Community leadership and software projects, from organizing volunteers to building interactive applications.</p>
           </div>
 
@@ -282,7 +281,7 @@ function App() {
           </div>
         </section>
 
-        <section className="research-section" id="research" aria-labelledby="research-title">
+        <section className="research-section" id="research" tabIndex={-1} aria-labelledby="research-title">
           <div className="research-intro" data-reveal>
             <h2 id="research-title">Analyzing an <span>alkaline electrolyzer.</span></h2>
             <p className="research-deck">Research Support India · Hosur, India · Summer 2025</p>
@@ -315,9 +314,9 @@ function App() {
           </div>
         </section>
 
-        <section className="experience-section paper-section" id="experience">
+        <section className="experience-section paper-section" id="experience" tabIndex={-1} aria-labelledby="experience-title">
           <div className="section-title" data-reveal>
-            <h2>Experience</h2>
+            <h2 id="experience-title">Experience</h2>
             <p>Technical work, team leadership, instruction, and public-facing communication.</p>
           </div>
           <div className="experience-log">
@@ -358,10 +357,10 @@ function App() {
           </div>
         </section>
 
-        <section className="contact-section" id="contact">
+        <section className="contact-section" id="contact" tabIndex={-1} aria-labelledby="contact-title">
           <div data-reveal>
             <span className="contact-intro">Have a project in mind?</span>
-            <h2>Let’s build something.</h2>
+            <h2 id="contact-title">Let’s build something.</h2>
             <p>I’m looking for Summer 2027 Computer Engineering opportunities. If you’re building something interesting, I’d love to hear about it.</p>
           </div>
           <div className="contact-links" data-reveal>

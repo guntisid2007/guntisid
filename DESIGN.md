@@ -1,5 +1,14 @@
 # Design DNA — Sid Gunti Portfolio
 
+## September 2026 usability refinement
+
+- Preserve the charcoal/gold palette, alternating surfaces, portrait, research evidence, and interactive chip.
+- Surface the existing Summer 2027 internship availability above the headline; keep résumé and work actions together.
+- Set navigation and primary actions at 14px, metadata at 12px, and mobile body text at 16px. Allow the status ledger to wrap instead of truncating it.
+- Give the chip half of the tablet hero, constrain ultrawide layouts to 1680px, and reduce section padding for faster scanning.
+- Share desktop/mobile navigation links, including Experience. Mobile selection closes the disclosure and focuses the destination; Escape returns focus to Menu. Outside pointer and focus dismiss it.
+- Isolate optional 3D loading failures so the portfolio stays readable. Respond to reduced-motion preference changes during a visit and provide résumé, paper, and contact paths without JavaScript.
+
 ## 1. Direction
 
 ### References
