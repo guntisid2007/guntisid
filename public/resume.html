@@ -2,215 +2,168 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1c1e1b">
-  <meta name="description" content="The web résumé of Siddharth Sharma Gunti, Purdue engineering student.">
-  <title>Résumé — Siddharth Gunti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ececea">
+  <meta name="description" content="The résumé of Siddharth Sharma Gunti, Purdue engineering student.">
+  <title>Siddharth Gunti — Résumé</title>
   <style>
-    @font-face { font-family: "Barlow Condensed"; src: url("fonts/barlow-condensed-500.woff2") format("woff2"); font-display: swap; font-weight: 500; }
-    @font-face { font-family: "Manrope"; src: url("fonts/manrope-400.woff2") format("woff2"); font-display: swap; font-weight: 400; }
-    @font-face { font-family: "IBM Plex Mono"; src: url("fonts/ibm-plex-mono-400.woff2") format("woff2"); font-display: swap; font-weight: 400; }
-
-    :root { --ink: #1c1e1b; --paper: #f3f0e8; --line: rgba(5,5,5,.24); --page: clamp(18px, 4vw, 56px); }
-    * { box-sizing: border-box; }
-    html { background: var(--ink); scroll-behavior: smooth; }
-    body { margin: 0; min-width: 320px; background: var(--paper); color: var(--ink); font-family: "Manrope", Arial, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
-    a { color: inherit; text-underline-offset: .22em; }
-    button { font: inherit; }
-    ::selection { background: var(--ink); color: var(--paper); }
-    :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-
-    .resume-bar { display: grid; grid-template-columns: 1fr auto; align-items: center; min-height: 66px; padding: 10px var(--page); background: var(--ink); color: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: .68rem; letter-spacing: .04em; text-transform: uppercase; }
-    .resume-bar > a { text-decoration: none; }
-    .bar-actions { display: flex; align-items: center; gap: 8px; }
-    .bar-actions a, .bar-actions button { min-height: 42px; border: 1px solid rgba(255,255,255,.35); border-radius: 0; padding: 10px 13px; background: transparent; color: inherit; cursor: pointer; text-decoration: none; text-transform: uppercase; }
-    .bar-actions a:hover, .bar-actions button:hover { background: var(--paper); color: var(--ink); }
-
-    main { width: min(1120px, 100%); margin: 0 auto; padding: clamp(54px, 8vw, 110px) var(--page); }
-    .resume-head { display: grid; grid-template-columns: 1.4fr .6fr; gap: 36px; align-items: end; border-bottom: 1px solid var(--ink); padding-bottom: 30px; }
-    h1, h2, h3 { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-weight: 500; letter-spacing: -.02em; text-transform: uppercase; }
-    h1 { grid-column: 1 / -1; max-width: none; margin: 0; font-size: clamp(1.65rem, 6vw, 4.8rem); line-height: 1; white-space: nowrap; }
-    .contact { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: "IBM Plex Mono", monospace; font-size: .7rem; text-align: right; text-transform: uppercase; }
-    .contact a { overflow-wrap: anywhere; }
-    .profile { display: grid; grid-template-columns: .65fr 1.35fr; gap: 34px; border-bottom: 1px solid var(--ink); padding: 28px 0; }
-    .label { font-family: "IBM Plex Mono", monospace; font-size: .66rem; letter-spacing: .05em; text-transform: uppercase; }
-    .profile p { max-width: 72ch; margin: 0; font-size: 1.05rem; }
-    .resume-section { display: grid; grid-template-columns: .36fr 1.64fr; gap: 34px; border-bottom: 1px solid var(--ink); padding: 42px 0 48px; }
-    .resume-section > h2 { margin: 0; font-size: clamp(2.4rem, 5vw, 4.3rem); line-height: .9; }
-    .entries { border-top: 1px solid var(--line); }
-    .entry { display: grid; grid-template-columns: .95fr 1.05fr; gap: 28px; border-bottom: 1px solid var(--line); padding: 24px 0 28px; }
-    .entry:last-child { border-bottom: 0; }
-    .entry h3 { margin: 0; font-size: clamp(1.75rem, 3vw, 2.55rem); line-height: .95; }
-    .meta { margin: 10px 0 0; font-family: "IBM Plex Mono", monospace; font-size: .64rem; letter-spacing: .04em; text-transform: uppercase; }
-    .entry ul { margin: 0; padding-left: 1.1rem; }
-    .entry li + li { margin-top: 7px; }
-    .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
-    .skills div { border-top: 1px solid var(--ink); padding-top: 12px; }
-    .skills p { margin-bottom: 0; }
-    .research-link { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; border: 1px solid var(--ink); padding: 18px; text-decoration: none; }
-    .research-link:hover { background: var(--ink); color: var(--paper); }
-    .research-link strong { font-family: "Barlow Condensed", sans-serif; font-size: 1.8rem; font-weight: 500; text-transform: uppercase; }
-    footer { display: flex; justify-content: space-between; gap: 20px; padding: 20px var(--page); background: var(--ink); color: var(--paper); font-family: "IBM Plex Mono", monospace; font-size: .62rem; text-transform: uppercase; }
-
-    .resume-section > h2, .contact a:hover { color: #756024; }
-    .bar-actions button { background: #cfb46a; color: var(--ink); border-color: #cfb46a; }
-
-    @media (max-width: 720px) {
-      .resume-bar { grid-template-columns: 1fr; gap: 10px; padding-block: 14px; }
-      .bar-actions { width: 100%; }
-      .bar-actions a, .bar-actions button { flex: 1; text-align: center; }
-      .resume-head, .profile, .resume-section { grid-template-columns: 1fr; }
-      .contact { justify-items: start; text-align: left; }
-      .entry { grid-template-columns: 1fr; }
-      .skills { grid-template-columns: 1fr; }
-      footer { flex-direction: column; }
+    :root { --ink:#151515; --link:#174f7a; --paper:#fff; --canvas:#ececea; --rule:#363636; }
+    * { box-sizing:border-box; }
+    @page { size:Letter portrait; margin:.22in .3in .24in; }
+    html,body { margin:0; padding:0; color:var(--ink); }
+    html { background:var(--canvas); }
+    body { min-width:320px; background:transparent; font-family:Arial,Helvetica,sans-serif; font-size:10.2pt; line-height:1.07; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    a { color:var(--link); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    a:focus-visible,button:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
+    ::selection { background:#d8e9f5; color:var(--ink); }
+    .screen-actions { display:flex; width:min(8.5in,calc(100% - 24px)); justify-content:space-between; align-items:center; gap:12px; margin:18px auto -10px; font-size:9pt; }
+    .screen-actions a,.screen-actions button { min-height:36px; border:1px solid #b9b9b5; padding:8px 12px; background:#fff; color:var(--ink); font:inherit; cursor:pointer; text-decoration:none; }
+    .screen-actions a:hover,.screen-actions button:hover { border-color:var(--ink); }
+    .page { width:8.5in; min-height:11in; margin:24px auto; padding:.34in .42in .38in; background:var(--paper); box-shadow:0 16px 44px rgb(20 20 18 / 12%),0 2px 8px rgb(20 20 18 / 8%); }
+    h1 { margin:0; text-align:center; font-size:21pt; line-height:1; font-weight:700; letter-spacing:-.02em; }
+    .contact { margin:5px 0 8px; text-align:center; font-size:8.35pt; line-height:1.25; }
+    .contact a { white-space:nowrap; }
+    .section { margin-top:5px; }
+    .section-title { margin:0 0 4px; border-bottom:1px solid var(--rule); padding-bottom:3px; font-size:11.8pt; line-height:1; font-weight:700; }
+    .row { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+    .left { min-width:0; }
+    .date { flex:none; white-space:nowrap; font-weight:700; font-variant-numeric:tabular-nums; }
+    .strong { font-weight:700; }
+    .italic { font-style:italic; }
+    p { margin:0 0 2px; }
+    ul { margin:1px 0 3px 13px; padding:0; }
+    li { margin:0 0 1px; padding:0; }
+    .edu-line { margin-bottom:2px; }
+    .job { margin-bottom:4px; }
+    .job .row,.project .row { margin-bottom:1px; }
+    .project { margin-bottom:3px; }
+    .research-title { font-weight:700; }
+    @media screen and (max-width:8.75in) {
+      .page { width:calc(100% - 24px); min-height:auto; margin:12px auto; padding:24px clamp(18px,5vw,36px) 28px; }
+      .screen-actions { margin-top:12px; }
+      .contact { line-height:1.35; }
+      .row { gap:8px; }
     }
-
+    @media screen and (max-width:560px) {
+      body { font-size:11pt; line-height:1.3; }
+      h1 { font-size:24pt; }
+      .contact { font-size:9.5pt; }
+      .section { margin-top:14px; }
+      .section-title { margin-bottom:7px; font-size:12.5pt; }
+      .row { display:block; }
+      .date { display:block; margin-top:2px; }
+      ul { margin-left:18px; }
+      li { margin-bottom:4px; }
+      .job,.project { margin-bottom:10px; }
+    }
     @media print {
-      @page { size: letter; margin: .38in .46in; }
-      body { background: #fff; font-size: 9.3px; line-height: 1.25; }
-      .resume-bar, footer { display: none; }
-      main { width: auto; padding: 0; }
-      .resume-head { grid-template-columns: 1.35fr .65fr; gap: 18px; padding-bottom: 9px; }
-      h1 { font-size: 45px; }
-      .contact, .label, .meta { font-size: 6.8px; }
-      .profile { grid-template-columns: .36fr 1.64fr; gap: 18px; padding: 8px 0; }
-      .profile p { font-size: 8.5px; }
-      .resume-section { grid-template-columns: .28fr 1.72fr; gap: 16px; padding: 10px 0; break-inside: avoid; }
-      .resume-section > h2 { font-size: 19px; }
-      .entry { grid-template-columns: .72fr 1.28fr; gap: 14px; padding: 5px 0 6px; }
-      .entry h3 { font-size: 14px; }
-      .entry ul { padding-left: 11px; }
-      .entry li + li { margin-top: 2px; }
-      .skills { gap: 12px; }
-      .research-link { border: 0; padding: 0; }
-      .research-link strong { font-size: 12px; }
+      html,body { background:#fff; }
+      body { font-size:9.6pt; line-height:1.025; }
+      .screen-actions { display:none; }
+      .page { width:auto; min-height:0; margin:0; padding:0; box-shadow:none; }
+      h1 { font-size:20pt; }
+      .contact { margin:4px 0 6px; font-size:7.8pt; }
+      .section { margin-top:3px; }
+      .section-title { margin-bottom:2px; padding-bottom:2px; font-size:11pt; }
+      p { margin-bottom:1px; }
+      ul { margin-top:0; margin-bottom:2px; margin-left:12px; }
+      li { margin-bottom:0; }
+      .job,.project { margin-bottom:2px; break-inside:avoid; }
+      .job .row,.project .row { margin-bottom:0; }
+      .section-title,.row { break-after:avoid; }
+      a { color:var(--ink); }
     }
   </style>
 </head>
 <body>
-  <header class="resume-bar">
-    <a href="./">← Sid Gunti / Portfolio</a>
-    <div class="bar-actions">
-      <a href="RSI-Research-Paper.pdf" target="_blank" rel="noreferrer">Research paper ↗</a>
-      <button type="button" onclick="window.print()">Print / Save PDF</button>
+  <nav class="screen-actions" aria-label="Résumé actions">
+    <a href="./">← Portfolio</a>
+    <button type="button" onclick="window.print()">Print / Save PDF</button>
+  </nav>
+  <main class="page">
+    <h1>Siddharth Sharma Gunti</h1>
+    <div class="contact">
+      <a href="mailto:sgunti@purdue.edu">sgunti@purdue.edu</a> |
+      <a href="mailto:sid.gunti@gmail.com">sid.gunti@gmail.com</a> |
+      <a href="https://www.linkedin.com/in/siddharth-gunti-66ba212b8/">linkedin.com/in/siddharth-gunti-66ba212b8</a> |
+      <a href="https://guntisid.com">guntisid.com</a> | (484) 716-9530 | West Lafayette, IN
     </div>
-  </header>
-
-  <main>
-    <header class="resume-head">
-      <h1>Siddharth Sharma Gunti</h1>
-      <div class="contact">
-        <span>West Lafayette, Indiana</span>
-        <a href="mailto:sgunti@purdue.edu">sgunti@purdue.edu</a>
-        <a href="mailto:sid.gunti@gmail.com">sid.gunti@gmail.com</a>
-        <a href="tel:+14847169530">+1 (484)-716-9530</a>
-        <a href="https://www.linkedin.com/in/siddharth-gunti-66ba212b8/">LinkedIn ↗</a>
-      </div>
-    </header>
-
-    <section class="profile">
-      <span class="label">Profile</span>
+    <section class="section">
+      <h2 class="section-title">PROFILE</h2>
       <p>Purdue University First-Year Engineering student intending to pursue Computer Engineering, with experience in robotics, engineering research, web content, and software development. Interested in embedded systems, computer hardware, and hands-on technical projects.</p>
     </section>
-
-    <section class="resume-section">
-      <h2>Education</h2>
-      <div class="entries">
-        <article class="entry">
-          <div><h3>Purdue University</h3><p class="meta">West Lafayette, Indiana</p></div>
-          <div><p>First-Year Engineering; Intended Computer Engineering</p><p class="meta">2026 — 2030</p></div>
-        </article>
-        <article class="entry">
-          <div><h3>Spring-Ford Area Senior High School</h3></div>
-          <div><p class="meta">Royersford, Pennsylvania</p></div>
-        </article>
+    <section class="section">
+      <h2 class="section-title">EDUCATION</h2>
+      <div class="row edu-line"><div class="left"><span class="strong">Purdue University</span> - <span class="italic">First-Year Engineering; Intended Computer Engineering</span> | West Lafayette, IN</div><div class="date">2026-2030</div></div>
+      <div class="row edu-line"><div class="left"><span class="strong">Spring-Ford Area Senior High School</span> | Royersford, PA</div></div>
+    </section>
+    <section class="section">
+      <h2 class="section-title">TECHNICAL SKILLS</h2>
+      <p><span class="strong">Programming / Tools:</span> Java, Python, C++, HTML/CSS, Git, GitHub, Pandas, Matplotlib, Microsoft Excel</p>
+      <p><span class="strong">Focus:</span> Robotics, embedded systems, data analysis, web development, engineering design</p>
+    </section>
+    <section class="section">
+      <h2 class="section-title">EXPERIENCE</h2>
+      <div class="job">
+        <div class="row"><div class="left"><span class="strong">KOVA</span> - <span class="italic">Software Engineer</span></div><div class="date">Sep 2026-Present</div></div>
+        <ul>
+          <li>Implement software patches and contribute improvements to the KOVA platform.</li>
+          <li>Diagnose and fix bugs to improve application reliability and user experience.</li>
+          <li>Use Git and GitHub to pull code, manage changes, push updates, and collaborate on the codebase.</li>
+          <li>Test and troubleshoot product functionality in an early-stage startup environment.</li>
+          <li>Contribute to collaborative software development, version control, and production code.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="row"><div class="left"><span class="strong">The Station Food Market</span> - <span class="italic">Digital Media &amp; Web Intern</span></div><div class="date">Aug 2026-Present</div></div>
+        <ul>
+          <li>Manage and update website content for products, events, and promotions, keeping the market's online information current.</li>
+          <li>Create short-form digital media that highlights market offerings and supports promotional campaigns across digital channels.</li>
+          <li>Collaborate with photography and social media team members to plan and produce cohesive content for the website and social platforms.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="row"><div class="left"><span class="strong">Research Support India</span> - <span class="italic">Engineering Research Intern</span> | Hosur, India</div><div class="date">Summer 2025</div></div>
+        <ul>
+          <li>Analyzed alkaline electrolyzer performance using voltage, current, power, pressure, and hydrogen flow measurements.</li>
+          <li>Used Python and Pandas to analyze measurements and Matplotlib to visualize performance trends.</li>
+          <li>Contributed data analysis and findings to a technical research paper on alkaline electrolyzer operation reviewed by engineers.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="row"><div class="left"><span class="strong">DSAT Hackers</span> - <span class="italic">Student Tutor Specialist</span> | Remote</div><div class="date">Nov 2025-Mar 2026</div></div>
+        <ul>
+          <li>Provided individualized SAT Math and Reading instruction, adapting explanations and practice to students' needs in algebra, grammar, and reading comprehension.</li>
+          <li>Identified recurring errors and provided targeted feedback to address gaps and strengthen problem-solving accuracy.</li>
+          <li>Taught pacing, reading comprehension, and problem-solving strategies for SAT questions.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="row"><div class="left"><span class="strong">VEX Robotics - Team 3327C</span> - <span class="italic">Captain, Build Lead &amp; Treasurer</span></div><div class="date">Sep 2022-Mar 2026</div></div>
+        <ul>
+          <li>Led mechanical design, construction, testing, and competition strategy for a robotics team of five or more members.</li>
+          <li>Diagnosed mechanical failures and redesigned drivetrain and structural components through testing and prototyping.</li>
+          <li>Integrated pneumatic mechanisms and iterated mechanical designs to support competition strategy.</li>
+        </ul>
       </div>
     </section>
-
-    <section class="resume-section">
-      <h2>Experience</h2>
-      <div class="entries">
-        <article class="entry">
-          <div>
-            <h3>KOVA</h3>
-            <p class="meta">Software Engineer · Sep 2026 — Present</p>
-          </div>
-          <ul>
-            <li>Implement software patches and contribute improvements to the KOVA platform.</li>
-            <li>Diagnose and fix bugs to improve application reliability and user experience.</li>
-            <li>Use Git and GitHub to pull code, manage changes, push updates, and collaborate on the codebase.</li>
-            <li>Test and troubleshoot product functionality in an early-stage startup environment.</li>
-            <li>Contribute to collaborative software development, version control, and production code.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div><h3>The Station Food Market</h3><p class="meta">Digital Media &amp; Web Intern · Aug 2026 — Present</p></div>
-          <ul>
-            <li>Manage and update website content for products, events, and promotions, keeping the market’s online information current.</li>
-            <li>Create short-form digital media that highlights market offerings and supports promotional campaigns across digital channels.</li>
-            <li>Collaborate with photography and social media team members to plan and produce cohesive content for the website and social platforms.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div><h3>Research Support India</h3><p class="meta">Engineering Research Intern · Summer 2025</p></div>
-          <ul>
-            <li>Analyzed alkaline electrolyzer performance using voltage, current, power, pressure, and hydrogen flow measurements.</li>
-            <li>Used Python and Pandas to analyze measurements and Matplotlib to visualize performance trends.</li>
-            <li>Contributed data analysis and findings to a technical research paper on alkaline electrolyzer operation reviewed by engineers.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div><h3>DSAT Hackers</h3><p class="meta">Student Tutor Specialist · Nov 2025 — Mar 2026</p></div>
-          <ul>
-            <li>Provided individualized SAT Math and Reading instruction, adapting explanations and practice to students’ needs in algebra, grammar, and reading comprehension.</li>
-            <li>Identified recurring errors in student work and provided targeted feedback to address gaps in understanding and strengthen problem-solving accuracy.</li>
-            <li>Taught pacing, reading comprehension, and problem-solving strategies for SAT questions.</li>
-          </ul>
-        </article>
-        <article class="entry">
-          <div><h3>VEX Robotics · Team 3327C</h3><p class="meta">Captain, Build Lead &amp; Treasurer · Sep 2022 — Mar 2026</p></div>
-          <ul>
-            <li>Led mechanical design, construction, testing, and competition strategy for a robotics team of five or more members.</li>
-            <li>Diagnosed mechanical failures and redesigned drivetrain and structural components, using testing and prototyping to refine robot performance.</li>
-            <li>Integrated pneumatic mechanisms into robot builds and iterated on mechanical designs to support the team’s competition strategy.</li>
-          </ul>
-        </article>
+    <section class="section">
+      <h2 class="section-title">SELECTED PROJECTS &amp; RESEARCH</h2>
+      <div class="project">
+        <div class="row"><div class="left"><span class="strong">Eagle Scout Service Project</span> - <span class="italic">Project Lead</span></div></div>
+        <ul>
+          <li>Led 20+ volunteers in refurbishing 13 community benches and constructing a public information kiosk for a township park.</li>
+          <li>Handled all volunteer logistics and managed a project budget of $500+.</li>
+        </ul>
       </div>
+      <div class="project"><p><span class="strong">Java Swing Idle Game - Developer:</span> Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations.</p></div>
+      <p><a href="RSI-Research-Paper.pdf" target="_blank" rel="noreferrer"><span class="research-title">Operational Insights into Alkaline Electrolyzers:</span> View research paper</a></p>
     </section>
-
-    <section class="resume-section">
-      <h2>Projects</h2>
-      <div class="entries">
-        <article class="entry">
-          <div><h3>Eagle Scout Service Project</h3><p class="meta">Project Lead</p></div>
-          <ul>
-            <li>Led 20+ volunteers in refurbishing 13 community benches and constructing a public information kiosk for a township park.</li>
-            <li>Handled all volunteer logistics and managed a project budget of $500+.</li>
-          </ul>
-        </article>
-        <article class="entry"><div><h3>Java Swing Idle Game</h3><p class="meta">Developer</p></div><p>Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations.</p></article>
-      </div>
-    </section>
-
-    <section class="resume-section">
-      <h2>Skills &amp; Honors</h2>
-      <div class="skills">
-        <div><span class="label">Languages &amp; tools</span><p>Java, Python, C++, HTML/CSS, Git, GitHub, Pandas, Matplotlib, Microsoft Excel</p></div>
-        <div><span class="label">Focus</span><p>Robotics, embedded systems, data analysis, web development, engineering design</p></div>
-        <div><span class="label">Honors</span><p>Eagle Scout; State-Level VEX Design Award; AP Scholar with Distinction; PSAT/NMSQT Commended Student</p></div>
-      </div>
-    </section>
-
-    <section class="resume-section">
-      <h2>Research</h2>
-      <a class="research-link" href="RSI-Research-Paper.pdf" target="_blank" rel="noreferrer">
-        <strong>Operational Insights into Alkaline Electrolyzers</strong>
-        <span class="label">Open paper ↗</span>
-      </a>
+    <section class="section">
+      <h2 class="section-title">SELECTED HONORS</h2>
+      <p>Eagle Scout | State-Level VEX Design Award | AP Scholar with Distinction | PSAT/NMSQT Commended Student</p>
     </section>
   </main>
-
-  <footer><span>Siddharth Sharma Gunti</span><span>sgunti@purdue.edu</span></footer>
 </body>
 </html>
