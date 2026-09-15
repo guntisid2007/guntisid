@@ -13,7 +13,9 @@ import {
   EnvelopeSimple,
   Cpu,
   Code,
+  Drone,
   Tree,
+  Waveform,
   GithubLogo,
   LinkedinLogo,
   Pause,
@@ -39,6 +41,22 @@ const navigation = [
 ];
 
 const projects = [
+  {
+    signal: "Aerial systems",
+    icon: Drone,
+    title: "Modular fiber-tethered drone platform",
+    description:
+      "Researching and co-developing a modular drone platform for varied applications and operating conditions, including a fiber-tethered configuration for dependable command and data communication where radio links are unreliable.",
+    tools: "Purdue University · Modular design · Fiber communications",
+  },
+  {
+    signal: "Context-aware AI",
+    icon: Waveform,
+    title: "Sidekick",
+    description:
+      "Built a voice-activated AI assistant that uses Parakeet speech recognition and Gemma to follow a conversation, respond to the Sidekick wake word, and answer spoken questions using the preceding context.",
+    tools: "Purdue University · Parakeet · Gemma",
+  },
   {
     signal: "Community leadership",
     icon: Tree,
@@ -263,7 +281,7 @@ function App() {
         <section className="project-section paper-section" id="work" tabIndex={-1} aria-labelledby="work-title">
           <div className="section-title" data-reveal>
             <h2 id="work-title">Selected work</h2>
-            <p>Community leadership and software projects, from organizing volunteers to building interactive applications.</p>
+            <p>Engineering research, AI, software, and community leadership projects built through hands-on development.</p>
           </div>
 
           <div className="project-index">
