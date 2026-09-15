@@ -433,7 +433,7 @@ h3 {
   display: grid;
   grid-column: 1 / -1;
   grid-row: 2;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line-inverse);
 }
 
@@ -1031,15 +1031,7 @@ footer a:hover { color: var(--accent); }
   .hero-ledger {
     grid-column: 1 / -1;
     grid-row: 3;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .hero-ledger span:nth-child(2) {
-    border-right: 0;
-  }
-
-  .hero-ledger span:nth-child(-n + 2) {
-    border-bottom: 1px solid var(--line-inverse);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .section-title,

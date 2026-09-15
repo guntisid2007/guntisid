@@ -12,7 +12,6 @@ import {
   ArrowCounterClockwise,
   EnvelopeSimple,
   Cpu,
-  Code,
   Drone,
   Tree,
   Waveform,
@@ -46,63 +45,55 @@ const projects = [
     icon: Drone,
     title: "Modular fiber-tethered drone platform",
     description:
-      "Researching and co-developing a modular drone platform for varied applications and operating conditions, including a fiber-tethered configuration for dependable command and data communication where radio links are unreliable.",
-    tools: "Purdue University · Modular design · Fiber communications",
+      "Co-developing a modular drone with a fiber-tethered configuration for missions where conventional radio links are unreliable.",
+    tools: "Purdue University · Fiber communications",
   },
   {
     signal: "Context-aware AI",
     icon: Waveform,
     title: "Sidekick",
     description:
-      "Built a voice-activated AI assistant that uses Parakeet speech recognition and Gemma to follow a conversation, respond to the Sidekick wake word, and answer spoken questions using the preceding context.",
-    tools: "Purdue University · Parakeet · Gemma",
+      "Built a voice-activated assistant that uses Parakeet and Gemma to answer wake-word questions from the context of a conversation.",
+    tools: "Parakeet · Gemma",
   },
   {
     signal: "Community leadership",
     icon: Tree,
     title: "Eagle Scout service project",
     description:
-      "Led 20+ volunteers to refurbish 13 community benches and construct a public information kiosk for a township park. Handled all volunteer logistics and managed a $500+ project budget.",
-    tools: "Volunteer logistics · Budget management · Leadership",
-  },
-  {
-    signal: "Software",
-    icon: Code,
-    title: "Java Swing idle game",
-    description:
-      "Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations.",
-    tools: "Java · Swing · OOP",
+      "Led 20+ volunteers, managed a $500+ budget, refurbished 13 community benches, and built a public information kiosk.",
+    tools: "Leadership · Project management",
   },
 ];
 
 const experience = [
   {
+    period: "SEP 2026 - PRESENT",
+    role: "Software Engineer",
+    organization: "KOVA · Purdue University",
+    summary:
+      "Ships software fixes, resolves product bugs, and collaborates on production code through Git and GitHub.",
+  },
+  {
     period: "AUG 2026 - PRESENT",
     role: "Digital Media & Web Intern",
     organization: "The Station Food Market · West Lafayette, IN",
     summary:
-      "Manages web content and produces short-form media for products, events, and promotions in collaboration with photography and social teams.",
+      "Maintains web content and produces promotional media with the photography and social teams.",
   },
   {
     period: "SUMMER 2025",
     role: "Engineering Research Intern",
     organization: "Research Support India · Hosur, India",
     summary:
-      "Analyzed alkaline-electrolyzer operating data supplied by site engineers, visualized performance trends, and documented findings for engineering review.",
-  },
-  {
-    period: "NOV 2025 - MAR 2026",
-    role: "Student Tutor Specialist",
-    organization: "DSAT Hackers · Remote",
-    summary:
-      "Delivered individualized SAT instruction, diagnosed recurring errors, and developed targeted practice for accuracy, pacing, and strategy.",
+      "Analyzed alkaline-electrolyzer data, visualized performance trends, and documented the findings for engineering review.",
   },
   {
     period: "SEP 2022 - MAR 2026",
     role: "Team Captain, Build Lead & Treasurer",
     organization: "VEX Robotics · Team 3327C",
     summary:
-      "Led mechanical design, construction, testing, and competition strategy while iterating drivetrain, structure, and pneumatic mechanisms.",
+      "Led mechanical design, testing, and competition strategy for a five-member robotics team.",
   },
 ];
 
@@ -271,8 +262,7 @@ function App() {
             <FieldStage />
           </div>
           <div className="hero-ledger" data-intro="copy">
-            <span>STATUS / FIRST-YEAR ENGINEERING</span>
-            <span>INTENT / COMPUTER ENGINEERING</span>
+            <span>STUDY / COMPUTER ENGINEERING</span>
             <span>FOCUS / EMBEDDED SYSTEMS + ROBOTICS</span>
             <span>OPEN / SUMMER 2027</span>
           </div>
@@ -308,15 +298,11 @@ function App() {
           <div className="research-layout">
             <dl className="research-story" data-reveal>
               <div>
-                <dt>The question</dt>
-                <dd>How do voltage, current, and power change during hydrogen production?</dd>
-              </div>
-              <div>
-                <dt>My contribution</dt>
+                <dt>Contribution</dt>
                 <dd>I analyzed 721 seconds of operating data supplied by the site’s engineers, using Pandas, Matplotlib, and scikit-learn to visualize measurements and fit linear trends.</dd>
               </div>
               <div>
-                <dt>What I found</dt>
+                <dt>Result</dt>
                 <dd>Voltage, current, and power increased gradually during the run. I documented those trends and the study’s limitations in a research paper.</dd>
               </div>
             </dl>
@@ -335,7 +321,7 @@ function App() {
         <section className="experience-section paper-section" id="experience" tabIndex={-1} aria-labelledby="experience-title">
           <div className="section-title" data-reveal>
             <h2 id="experience-title">Experience</h2>
-            <p>Technical work, team leadership, instruction, and public-facing communication.</p>
+            <p>Software, engineering research, robotics, and digital work.</p>
           </div>
           <div className="experience-log">
             {experience.map((item) => (
