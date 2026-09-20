@@ -1,4 +1,4 @@
-# Sid Gunti — Portfolio
+# Sid Gunti | Portfolio
 
 A responsive React portfolio for Siddharth “Sid” Gunti, built around inspectable engineering evidence: embedded systems, robotics, data analysis, and research.
 
@@ -7,10 +7,11 @@ The repository includes a standalone web résumé at `public/resume.html` and Si
 ## Stack
 
 - React 19 and Vite
-- GSAP and ScrollTrigger
-- Three.js, lazy-loaded with a static fallback
+- CSS transitions and IntersectionObserver for restrained motion
 - Phosphor Icons
 - Self-hosted Barlow Condensed, Manrope, and IBM Plex Mono
+
+Organization logos are stored in `public/assets/logos/` and referenced from the centralized experience data in `src/App.jsx`.
 
 ## Run locally
 

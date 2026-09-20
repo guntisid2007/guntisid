@@ -1,4 +1,4 @@
-# Sid Gunti Portfolio — Product Truth
+# Sid Gunti Portfolio | Product Truth
 
 ## Purpose
 
@@ -36,6 +36,8 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - Research setting: Research Support India (RSI), Hosur, India
 - Research method: one-second operational samples over 721 seconds, examining voltage, current, power, flowmeter pressure, and hydrogen flow rate
 - Research limitations must remain explicit: cell temperature was not recorded, the monitoring window was short, and the work should not claim more causal certainty than the paper supports.
+- Modular Fiber-Tethered Drone Platform: Purdue University, Sep 2026-present; radio-independent command and data for inspection, underground, and disaster-response use; developing toward NASA's 2027 Gateways to Blue Skies Competition.
+- Sidekick: Purdue University, 2026-present; voice AI assistant integrating Parakeet speech recognition with Gemma, conversational context, and wake-word activation.
 
 ## Required experiences
 
@@ -43,7 +45,7 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - A résumé that opens as a readable website page, without forcing a download
 - A direct browser-viewable link to the full RSI research paper
 - Clear paths to LinkedIn, GitHub, email, résumé, and research
-- Accessible focus states, keyboard navigation, reduced-motion behavior, and a meaningful no-WebGL fallback
+- Accessible focus states, keyboard navigation, reduced-motion behavior, and readable no-JavaScript fallback content
 
 ## Brand qualities
 
