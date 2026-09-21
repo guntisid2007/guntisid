@@ -1,72 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
+  AirplaneTilt,
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  AirplaneTilt,
+  ChartLineUp,
   Code,
   EnvelopeSimple,
   GithubLogo,
+  InstagramLogo,
   LinkedinLogo,
   Tree,
   Waveform,
 } from "@phosphor-icons/react";
 import { Analytics } from "@vercel/analytics/react";
 import MobileNavigation from "./components/MobileNavigation";
-import ResearchFigure from "./components/ResearchFigure";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
 const GITHUB = "https://github.com/guntisid2007";
+const INSTAGRAM = "https://www.instagram.com/guntisid/";
 const EMAIL = "sgunti@purdue.edu";
 
 const navigation = [
-  { href: "#work", label: "Work" },
-  { href: "#research", label: "Research" },
   { href: "#experience", label: "Experience" },
+  { href: "#work", label: "Projects" },
+  { href: "#skills", label: "Skills" },
   { href: "#about", label: "About" },
-  { href: `${ASSET_BASE}resume.html`, label: "Resume" },
+  { href: `${ASSET_BASE}resume.html`, label: "Resume", featured: true },
   { href: "#contact", label: "Contact" },
-];
-
-const projects = [
-  {
-    type: "Autonomy and communications",
-    icon: AirplaneTilt,
-    title: "Modular fiber-tethered drone platform",
-    description:
-      "Co-develop a fiber-tethered drone for reliable command and data without radio links, with communications architecture for inspection, underground, and disaster-response use.",
-    detail: "Developing toward NASA's 2027 Gateways to Blue Skies Competition",
-    tools: ["Fiber tether", "Communications", "Systems design"],
-    featured: true,
-  },
-  {
-    type: "Voice AI",
-    icon: Waveform,
-    title: "Sidekick",
-    description:
-      "Co-develop a voice AI assistant integrating Parakeet speech recognition with Gemma, including conversational context and wake-word activation.",
-    detail: "Developer, Purdue University / 2026-present",
-    tools: ["Parakeet", "Gemma", "Voice activation"],
-  },
-  {
-    type: "Community engineering",
-    icon: Tree,
-    title: "Eagle Scout service project",
-    description:
-      "Led 20+ volunteers to refurbish 13 community benches and construct a public information kiosk for a township park.",
-    detail: "Managed volunteer logistics and a $500+ project budget",
-    tools: ["Planning", "Construction", "Leadership"],
-  },
-  {
-    type: "Software",
-    icon: Code,
-    title: "Java Swing idle game",
-    description:
-      "Built an object-oriented desktop game with upgrade systems, timers, progression mechanics, and large-number calculations.",
-    detail: "Designed and implemented as an independent application",
-    tools: ["Java", "Swing", "OOP"],
-  },
 ];
 
 const experience = [
@@ -75,39 +37,116 @@ const experience = [
     role: "Software Engineering Intern",
     organization: "RideKova",
     location: "Purdue University",
-    summary:
-      "Ship software patches, resolve bugs, manage production changes in Git/GitHub, and test fixes on a three-person development team.",
+    bullets: [
+      "Ship software patches and resolve product bugs to strengthen reliability and user experience.",
+      "Manage production changes in Git and GitHub on a three-person development team.",
+      "Test features and deploy fixes in a fast-moving early-stage startup environment.",
+    ],
+    tools: ["Git", "GitHub", "Product testing"],
     logo: `${ASSET_BASE}assets/logos/kova.png`,
-    logoAlt: "KOVA",
+    logoAlt: "KOVA logo",
+    logoClass: "is-kova",
   },
   {
     period: "AUG 2026 - PRESENT",
     role: "Digital Media & Web Intern",
     organization: "The Station Food Market",
     location: "West Lafayette, Indiana",
-    summary:
-      "Maintain website content and produce short-form media; one campaign reached 29K views, about 20 times typical performance.",
+    bullets: [
+      "Maintain website content across products, events, and promotions.",
+      "Produced short-form content reaching 29K views, about 20 times typical performance.",
+    ],
+    tools: ["Web content", "Short-form media", "Analytics"],
     logo: `${ASSET_BASE}assets/logos/station-food-market.png`,
-    logoAlt: "The Station Food Market",
+    logoAlt: "The Station Food Market logo",
+    logoClass: "is-station",
   },
   {
     period: "SUMMER 2025",
     role: "Engineering Research Intern",
     organization: "Research Support India",
     location: "Hosur, India",
-    summary:
-      "Analyzed 50+ electrolyzer trials in Python/Pandas and produced Matplotlib visualizations for a 20-page technical report reviewed by engineers.",
+    bullets: [
+      "Analyzed 50+ electrolyzer trials in Python and Pandas to identify performance trends.",
+      "Produced Matplotlib visualizations and a 20-page technical report reviewed by engineers.",
+    ],
+    tools: ["Python", "Pandas", "Matplotlib"],
     monogram: "RSI",
   },
   {
     period: "SEP 2022 - MAR 2026",
     role: "Captain, Build Lead & Treasurer",
     organization: "VEX Robotics, Team 3327C",
-    location: "Competition robotics",
-    summary:
-      "Led a six-person team through robot design, construction, testing, and strategy while redesigning drivetrain, structure, and pneumatic systems.",
-    monogram: "VEX",
+    location: "Royersford, Pennsylvania",
+    bullets: [
+      "Led a six-person team through robot design, construction, testing, and competition strategy.",
+      "Redesigned drivetrain and structural systems after diagnosing mechanical failures.",
+    ],
+    tools: ["Mechanical design", "Pneumatics", "Team leadership"],
+    logo: `${ASSET_BASE}assets/logos/vex-robotics.png`,
+    logoAlt: "VEX Robotics logo",
+    logoClass: "is-vex",
   },
+];
+
+const projects = [
+  {
+    type: "Autonomy and communications",
+    role: "Researcher / Co-developer",
+    icon: AirplaneTilt,
+    title: "Modular fiber-tethered drone platform",
+    description:
+      "Developing reliable command and data without radio links for inspection, underground, and disaster-response missions.",
+    tools: ["Fiber tether", "Communications", "Systems design"],
+    note: "Developing toward NASA's 2027 Gateways to Blue Skies Competition",
+  },
+  {
+    type: "Voice AI",
+    role: "Developer",
+    icon: Waveform,
+    title: "Sidekick",
+    description:
+      "Voice assistant combining Parakeet speech recognition, Gemma, conversational context, and wake-word activation.",
+    tools: ["Parakeet", "Gemma", "Voice activation"],
+  },
+  {
+    type: "Engineering research",
+    role: "Researcher",
+    icon: ChartLineUp,
+    title: "Electrolyzer performance analysis",
+    description:
+      "Analyzed 721 seconds of voltage, current, and power data, including a voltage increase from roughly 2.5 V to 3.0 V. The short window and missing cell-temperature data limit long-term conclusions.",
+    tools: ["Python", "Pandas", "Matplotlib"],
+    note: "Research Support India / Hosur, India",
+    link: `${ASSET_BASE}RSI-Research-Paper.pdf`,
+    linkLabel: "Read paper",
+  },
+  {
+    type: "Community engineering",
+    role: "Project lead",
+    icon: Tree,
+    title: "Eagle Scout service project",
+    description:
+      "Led 20+ volunteers to refurbish 13 benches and build a public information kiosk on a $500+ budget.",
+    tools: ["Planning", "Construction", "Leadership"],
+  },
+  {
+    type: "Software",
+    role: "Developer",
+    icon: Code,
+    title: "Java Swing idle game",
+    description:
+      "Built an object-oriented desktop game with upgrades, timers, progression mechanics, and large-number calculations.",
+    tools: ["Java", "Swing", "OOP"],
+  },
+];
+
+const skillGroups = [
+  { label: "Languages", value: "Java, Python, C++, HTML/CSS" },
+  { label: "Hardware", value: "Robotics, embedded systems, pneumatics, engineering design" },
+  { label: "Data and libraries", value: "Pandas, Matplotlib, scikit-learn" },
+  { label: "Developer tools", value: "Git, GitHub, Microsoft Excel" },
+  { label: "AI tools", value: "OpenAI Codex, Claude, ChatGPT, Gemini" },
 ];
 
 function EvidenceLink({ href, children, external = false, primary = false }) {
@@ -126,8 +165,12 @@ function EvidenceLink({ href, children, external = false, primary = false }) {
 }
 
 function OrganizationMark({ item }) {
+  const classes = ["organization-mark", item.logo ? "has-logo" : "", item.logoClass || ""]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div className={`organization-mark${item.logo ? " has-logo" : ""}`}>
+    <div className={classes}>
       {item.logo ? (
         <img src={item.logo} alt={item.logoAlt} loading="lazy" />
       ) : (
@@ -137,29 +180,64 @@ function OrganizationMark({ item }) {
   );
 }
 
+function SocialLinks({ className = "" }) {
+  return (
+    <div className={className} aria-label="Professional and social profiles">
+      <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub, opens in a new tab"><GithubLogo size={20} weight="fill" />GitHub</a>
+      <a href={LINKEDIN} target="_blank" rel="noreferrer" aria-label="LinkedIn, opens in a new tab"><LinkedinLogo size={20} weight="fill" />LinkedIn</a>
+      <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram, opens in a new tab"><InstagramLogo size={20} />Instagram</a>
+      <a href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Email</a>
+    </div>
+  );
+}
+
 export default function App() {
+  const [activeHref, setActiveHref] = useState("");
+
   useEffect(() => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const elements = document.querySelectorAll("[data-reveal]");
+    const revealElements = document.querySelectorAll("[data-reveal]");
 
     if (reducedMotion) {
-      elements.forEach((element) => element.setAttribute("data-visible", "true"));
-      return undefined;
+      revealElements.forEach((element) => element.setAttribute("data-visible", "true"));
     }
 
-    const observer = new IntersectionObserver(
+    const revealObserver = reducedMotion
+      ? null
+      : new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.setAttribute("data-visible", "true");
+              revealObserver.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+    revealElements.forEach((element) => revealObserver?.observe(element));
+
+    const trackedSections = navigation
+      .filter(({ href }) => href.startsWith("#"))
+      .map(({ href }) => document.getElementById(href.slice(1)))
+      .filter(Boolean);
+
+    const sectionObserver = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.setAttribute("data-visible", "true");
-          observer.unobserve(entry.target);
-        });
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveHref(`#${visible.target.id}`);
       },
-      { threshold: 0.14 },
+      { rootMargin: "-20% 0px -65%", threshold: [0, 0.25, 0.6] },
     );
 
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    trackedSections.forEach((section) => sectionObserver.observe(section));
+
+    return () => {
+      revealObserver?.disconnect();
+      sectionObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -172,164 +250,141 @@ export default function App() {
           <span>SID GUNTI</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {navigation.map(({ href, label }) => <a key={href} href={href}>{label}</a>)}
+          {navigation.map(({ href, label, featured }) => (
+            <a
+              className={`${featured ? "nav-resume " : ""}${activeHref === href ? "is-current" : ""}`.trim()}
+              key={href}
+              href={href}
+              aria-current={activeHref === href ? "location" : undefined}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
-        <MobileNavigation links={navigation} />
+        <a className="mobile-resume" href={`${ASSET_BASE}resume.html`}>Resume</a>
+        <MobileNavigation links={navigation} activeHref={activeHref} />
       </header>
 
       <main id="main" tabIndex={-1}>
         <section className="hero" id="top">
           <div className="hero-copy">
             <p className="hero-kicker hero-intro">Purdue University / Computer Engineering</p>
-            <h1 className="hero-intro">Hardware meets software.</h1>
+            <h1 className="hero-intro">Sid Gunti builds systems.</h1>
             <p className="hero-deck hero-intro">
-              Embedded systems, robotics, data, and code. Built with evidence, tested in the real world.
+              Embedded systems, robotics, data, and production software, built through testing and iteration.
             </p>
             <div className="hero-actions hero-intro">
-              <EvidenceLink href="#work" primary>View selected work</EvidenceLink>
-              <EvidenceLink href={`${ASSET_BASE}resume.html`}>View resume</EvidenceLink>
-            </div>
-          </div>
-
-          <div className="hero-portrait hero-intro">
-            <img
-              src={`${ASSET_BASE}sid-gunti.jpg`}
-              alt="Siddharth Gunti"
-              width="720"
-              height="900"
-              fetchPriority="high"
-            />
-            <div className="portrait-meta">
-              <span>Sid Gunti</span>
-              <span>Open to Summer 2027</span>
-            </div>
-            <div className="hero-socials" aria-label="Professional profiles">
-              <a href={GITHUB} target="_blank" rel="noreferrer"><GithubLogo size={19} weight="fill" />GitHub</a>
-              <a href={LINKEDIN} target="_blank" rel="noreferrer"><LinkedinLogo size={19} weight="fill" />LinkedIn</a>
-              <a href="#contact"><EnvelopeSimple size={19} />Contact</a>
+              <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
+              <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
             </div>
           </div>
         </section>
 
-        <section className="proof-strip" aria-label="Portfolio focus">
-          <span>Purdue engineering</span>
-          <span>Embedded systems</span>
-          <span>Robotics</span>
-          <span>Software</span>
-        </section>
-
-        <section className="work-section section-shell" id="work" tabIndex={-1} aria-labelledby="work-title">
-          <div className="section-heading" data-reveal>
-            <h2 id="work-title">Work that leaves evidence.</h2>
-            <p>Physical systems, software, and public work shaped by testing, iteration, and ownership.</p>
-          </div>
-
-          <div className="project-grid">
-            {projects.map((project, index) => {
-              const ProjectIcon = project.icon;
-              return (
-                <article
-                  className={`project-card${project.featured ? " project-card-featured" : ""}`}
-                  key={project.title}
-                  data-reveal
-                  style={{ "--reveal-delay": `${index * 70}ms` }}
-                >
-                  <div className="project-topline">
-                    <span>{project.type}</span>
-                    <ProjectIcon size={30} weight="duotone" aria-hidden="true" />
-                  </div>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <strong>{project.detail}</strong>
-                  <ul aria-label="Project focus">
-                    {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
-                  </ul>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="research-section section-shell" id="research" tabIndex={-1} aria-labelledby="research-title">
-          <div className="research-copy" data-reveal>
-            <p className="section-label">Engineering research</p>
-            <h2 id="research-title">Making electrolyzer performance legible.</h2>
-            <p className="research-deck">Research Support India, Hosur, India / Summer 2025</p>
-            <dl className="research-story">
-              <div>
-                <dt>Question</dt>
-                <dd>How do voltage, current, and power change during hydrogen production?</dd>
-              </div>
-              <div>
-                <dt>Contribution</dt>
-                <dd>Analyzed 721 seconds of operating data with Pandas, Matplotlib, and scikit-learn, then documented the trends and study limits.</dd>
-              </div>
-              <div>
-                <dt>Result</dt>
-                <dd>Voltage increased from roughly 2.5 V to 3.0 V during the recorded run.</dd>
-              </div>
-            </dl>
-            <EvidenceLink href={`${ASSET_BASE}RSI-Research-Paper.pdf`} external primary>Read the paper</EvidenceLink>
-          </div>
-          <div data-reveal style={{ "--reveal-delay": "90ms" }}>
-            <ResearchFigure />
-            <p className="research-limit">
-              The short observation window and missing cell-temperature data limit conclusions about long-term durability or efficiency.
-            </p>
-          </div>
+        <section className="profile-bar" aria-label="Profile links and availability">
+          <p>Open to Summer 2027 Computer Engineering opportunities</p>
+          <SocialLinks className="profile-links" />
         </section>
 
         <section className="experience-section section-shell" id="experience" tabIndex={-1} aria-labelledby="experience-title">
-          <div className="section-heading compact" data-reveal>
+          <div className="section-heading" data-reveal>
             <h2 id="experience-title">Experience</h2>
-            <p>Engineering, software, communication, and team ownership.</p>
+            <p>Engineering work with measurable results, production responsibility, and team ownership.</p>
           </div>
-          <div className="experience-list">
+          <div className="experience-grid">
             {experience.map((item, index) => (
               <article key={`${item.organization}-${item.role}`} data-reveal style={{ "--reveal-delay": `${index * 55}ms` }}>
                 <OrganizationMark item={item} />
-                <div className="experience-role">
-                  <p>{item.period}</p>
+                <div className="experience-card-body">
+                  <div className="experience-meta">
+                    <p>{item.period}</p>
+                    <span>{item.location}</span>
+                  </div>
                   <h3>{item.role}</h3>
-                  <span>{item.organization}</span>
-                </div>
-                <div className="experience-summary">
-                  <span>{item.location}</span>
-                  <p>{item.summary}</p>
+                  <h4>{item.organization}</h4>
+                  <ul className="experience-bullets">
+                    {item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                  </ul>
+                  <ul className="tag-list" aria-label={`${item.organization} tools and focus`}>
+                    {item.tools.map((tool) => <li key={tool}>{tool}</li>)}
+                  </ul>
                 </div>
               </article>
             ))}
           </div>
         </section>
 
+        <section className="work-section section-shell" id="work" tabIndex={-1} aria-labelledby="work-title">
+          <div className="section-heading compact" data-reveal>
+            <h2 id="work-title">Projects</h2>
+            <p>Selected systems, software, research, and service work.</p>
+          </div>
+
+          <div className="project-grid">
+            {projects.map((project, index) => {
+              const ProjectIcon = project.icon;
+              return (
+                <article key={project.title} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+                  <div className="project-topline">
+                    <span>{project.type}</span>
+                    <ProjectIcon size={25} weight="duotone" aria-hidden="true" />
+                  </div>
+                  <p className="project-role">{project.role}</p>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  {project.note ? <strong>{project.note}</strong> : null}
+                  <ul className="tag-list" aria-label={`${project.title} technologies`}>
+                    {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
+                  </ul>
+                  {project.link ? (
+                    <a className="project-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.linkLabel}, opens in a new tab`}>
+                      {project.linkLabel}<ArrowUpRight size={15} />
+                    </a>
+                  ) : null}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="skills-section section-shell" id="skills" tabIndex={-1} aria-labelledby="skills-title">
+          <div className="section-heading compact" data-reveal>
+            <h2 id="skills-title">Skills and tools</h2>
+            <p>Languages, technical libraries, and the tools I use to build and analyze.</p>
+          </div>
+          <div className="skills-grid">
+            {skillGroups.map((group, index) => (
+              <div key={group.label} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+                <h3>{group.label}</h3>
+                <p>{group.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="about-section section-shell" id="about" tabIndex={-1} aria-labelledby="about-title">
           <div className="about-statement" data-reveal>
-            <p className="section-label">About</p>
             <h2 id="about-title">Curious enough to measure. Practical enough to build.</h2>
-          </div>
-          <div className="about-body" data-reveal style={{ "--reveal-delay": "80ms" }}>
             <p>
-              I’m a Purdue engineering student pursuing Computer Engineering. Robotics and research taught me to enjoy the full loop: understand the system, build the first version, find the failure, and improve it.
+              I’m a Purdue Computer Engineering student who enjoys the full loop: understand the system, build the first version, find the failure, and improve it.
             </p>
-            <div className="toolbox">
-              <div><span>Languages</span><p>Java, Python, C++, HTML/CSS</p></div>
-              <div><span>Hardware</span><p>Robotics, embedded systems, pneumatics, engineering design</p></div>
-              <div><span>Data and tools</span><p>Git, GitHub, Pandas, Matplotlib, Excel</p></div>
-              <div><span>Honors</span><p>Eagle Scout, State-Level VEX Design Award, AP Scholar with Distinction</p></div>
-            </div>
           </div>
+          <dl className="education-facts" data-reveal style={{ "--reveal-delay": "70ms" }}>
+            <div><dt>Education</dt><dd>B.S. Computer Engineering, Purdue University</dd></div>
+            <div><dt>Academic standing</dt><dd>Sophomore, entered Purdue with 49 credits</dd></div>
+            <div><dt>Coursework</dt><dd>Physics, Multivariable Calculus, Introduction to Engineering</dd></div>
+            <div><dt>Honors</dt><dd>Eagle Scout, State-Level VEX Design Award, AP Scholar with Distinction</dd></div>
+          </dl>
         </section>
 
         <section className="contact-section section-shell" id="contact" tabIndex={-1} aria-labelledby="contact-title">
           <div data-reveal>
             <p className="section-label">Summer 2027</p>
-            <h2 id="contact-title">Let’s build something that has to work.</h2>
+            <h2 id="contact-title">Build something that has to work.</h2>
             <p>I’m interested in Computer Engineering opportunities where I can learn from experienced builders and contribute to real systems.</p>
           </div>
-          <div className="contact-actions" data-reveal style={{ "--reveal-delay": "80ms" }}>
+          <div data-reveal style={{ "--reveal-delay": "70ms" }}>
             <a className="contact-primary" href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Contact me</a>
-            <a href={LINKEDIN} target="_blank" rel="noreferrer"><LinkedinLogo size={20} weight="fill" />LinkedIn<ArrowUpRight size={16} /></a>
-            <a href={GITHUB} target="_blank" rel="noreferrer"><GithubLogo size={20} weight="fill" />GitHub<ArrowUpRight size={16} /></a>
+            <SocialLinks className="contact-links" />
           </div>
         </section>
       </main>

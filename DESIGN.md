@@ -6,18 +6,19 @@ Recruiter-facing Computer Engineering portfolio with a calm editorial-tech langu
 
 Design dials:
 
-- Variance: 7/10
-- Motion: 4/10
-- Density: 4/10
+- Variance: 5/10
+- Motion: 3/10
+- Density: 5/10
 
 ## Visual system
 
 - One dark theme across the page, with charcoal surfaces and a single muted-gold accent.
 - Barlow Condensed handles concise display type, Manrope carries body copy, and IBM Plex Mono is reserved for metadata and actions.
 - Geometry is square. Borders communicate structure, while spacing replaces unnecessary containers.
-- The hero uses the existing portrait as its visual focus. Projects use an asymmetric composition led by the modular fiber-tethered drone rather than repeated equal cards.
-- Research retains the original voltage figure and its limitations. No data is redrawn or invented.
-- Experience is a ruled list with organization marks. Supplied logos live in `public/assets/logos/`; missing logos use restrained text monograms.
+- The hero is typography-led and keeps the recruiter actions in the initial viewport. It intentionally contains no portrait, illustration, or interactive visual.
+- Experience leads the page in a substantial two-column grid. Projects follow in a denser scan-friendly grid.
+- Electrolyzer research is represented inside Experience and Projects, with the source paper and limitations retained.
+- Supplied organization logos live in `public/assets/logos/`. Each image has a specific optical sizing treatment rather than relying only on generic `object-fit` behavior.
 
 ## Motion
 
@@ -29,13 +30,13 @@ Design dials:
 
 ## Responsive behavior
 
-- Desktop: split hero, asymmetric project grid, two-column research and about sections.
-- Tablet: single-column content, portrait follows the hero copy, experience summaries wrap below the role.
-- Mobile: strict single column, full-width actions, two-column focus strip, compact logo-led experience rows, and a native disclosure navigation.
+- Desktop: full-width typographic hero, two-column experience and project grids, five-column skills groups, and a two-column about section.
+- Tablet: single-column experience and projects, a two-column skills layout, and a native disclosure navigation.
+- Mobile: strict single column, full-width hero actions, visible social links, stacked experience content, and 44px or larger navigation targets.
 
 ## Accessibility and performance
 
 - Semantic landmarks, ordered headings, keyboard-operable navigation, visible focus states, descriptive alt text, and a skip link.
-- Self-hosted fonts and explicit image dimensions reduce layout shift.
+- Self-hosted fonts and reserved logo containers reduce layout shift.
 - Below-the-fold imagery is lazy-loaded.
 - React, Phosphor Icons, and native browser APIs are the only runtime dependencies.

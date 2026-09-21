@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function MobileNavigation({ links }) {
+export default function MobileNavigation({ links, activeHref }) {
   const disclosure = useRef(null);
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function MobileNavigation({ links }) {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     disclosure.current.open = false;
     if (href.startsWith("#")) {
-      // Keep keyboard focus at the destination after hiding the menu link.
-      document.getElementById(href.slice(1))?.focus({ preventScroll: true });
+      // Move focus after the native anchor scroll and after the menu closes.
+      window.requestAnimationFrame(() => document.getElementById(href.slice(1))?.focus());
     }
   }
 
@@ -36,8 +36,16 @@ export default function MobileNavigation({ links }) {
     <details className="mobile-nav" ref={disclosure}>
       <summary>Menu</summary>
       <nav aria-label="Mobile navigation">
-        {links.map(({ href, label }) => (
-          <a key={href} href={href} onClick={(event) => navigate(event, href)}>{label}</a>
+        {links.map(({ href, label, featured }) => (
+          <a
+            className={`${featured ? "nav-resume " : ""}${activeHref === href ? "is-current" : ""}`.trim()}
+            key={href}
+            href={href}
+            aria-current={activeHref === href ? "location" : undefined}
+            onClick={(event) => navigate(event, href)}
+          >
+            {label}
+          </a>
         ))}
       </nav>
     </details>

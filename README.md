@@ -11,7 +11,7 @@ The repository includes a standalone web résumé at `public/resume.html` and Si
 - Phosphor Icons
 - Self-hosted Barlow Condensed, Manrope, and IBM Plex Mono
 
-Organization logos are stored in `public/assets/logos/` and referenced from the centralized experience data in `src/App.jsx`.
+Organization logos are stored in `public/assets/logos/` and referenced from the centralized experience data in `src/App.jsx`. The page is ordered for recruiter scanning: Experience, Projects, Skills, About, and Contact.
 
 ## Run locally
 

@@ -29,6 +29,7 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - Contact phone: +1 (484)-716-9530
 - LinkedIn: https://www.linkedin.com/in/siddharth-gunti-66ba212b8/
 - GitHub: https://github.com/guntisid2007
+- Instagram: https://www.instagram.com/guntisid/
 - Current résumé source: `/Users/tarushvkosgi/Downloads/Siddharth_Gunti_Resume_Purdue_Email (1).html`
 - Research source: `/Users/tarushvkosgi/Downloads/RSI Research Paper.pdf`
 - Research title: “Operational Insights into Alkaline Electrolyzers: Correlating Electrical Characteristics with Hydrogen Generation Efficiency”
@@ -45,6 +46,8 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - A résumé that opens as a readable website page, without forcing a download
 - A direct browser-viewable link to the full RSI research paper
 - Clear paths to LinkedIn, GitHub, email, résumé, and research
+- Experience appears before projects, and the electrolyzer work does not occupy a standalone page section
+- Skills distinguish languages, hardware, data libraries, developer tools, and AI tools
 - Accessible focus states, keyboard navigation, reduced-motion behavior, and readable no-JavaScript fallback content
 
 ## Brand qualities
