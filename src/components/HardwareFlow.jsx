@@ -11,7 +11,7 @@ export default function HardwareFlow() {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktop = window.matchMedia("(min-width: 1200px)");
     const palette = getComputedStyle(canvas);
-    const gold = palette.getPropertyValue("--accent").trim();
+    const flow = "#d88f73";
     const gray = palette.getPropertyValue("--muted-strong").trim();
     let frame = 0;
     let visible = true;
@@ -27,7 +27,7 @@ export default function HardwareFlow() {
       const drift = Math.sin(x * 0.029 + lane * 1.9) * 20 + Math.cos(x * 0.014 + lane) * 12;
       return [x, 190 + (lane - 3) * (22 + 12 * (1 - organized)) + drift * (1 - organized)];
     };
-    const line = (a, b, alpha, color = gold) => {
+    const line = (a, b, alpha, color = flow) => {
       context.globalAlpha = alpha;
       context.strokeStyle = color;
       context.beginPath(); context.moveTo(...a); context.lineTo(...b); context.stroke();
@@ -38,24 +38,24 @@ export default function HardwareFlow() {
       context.scale(width / 600, height / 380);
       context.lineWidth = 0.8;
       // Orthogonal contacts share the same seven lanes as the flowing graph.
-      context.strokeStyle = gold;
-      context.globalAlpha = 0.13;
+      context.strokeStyle = flow;
+      context.globalAlpha = 0.18;
       context.strokeRect(236, 105, 128, 170);
-      context.globalAlpha = 0.085;
+      context.globalAlpha = 0.11;
       context.strokeRect(252, 121, 96, 138);
       for (let lane = 0; lane < 7; lane += 1) {
         const y = 124 + lane * 22;
-        line([214, y], [252, y], 0.12);
-        line([348, y], [386, y], 0.12);
+        line([214, y], [252, y], 0.15);
+        line([348, y], [386, y], 0.15);
         const bend = 268 + (lane % 3) * 12;
-        line([252, y], [bend, y], 0.07, gray);
-        line([bend, y], [bend, 145 + lane * 15], 0.07, gray);
-        line([bend, 145 + lane * 15], [348, 145 + lane * 15], 0.07, gray);
+        line([252, y], [bend, y], 0.09, gray);
+        line([bend, y], [bend, 145 + lane * 15], 0.09, gray);
+        line([bend, 145 + lane * 15], [348, 145 + lane * 15], 0.09, gray);
       }
       for (let pin = 0; pin < 5; pin += 1) {
         const x = 256 + pin * 22;
-        line([x, 87], [x, 105], 0.11);
-        line([x, 275], [x, 293], 0.11);
+        line([x, 87], [x, 105], 0.14);
+        line([x, 275], [x, 293], 0.14);
       }
       // Wrapping happens beyond the faded edges; no visible reset or scene cut.
       const offset = (elapsed * 13) % 192;
@@ -65,13 +65,13 @@ export default function HardwareFlow() {
           const p = point(x, lane);
           const next = point(x + 48, lane);
           const fade = edge(x);
-          line(p, next, 0.095 * Math.min(fade, edge(x + 48)));
+          line(p, next, 0.13 * Math.min(fade, edge(x + 48)));
           const spread = 1 - smooth((x - 155) / 75) * (1 - smooth((x - 370) / 75));
           if (lane < 6 && (column + lane) % 2 === 0) {
-            line(p, point(x + 48, lane + 1), 0.06 * fade * spread, gray);
+            line(p, point(x + 48, lane + 1), 0.075 * fade * spread, gray);
           }
-          context.fillStyle = (lane + column) % 4 === 0 ? gray : gold;
-          context.globalAlpha = fade * ((lane + column) % 4 === 0 ? 0.22 : 0.12);
+          context.fillStyle = (lane + column) % 4 === 0 ? gray : flow;
+          context.globalAlpha = fade * ((lane + column) % 4 === 0 ? 0.26 : 0.18);
           context.beginPath(); context.arc(...p, 1.5, 0, Math.PI * 2); context.fill();
         }
       }
