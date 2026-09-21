@@ -19,11 +19,13 @@ export default function HardwareFlow() {
     let previous = 0;
     let width = 0;
     let height = 0;
+    let worldWidth = 600;
 
     const smooth = (v) => { const t = Math.max(0, Math.min(1, v)); return t * t * (3 - 2 * t); };
-    const edge = (x) => smooth(x / 85) * smooth((600 - x) / 85);
+    const edge = (x) => smooth(x / 85) * smooth((worldWidth - x) / 85);
     const point = (x, lane) => {
-      const organized = smooth((x - 125) / 110) * (1 - smooth((x - 365) / 110));
+      const centered = x - worldWidth / 2;
+      const organized = smooth((centered + 175) / 110) * (1 - smooth((centered - 65) / 110));
       const drift = Math.sin(x * 0.029 + lane * 1.9) * 20 + Math.cos(x * 0.014 + lane) * 12;
       return [x, 190 + (lane - 3) * (22 + 12 * (1 - organized)) + drift * (1 - organized)];
     };
@@ -35,43 +37,62 @@ export default function HardwareFlow() {
     const draw = () => {
       context.clearRect(0, 0, width, height);
       context.save();
-      context.scale(width / 600, height / 380);
+      const scale = height / 380;
+      worldWidth = width / scale;
+      const center = worldWidth / 2;
+      context.scale(scale, scale);
       context.lineWidth = 0.8;
       // Orthogonal contacts share the same seven lanes as the flowing graph.
       context.strokeStyle = flow;
-      context.globalAlpha = 0.18;
-      context.strokeRect(236, 105, 128, 170);
-      context.globalAlpha = 0.11;
-      context.strokeRect(252, 121, 96, 138);
+      context.globalAlpha = 0.21;
+      context.strokeRect(center - 64, 105, 128, 170);
+      context.globalAlpha = 0.14;
+      context.strokeRect(center - 48, 121, 96, 138);
+      context.globalAlpha = 0.1;
+      context.strokeRect(center - 32, 139, 64, 102);
       for (let lane = 0; lane < 7; lane += 1) {
         const y = 124 + lane * 22;
-        line([214, y], [252, y], 0.15);
-        line([348, y], [386, y], 0.15);
-        const bend = 268 + (lane % 3) * 12;
-        line([252, y], [bend, y], 0.09, gray);
-        line([bend, y], [bend, 145 + lane * 15], 0.09, gray);
-        line([bend, 145 + lane * 15], [348, 145 + lane * 15], 0.09, gray);
+        line([center - 86, y], [center - 48, y], 0.17);
+        line([center + 48, y], [center + 86, y], 0.17);
+        const bend = center - 32 + (lane % 3) * 12;
+        line([center - 48, y], [bend, y], 0.11, gray);
+        line([bend, y], [bend, 145 + lane * 15], 0.11, gray);
+        line([bend, 145 + lane * 15], [center + 48, 145 + lane * 15], 0.11, gray);
+        line([center - 64, y], [center - 48, y], 0.15);
+        line([center + 48, y], [center + 64, y], 0.15);
       }
       for (let pin = 0; pin < 5; pin += 1) {
-        const x = 256 + pin * 22;
-        line([x, 87], [x, 105], 0.14);
-        line([x, 275], [x, 293], 0.14);
+        const x = center - 44 + pin * 22;
+        line([x, 87], [x, 105], 0.16);
+        line([x, 275], [x, 293], 0.16);
+        line([x, 121], [x, 139], 0.09, gray);
+        line([x, 241], [x, 259], 0.09, gray);
       }
+      for (let pad = 0; pad < 4; pad += 1) {
+        const x = center - 27 + pad * 18;
+        context.globalAlpha = 0.15;
+        context.strokeRect(x - 2, 153, 4, 4);
+        context.strokeRect(x - 2, 223, 4, 4);
+        line([x, 157], [x, 174 + (pad % 2) * 8], 0.1, gray);
+        line([x, 206 - (pad % 2) * 8], [x, 223], 0.1, gray);
+      }
+      line([center - 27, 174], [center + 27, 174], 0.1, gray);
+      line([center - 27, 206], [center + 27, 206], 0.1, gray);
       // Wrapping happens beyond the faded edges; no visible reset or scene cut.
       const offset = (elapsed * 13) % 192;
-      for (let column = -4; column < 14; column += 1) {
+      for (let column = -4; column < Math.ceil(worldWidth / 48) + 4; column += 1) {
         const x = column * 48 + offset;
         for (let lane = 0; lane < 7; lane += 1) {
           const p = point(x, lane);
           const next = point(x + 48, lane);
           const fade = edge(x);
-          line(p, next, 0.13 * Math.min(fade, edge(x + 48)));
-          const spread = 1 - smooth((x - 155) / 75) * (1 - smooth((x - 370) / 75));
+          line(p, next, 0.15 * Math.min(fade, edge(x + 48)));
+          const spread = 1 - smooth((x - center + 145) / 75) * (1 - smooth((x - center - 70) / 75));
           if (lane < 6 && (column + lane) % 2 === 0) {
-            line(p, point(x + 48, lane + 1), 0.075 * fade * spread, gray);
+            line(p, point(x + 48, lane + 1), 0.085 * fade * spread, gray);
           }
           context.fillStyle = (lane + column) % 4 === 0 ? gray : flow;
-          context.globalAlpha = fade * ((lane + column) % 4 === 0 ? 0.26 : 0.18);
+          context.globalAlpha = fade * ((lane + column) % 4 === 0 ? 0.29 : 0.21);
           context.beginPath(); context.arc(...p, 1.5, 0, Math.PI * 2); context.fill();
         }
       }
@@ -88,9 +109,9 @@ export default function HardwareFlow() {
     const sync = () => {
       cancelAnimationFrame(frame);
       previous = 0;
-      if (!desktop.matches || !visible || document.hidden) return;
+      if (!visible || document.hidden) return;
       draw();
-      if (!motion.matches) frame = requestAnimationFrame(tick);
+      if (!motion.matches && desktop.matches) frame = requestAnimationFrame(tick);
     };
     const resize = new ResizeObserver(() => {
       const rect = canvas.getBoundingClientRect();
