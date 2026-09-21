@@ -15,6 +15,7 @@ import {
 } from "@phosphor-icons/react";
 import { Analytics } from "@vercel/analytics/react";
 import MobileNavigation from "./components/MobileNavigation";
+import HardwareFlow from "./components/HardwareFlow";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
@@ -267,6 +268,7 @@ export default function App() {
 
       <main id="main" tabIndex={-1}>
         <section className="hero" id="top">
+          <HardwareFlow />
           <div className="hero-copy">
             <p className="hero-kicker hero-intro">Purdue University / Computer Engineering</p>
             <h1 className="hero-intro">Sid Gunti builds systems.</h1>

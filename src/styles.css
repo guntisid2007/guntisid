@@ -232,6 +232,7 @@ img {
 .mobile-resume { display: none; }
 
 .hero {
+  position: relative;
   display: grid;
   min-height: min(560px, calc(100dvh - 68px));
   max-height: 800px;
@@ -241,8 +242,23 @@ img {
 }
 
 .hero-copy {
+  position: relative;
   width: min(100%, 1240px);
   padding: clamp(52px, 8vh, 88px) var(--page);
+}
+
+.hardware-flow {
+  position: absolute;
+  pointer-events: none;
+  right: 1%;
+  top: 14%;
+  width: 43%;
+  height: 72%;
+  mask-image: linear-gradient(to right, transparent, black 20%, black 85%, transparent);
+}
+
+@media (max-width: 1199px) {
+  .hardware-flow { display: none; }
 }
 
 .hero-kicker,
