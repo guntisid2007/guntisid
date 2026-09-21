@@ -253,7 +253,7 @@ img {
   pointer-events: none;
   width: 100%;
   height: 100%;
-  mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 18%) 20%, rgb(0 0 0 / 55%) 43%, black 68%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, rgb(0 0 0 / 23%) 20%, rgb(0 0 0 / 60%) 38%, rgb(0 0 0 / 55%) 43%, black 68%, black 88%, transparent);
 }
 
 @media (max-width: 1199px) {
