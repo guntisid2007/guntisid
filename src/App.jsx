@@ -8,6 +8,7 @@ import {
   Code,
   EnvelopeSimple,
   GithubLogo,
+  InstagramLogo,
   LinkedinLogo,
   Tree,
   Waveform,
@@ -19,6 +20,7 @@ import HardwareFlow from "./components/HardwareFlow";
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
 const GITHUB = "https://github.com/guntisid2007";
+const INSTAGRAM = "https://www.instagram.com/guntisid/";
 const EMAIL = "sgunti@purdue.edu";
 
 const navigation = [
@@ -189,9 +191,10 @@ function OrganizationMark({ item }) {
 
 function SocialLinks({ className = "" }) {
   return (
-    <div className={className} aria-label="Professional profiles">
+    <div className={className} aria-label="Professional and social profiles">
       <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub, opens in a new tab"><GithubLogo size={20} weight="fill" />GitHub</a>
       <a href={LINKEDIN} target="_blank" rel="noreferrer" aria-label="LinkedIn, opens in a new tab"><LinkedinLogo size={20} weight="fill" />LinkedIn</a>
+      <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram, opens in a new tab"><InstagramLogo size={20} />Instagram</a>
       <a href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Email</a>
     </div>
   );
