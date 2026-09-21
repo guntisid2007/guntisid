@@ -675,18 +675,10 @@ img {
   color: var(--paper);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .project-link--reveal {
-    opacity: 0;
-    transform: translateY(5px);
-    transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
-  }
-
-  .project-grid article:hover .project-link--reveal,
-  .project-grid article:focus-within .project-link--reveal {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.project-link--brief:hover,
+.project-link--brief:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .skills-section {

@@ -350,7 +350,7 @@ export default function App() {
                     {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
                   </ul>
                   {project.link ? (
-                    <a className={`project-link${project.status ? " project-link--reveal" : ""}`} href={project.link} target="_blank" rel="noreferrer" aria-label={project.linkAriaLabel || `${project.linkLabel}, opens in a new tab`}>
+                    <a className={`project-link${project.status ? " project-link--brief" : ""}`} href={project.link} target="_blank" rel="noreferrer" aria-label={project.linkAriaLabel || `${project.linkLabel}, opens in a new tab`}>
                       {project.linkLabel}<ArrowUpRight size={15} />
                     </a>
                   ) : null}
