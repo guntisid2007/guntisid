@@ -23,16 +23,17 @@
 }
 
 :root {
-  --ink: #1c1e1b;
-  --ink-soft: #242722;
-  --ink-raised: #2c2f29;
-  --paper: #f3f0e8;
-  --muted: #b7b8ae;
-  --muted-strong: #d4d3ca;
-  --accent: #cfb46a;
-  --accent-strong: #dec67e;
-  --line: rgb(243 240 232 / 17%);
-  --line-strong: rgb(243 240 232 / 29%);
+  --ink: #0b0b0a;
+  --ink-soft: #141310;
+  --ink-raised: #1d1b17;
+  --paper: #f4f1e8;
+  --muted: #9d9795;
+  --muted-strong: #c4bfc0;
+  --accent: #cfb991;
+  --accent-strong: #daaa00;
+  --aged-gold: #8e6f3e;
+  --line: rgb(244 241 232 / 17%);
+  --line-strong: rgb(244 241 232 / 29%);
   --display: "Barlow Condensed", "Arial Narrow", sans-serif;
   --body: "Manrope", Arial, sans-serif;
   --mono: "IBM Plex Mono", "SFMono-Regular", monospace;
@@ -142,7 +143,7 @@ img {
   align-items: stretch;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
-  background: rgb(28 30 27 / 95%);
+  background: rgb(11 11 10 / 95%);
   backdrop-filter: blur(18px);
 }
 
