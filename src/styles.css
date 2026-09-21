@@ -504,6 +504,21 @@ img {
   transform: translate(-50%, -50%) scale(1.42);
 }
 
+.organization-mark[href]:hover {
+  opacity: 0.75;
+}
+
+.company-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.company-link:hover,
+.company-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .organization-mark.is-station img {
   width: 88%;
   height: 94%;

@@ -21,6 +21,7 @@ const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
 const GITHUB = "https://github.com/guntisid2007";
 const INSTAGRAM = "https://www.instagram.com/guntisid/";
+const RIDEKOVA = "https://www.ridekova.com/";
 const EMAIL = "sgunti@purdue.edu";
 
 const navigation = [
@@ -37,6 +38,7 @@ const experience = [
     period: "SEP 2026 - PRESENT",
     role: "Software Engineering Intern",
     organization: "RideKova",
+    website: RIDEKOVA,
     location: "Purdue University",
     bullets: [
       "Ship software fixes and product improvements for a campus ridesharing platform as part of a three-person development team.",
@@ -181,15 +183,16 @@ function OrganizationMark({ item }) {
   const classes = ["organization-mark", item.logo ? "has-logo" : "", item.logoClass || ""]
     .filter(Boolean)
     .join(" ");
+  const Element = item.website ? "a" : "div";
 
   return (
-    <div className={classes}>
+    <Element className={classes} href={item.website} target={item.website ? "_blank" : undefined} rel={item.website ? "noreferrer" : undefined} aria-label={item.website ? `${item.organization} website, opens in a new tab` : undefined}>
       {item.logo ? (
         <img src={item.logo} alt={item.logoAlt} loading="lazy" />
       ) : (
         <span aria-hidden="true">{item.monogram}</span>
       )}
-    </div>
+    </Element>
   );
 }
 
@@ -285,7 +288,7 @@ export default function App() {
             <p className="hero-kicker hero-intro">Purdue University</p>
             <h1 className="hero-intro">Siddharth Gunti.</h1>
             <p className="hero-deck hero-intro">Computer Engineering @ Purdue</p>
-            <p className="hero-secondary hero-intro">Software Engineering @ RideKova</p>
+            <p className="hero-secondary hero-intro">Software Engineering @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
             <div className="hero-actions hero-intro">
               <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
               <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
@@ -313,7 +316,7 @@ export default function App() {
                     <span>{item.location}</span>
                   </div>
                   <h3>{item.role}</h3>
-                  <h4>{item.organization}</h4>
+                  <h4>{item.website ? <a className="company-link" href={item.website} target="_blank" rel="noreferrer">{item.organization}</a> : item.organization}</h4>
                   <ul className="experience-bullets">
                     {item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
                   </ul>
