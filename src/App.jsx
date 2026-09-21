@@ -11,6 +11,7 @@ import {
   Tree,
   Waveform,
 } from "@phosphor-icons/react";
+import { Analytics } from "@vercel/analytics/react";
 import MobileNavigation from "./components/MobileNavigation";
 import ResearchFigure from "./components/ResearchFigure";
 
@@ -338,6 +339,7 @@ export default function App() {
         <a href={`${ASSET_BASE}resume.html`}>RESUME</a>
         <a href="#top">RETURN TO TOP ↑</a>
       </footer>
+      <Analytics />
     </div>
   );
 }
