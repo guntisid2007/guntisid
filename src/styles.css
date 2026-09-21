@@ -579,6 +579,12 @@ img {
   text-transform: uppercase;
 }
 
+.tag-list li:not(:last-child)::after {
+  content: "·";
+  margin-left: 17px;
+  color: var(--muted-strong);
+}
+
 .work-section {
   border-top: 1px solid var(--line);
   background: var(--ink-raised);
