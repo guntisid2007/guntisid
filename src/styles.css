@@ -272,17 +272,22 @@ img {
 
 .hero h1 {
   max-width: 17ch;
-  margin-bottom: clamp(22px, 3vh, 32px);
+  margin-bottom: clamp(18px, 2.5vh, 26px);
   font: 500 clamp(4.2rem, 7.4vw, 7.6rem) / 0.9 var(--display);
   letter-spacing: -0.035em;
-  text-transform: uppercase;
 }
 
 .hero-deck {
   max-width: 62ch;
-  margin-bottom: clamp(26px, 4vh, 38px);
+  margin-bottom: 3px;
   color: var(--muted-strong);
   font-size: clamp(1rem, 1.25vw, 1.18rem);
+}
+
+.hero-secondary {
+  margin-bottom: clamp(26px, 4vh, 38px);
+  color: var(--muted);
+  font-size: clamp(0.92rem, 1.1vw, 1.06rem);
 }
 
 .hero-actions {
@@ -336,6 +341,7 @@ img {
 
 .hero h1.hero-intro { animation-delay: 70ms; }
 .hero-deck.hero-intro { animation-delay: 130ms; }
+.hero-secondary.hero-intro { animation-delay: 160ms; }
 .hero-actions.hero-intro { animation-delay: 190ms; }
 
 @keyframes hero-in {
@@ -353,6 +359,8 @@ img {
 
 .profile-bar > p {
   display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
   align-items: center;
   margin: 0;
   padding: 14px var(--page);
@@ -365,6 +373,10 @@ img {
 .profile-links,
 .contact-links {
   display: flex;
+}
+
+.profile-links {
+  flex-shrink: 0;
 }
 
 .profile-links a,
@@ -711,9 +723,13 @@ img {
 
 .about-statement > p {
   max-width: 60ch;
-  margin: 0;
+  margin: 0 0 14px;
   color: var(--muted-strong);
   font-size: clamp(1rem, 1.35vw, 1.16rem);
+}
+
+.about-statement > p:last-child {
+  margin-bottom: 0;
 }
 
 .education-facts {

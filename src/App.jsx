@@ -8,7 +8,6 @@ import {
   Code,
   EnvelopeSimple,
   GithubLogo,
-  InstagramLogo,
   LinkedinLogo,
   Tree,
   Waveform,
@@ -20,7 +19,6 @@ import HardwareFlow from "./components/HardwareFlow";
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
 const GITHUB = "https://github.com/guntisid2007";
-const INSTAGRAM = "https://www.instagram.com/guntisid/";
 const EMAIL = "sgunti@purdue.edu";
 
 const navigation = [
@@ -39,11 +37,11 @@ const experience = [
     organization: "RideKova",
     location: "Purdue University",
     bullets: [
-      "Ship software patches and resolve product bugs to strengthen reliability and user experience.",
-      "Manage production changes in Git and GitHub on a three-person development team.",
-      "Test features and deploy fixes in a fast-moving early-stage startup environment.",
+      "Ship software fixes and product improvements for a campus ridesharing platform as part of a three-person development team.",
+      "Diagnose bugs, implement patches, and manage production changes using Git and GitHub.",
+      "Test new functionality across the application and collaborate with developers on feature development and reliability improvements.",
     ],
-    tools: ["Git", "GitHub", "Product testing"],
+    tools: ["Git", "GitHub", "Debugging", "Software Testing"],
     logo: `${ASSET_BASE}assets/logos/kova.png`,
     logoAlt: "KOVA logo",
     logoClass: "is-kova",
@@ -54,10 +52,11 @@ const experience = [
     organization: "The Station Food Market",
     location: "West Lafayette, Indiana",
     bullets: [
-      "Maintain website content across products, events, and promotions.",
-      "Produced short-form content reaching 29K views, about 20 times typical performance.",
+      "Manage and update web content for products, promotions, events, and customer-facing information.",
+      "Produced short-form content reaching 29K views, approximately 20× the account's typical performance.",
+      "Use engagement data to evaluate content performance and improve digital outreach.",
     ],
-    tools: ["Web content", "Short-form media", "Analytics"],
+    tools: ["Web Content", "Analytics", "Digital Media"],
     logo: `${ASSET_BASE}assets/logos/station-food-market.png`,
     logoAlt: "The Station Food Market logo",
     logoClass: "is-station",
@@ -68,10 +67,11 @@ const experience = [
     organization: "Research Support India",
     location: "Hosur, India",
     bullets: [
-      "Analyzed 50+ electrolyzer trials in Python and Pandas to identify performance trends.",
-      "Produced Matplotlib visualizations and a 20-page technical report reviewed by engineers.",
+      "Analyzed data from 50+ electrolyzer trials using Python and Pandas to identify voltage, current, power, and performance trends.",
+      "Built Matplotlib visualizations to communicate experimental behavior and support engineering analysis.",
+      "Documented findings, system behavior, and experimental limitations in a 20-page technical research report reviewed by engineers.",
     ],
-    tools: ["Python", "Pandas", "Matplotlib"],
+    tools: ["Python", "Pandas", "Matplotlib", "Data Analysis"],
     monogram: "RSI",
   },
   {
@@ -80,10 +80,11 @@ const experience = [
     organization: "VEX Robotics, Team 3327C",
     location: "Royersford, Pennsylvania",
     bullets: [
-      "Led a six-person team through robot design, construction, testing, and competition strategy.",
-      "Redesigned drivetrain and structural systems after diagnosing mechanical failures.",
+      "Led a six-person competition team through robot design, fabrication, testing, troubleshooting, and match strategy.",
+      "Diagnosed mechanical failures and redesigned drivetrain and structural systems to improve robot reliability.",
+      "Helped lead the team to a state-level Design Award and qualification for the Pennsylvania State Championship.",
     ],
-    tools: ["Mechanical design", "Pneumatics", "Team leadership"],
+    tools: ["Robotics", "Mechanical Design", "Pneumatics", "Leadership"],
     logo: `${ASSET_BASE}assets/logos/vex-robotics.png`,
     logoAlt: "VEX Robotics logo",
     logoClass: "is-vex",
@@ -92,14 +93,15 @@ const experience = [
 
 const projects = [
   {
-    type: "Autonomy and communications",
-    role: "Researcher / Co-developer",
+    type: "Autonomous Systems & Communications",
+    role: "Researcher / Co-Developer",
     icon: AirplaneTilt,
-    title: "Modular fiber-tethered drone platform",
+    title: "Modular Fiber-Tethered Drone Platform",
     description:
-      "Developing reliable command and data without radio links for inspection, underground, and disaster-response missions.",
-    tools: ["Fiber tether", "Communications", "Systems design"],
-    note: "Developing toward NASA's 2027 Gateways to Blue Skies Competition",
+      "Developing a reusable drone communication architecture that replaces radio-frequency command and data links with fiber optics for reliable operation in environments where wireless communication is unavailable, unreliable, or undesirable.",
+    detail: "The system is being designed around applications such as infrastructure inspection, tunnels, industrial environments, and disaster-response operations.",
+    tools: ["Fiber Optics", "Communications", "Embedded Systems", "Systems Design"],
+    note: "Developing toward NASA's 2027 Gateways to Blue Skies Competition.",
   },
   {
     type: "Voice AI",
@@ -107,47 +109,51 @@ const projects = [
     icon: Waveform,
     title: "Sidekick",
     description:
-      "Voice assistant combining Parakeet speech recognition, Gemma, conversational context, and wake-word activation.",
-    tools: ["Parakeet", "Gemma", "Voice activation"],
+      "Developed a local voice-assistant prototype combining speech recognition, language-model inference, conversational context, and wake-word activation into a unified interaction pipeline.",
+    detail: "Integrated Parakeet for speech recognition and Gemma for language processing while experimenting with latency, activation behavior, and conversational flow.",
+    tools: ["Python", "Parakeet", "Gemma", "Speech Recognition"],
   },
   {
-    type: "Engineering research",
+    type: "Engineering Research",
     role: "Researcher",
     icon: ChartLineUp,
-    title: "Electrolyzer performance analysis",
+    title: "Electrolyzer Performance Analysis",
     description:
-      "Analyzed 721 seconds of voltage, current, and power data, including a voltage increase from roughly 2.5 V to 3.0 V. The short window and missing cell-temperature data limit long-term conclusions.",
-    tools: ["Python", "Pandas", "Matplotlib"],
+      "Analyzed experimental electrolyzer voltage, current, and power data using Python to characterize short-term system behavior and identify performance trends.",
+    detail: "The dataset captured 721 seconds of operation, including a voltage increase from approximately 2.5 V to 3.0 V. Long-term conclusions are limited by the short test duration and unavailable cell-temperature measurements.",
+    tools: ["Python", "Pandas", "Matplotlib", "Experimental Data"],
     note: "Research Support India / Hosur, India",
     link: `${ASSET_BASE}RSI-Research-Paper.pdf`,
-    linkLabel: "Read paper",
+    linkLabel: "Read Technical Report",
   },
   {
-    type: "Community engineering",
-    role: "Project lead",
+    type: "Community Engineering",
+    role: "Project Lead",
     icon: Tree,
-    title: "Eagle Scout service project",
+    title: "Eagle Scout Service Project",
     description:
-      "Led 20+ volunteers to refurbish 13 benches and build a public information kiosk on a $500+ budget.",
-    tools: ["Planning", "Construction", "Leadership"],
+      "Planned and led a community infrastructure project involving 20+ volunteers, the refurbishment of 13 park benches, and construction of a public information kiosk.",
+    detail: "Managed materials, scheduling, volunteer coordination, construction, and a project budget exceeding $500.",
+    tools: ["Project Management", "Construction", "Leadership"],
   },
   {
     type: "Software",
     role: "Developer",
     icon: Code,
-    title: "Java Swing idle game",
+    title: "Java Swing Idle Game",
     description:
-      "Built an object-oriented desktop game with upgrades, timers, progression mechanics, and large-number calculations.",
-    tools: ["Java", "Swing", "OOP"],
+      "Built an object-oriented desktop game in Java featuring upgrade systems, timers, progression mechanics, persistent state logic, and large-number calculations.",
+    detail: "Designed the application around reusable classes and event-driven Swing components.",
+    tools: ["Java", "Swing", "Object-Oriented Programming"],
   },
 ];
 
 const skillGroups = [
   { label: "Languages", value: "Java, Python, C++, HTML/CSS" },
-  { label: "Hardware", value: "Robotics, embedded systems, pneumatics, engineering design" },
-  { label: "Data and libraries", value: "Pandas, Matplotlib, scikit-learn" },
-  { label: "Developer tools", value: "Git, GitHub, Microsoft Excel" },
-  { label: "AI tools", value: "OpenAI Codex, Claude, ChatGPT, Gemini" },
+  { label: "Hardware & Engineering", value: "Robotics, Embedded Systems, Fiber-Optic Communications, Pneumatics, Engineering Design" },
+  { label: "Data & Libraries", value: "Pandas, Matplotlib, scikit-learn" },
+  { label: "Developer Tools", value: "Git, GitHub, Linux, Microsoft Excel" },
+  { label: "Software & AI Development", value: "AI-Assisted Development, LLM APIs, Speech Recognition, Rapid Prototyping" },
 ];
 
 function EvidenceLink({ href, children, external = false, primary = false }) {
@@ -183,10 +189,9 @@ function OrganizationMark({ item }) {
 
 function SocialLinks({ className = "" }) {
   return (
-    <div className={className} aria-label="Professional and social profiles">
+    <div className={className} aria-label="Professional profiles">
       <a href={GITHUB} target="_blank" rel="noreferrer" aria-label="GitHub, opens in a new tab"><GithubLogo size={20} weight="fill" />GitHub</a>
       <a href={LINKEDIN} target="_blank" rel="noreferrer" aria-label="LinkedIn, opens in a new tab"><LinkedinLogo size={20} weight="fill" />LinkedIn</a>
-      <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram, opens in a new tab"><InstagramLogo size={20} />Instagram</a>
       <a href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Email</a>
     </div>
   );
@@ -270,11 +275,10 @@ export default function App() {
         <section className="hero" id="top">
           <HardwareFlow />
           <div className="hero-copy">
-            <p className="hero-kicker hero-intro">Purdue University / Computer Engineering</p>
-            <h1 className="hero-intro">Sid Gunti builds systems.</h1>
-            <p className="hero-deck hero-intro">
-              Embedded systems, robotics, data, and production software, built through testing and iteration.
-            </p>
+            <p className="hero-kicker hero-intro">Purdue University</p>
+            <h1 className="hero-intro">Siddharth Gunti.</h1>
+            <p className="hero-deck hero-intro">Computer Engineering @ Purdue</p>
+            <p className="hero-secondary hero-intro">Software Engineering @ RideKova</p>
             <div className="hero-actions hero-intro">
               <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
               <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
@@ -283,14 +287,14 @@ export default function App() {
         </section>
 
         <section className="profile-bar" aria-label="Profile links and availability">
-          <p>Open to Summer 2027 Computer Engineering opportunities</p>
+          <p>Open to Summer 2027 Computer Engineering, Embedded Systems, and Software Engineering opportunities.</p>
           <SocialLinks className="profile-links" />
         </section>
 
         <section className="experience-section section-shell" id="experience" tabIndex={-1} aria-labelledby="experience-title">
           <div className="section-heading" data-reveal>
             <h2 id="experience-title">Experience</h2>
-            <p>Engineering work with measurable results, production responsibility, and team ownership.</p>
+            <p>Hands-on engineering, software development, research, and technical leadership with measurable results.</p>
           </div>
           <div className="experience-grid">
             {experience.map((item, index) => (
@@ -318,7 +322,7 @@ export default function App() {
         <section className="work-section section-shell" id="work" tabIndex={-1} aria-labelledby="work-title">
           <div className="section-heading compact" data-reveal>
             <h2 id="work-title">Projects</h2>
-            <p>Selected systems, software, research, and service work.</p>
+            <p>Selected hardware, software, research, and engineering projects focused on building and validating real systems.</p>
           </div>
 
           <div className="project-grid">
@@ -333,6 +337,7 @@ export default function App() {
                   <p className="project-role">{project.role}</p>
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
+                  {project.detail ? <p>{project.detail}</p> : null}
                   {project.note ? <strong>{project.note}</strong> : null}
                   <ul className="tag-list" aria-label={`${project.title} technologies`}>
                     {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
@@ -351,7 +356,7 @@ export default function App() {
         <section className="skills-section section-shell" id="skills" tabIndex={-1} aria-labelledby="skills-title">
           <div className="section-heading compact" data-reveal>
             <h2 id="skills-title">Skills and tools</h2>
-            <p>Languages, technical libraries, and the tools I use to build and analyze.</p>
+            <p>Languages, engineering tools, libraries, and technical areas used across software, hardware, and research projects.</p>
           </div>
           <div className="skills-grid">
             {skillGroups.map((group, index) => (
@@ -366,14 +371,13 @@ export default function App() {
         <section className="about-section section-shell" id="about" tabIndex={-1} aria-labelledby="about-title">
           <div className="about-statement" data-reveal>
             <h2 id="about-title">Curious enough to measure. Practical enough to build.</h2>
-            <p>
-              I’m a Purdue Computer Engineering student who enjoys the full loop: understand the system, build the first version, find the failure, and improve it.
-            </p>
+            <p>I'm a Purdue engineering student pursuing Computer Engineering with interests spanning embedded systems, robotics, software, and hardware-software integration.</p>
+            <p>I enjoy working through the full engineering cycle: understand the system, build a prototype, test it, identify what failed, and improve the next version.</p>
           </div>
           <dl className="education-facts" data-reveal style={{ "--reveal-delay": "70ms" }}>
             <div><dt>Education</dt><dd>B.S. Computer Engineering, Purdue University</dd></div>
-            <div><dt>Academic standing</dt><dd>Sophomore, entered Purdue with 49 credits</dd></div>
-            <div><dt>Coursework</dt><dd>Physics, Multivariable Calculus, Introduction to Engineering</dd></div>
+            <div><dt>Academic Focus</dt><dd>Embedded Systems, Computer Hardware, Robotics, and Software</dd></div>
+            <div><dt>Relevant Coursework</dt><dd>Multivariable Calculus, Physics, Introduction to Engineering</dd></div>
             <div><dt>Honors</dt><dd>Eagle Scout, State-Level VEX Design Award, AP Scholar with Distinction</dd></div>
           </dl>
         </section>
@@ -382,10 +386,10 @@ export default function App() {
           <div data-reveal>
             <p className="section-label">Summer 2027</p>
             <h2 id="contact-title">Build something that has to work.</h2>
-            <p>I’m interested in Computer Engineering opportunities where I can learn from experienced builders and contribute to real systems.</p>
+            <p>I'm seeking Summer 2027 engineering opportunities where I can contribute to real hardware and software systems, learn from experienced engineers, and take ownership of meaningful technical work.</p>
           </div>
           <div data-reveal style={{ "--reveal-delay": "70ms" }}>
-            <a className="contact-primary" href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Contact me</a>
+            <a className="contact-primary" href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Contact Me</a>
             <SocialLinks className="contact-links" />
           </div>
         </section>
