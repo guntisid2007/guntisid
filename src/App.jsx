@@ -69,6 +69,7 @@ const experience = [
     period: "SUMMER 2025",
     role: "Engineering Research Intern",
     organization: "Research Support India",
+    website: "https://www.rsindia.net/",
     location: "Hosur, India",
     bullets: [
       "Analyzed data from 50+ electrolyzer trials using Python and Pandas to identify voltage, current, power, and performance trends.",
@@ -76,7 +77,8 @@ const experience = [
       "Documented findings, system behavior, and experimental limitations in a 20-page technical research report reviewed by engineers.",
     ],
     tools: ["Python", "Pandas", "Matplotlib", "Data Analysis"],
-    monogram: "RSI",
+    logo: `${ASSET_BASE}assets/logos/research-support-india.png`,
+    logoAlt: "Research Support India logo",
   },
   {
     period: "SEP 2022 - MAR 2026",
