@@ -104,6 +104,10 @@ const projects = [
     detail: "The system is being designed around applications such as infrastructure inspection, tunnels, industrial environments, and disaster-response operations.",
     tools: ["Fiber Optics", "Communications", "Embedded Systems", "Systems Design"],
     note: "Developing toward NASA's 2027 Gateways to Blue Skies Competition.",
+    status: "In Development",
+    link: `${ASSET_BASE}Fiber-Tethered-Drone-Project-Brief.pdf`,
+    linkLabel: "View Project Brief",
+    linkAriaLabel: "View Fiber-Tethered Drone Project Brief, opens in a new tab",
   },
   {
     type: "Voice AI",
@@ -113,7 +117,7 @@ const projects = [
     description:
       "Developed a local voice-assistant prototype combining speech recognition, language-model inference, conversational context, and wake-word activation into a unified interaction pipeline.",
     detail: "Integrated Parakeet for speech recognition and Gemma for language processing while experimenting with latency, activation behavior, and conversational flow.",
-    tools: ["Python", "Parakeet", "Gemma", "Speech Recognition"],
+    tools: ["SwiftUI", "Ollama", "Local AI"],
   },
   {
     type: "Engineering Research",
@@ -337,7 +341,7 @@ export default function App() {
                     <span>{project.type}</span>
                     <ProjectIcon size={25} weight="duotone" aria-hidden="true" />
                   </div>
-                  <p className="project-role">{project.role}</p>
+                  <p className="project-role">{project.role}{project.status ? <span className="project-status">{project.status}</span> : null}</p>
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
                   {project.detail ? <p>{project.detail}</p> : null}
@@ -346,7 +350,7 @@ export default function App() {
                     {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
                   </ul>
                   {project.link ? (
-                    <a className="project-link" href={project.link} target="_blank" rel="noreferrer" aria-label={`${project.linkLabel}, opens in a new tab`}>
+                    <a className={`project-link${project.status ? " project-link--reveal" : ""}`} href={project.link} target="_blank" rel="noreferrer" aria-label={project.linkAriaLabel || `${project.linkLabel}, opens in a new tab`}>
                       {project.linkLabel}<ArrowUpRight size={15} />
                     </a>
                   ) : null}

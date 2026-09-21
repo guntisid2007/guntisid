@@ -630,6 +630,11 @@ img {
   text-transform: uppercase;
 }
 
+.project-status {
+  margin-left: 14px;
+  color: var(--accent);
+}
+
 .project-grid h3 {
   max-width: 21ch;
   margin-bottom: 13px;
@@ -668,6 +673,20 @@ img {
 .project-link:hover,
 .project-link:focus-visible {
   color: var(--paper);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .project-link--reveal {
+    opacity: 0;
+    transform: translateY(5px);
+    transition: opacity 180ms ease, transform 180ms ease, color 180ms ease;
+  }
+
+  .project-grid article:hover .project-link--reveal,
+  .project-grid article:focus-within .project-link--reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .skills-section {
