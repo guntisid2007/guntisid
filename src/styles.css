@@ -444,6 +444,7 @@ img {
 }
 
 .organization-mark {
+  position: relative;
   display: grid;
   width: 116px;
   height: 78px;
@@ -461,6 +462,10 @@ img {
 }
 
 .organization-mark img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: block;
   width: 100%;
   height: 100%;
@@ -468,7 +473,7 @@ img {
 }
 
 .organization-mark.is-kova img {
-  transform: scale(1.42);
+  transform: translate(-50%, -50%) scale(1.42);
 }
 
 .organization-mark.is-station img {
