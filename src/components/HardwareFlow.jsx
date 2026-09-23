@@ -10,10 +10,9 @@ export default function HardwareFlow() {
     if (!context) return undefined;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktop = window.matchMedia("(min-width: 1200px)");
-    const palette = getComputedStyle(canvas);
-    const flow = palette.getPropertyValue("--aged-gold").trim();
-    const chipGold = palette.getPropertyValue("--accent").trim();
-    const gray = palette.getPropertyValue("--muted-strong").trim();
+    const flow = "#fff";
+    const chipGold = "#fff";
+    const gray = "#fff";
     let frame = 0;
     let visible = true;
     let elapsed = 0;
