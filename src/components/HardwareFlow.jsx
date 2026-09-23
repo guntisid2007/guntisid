@@ -48,45 +48,46 @@ export default function HardwareFlow() {
       focalX = worldWidth * 0.54;
       const center = focalX;
       context.scale(scale, scale);
-      context.lineWidth = 0.8;
+      context.lineWidth = 1.2;
       // Orthogonal contacts share the same seven lanes as the flowing graph.
       context.strokeStyle = chipGold;
-      context.globalAlpha = 0.25;
+      context.globalAlpha = 0.4;
       context.strokeRect(center - 64, 105, 128, 170);
-      context.globalAlpha = 0.17;
+      context.globalAlpha = 0.29;
       context.strokeRect(center - 48, 121, 96, 138);
-      context.globalAlpha = 0.12;
+      context.globalAlpha = 0.21;
       context.strokeRect(center - 32, 139, 64, 102);
       for (let lane = 0; lane < 7; lane += 1) {
         const y = 124 + lane * 22;
-        line([center - 86, y], [center - 48, y], 0.2, chipGold);
-        line([center + 48, y], [center + 86, y], 0.2, chipGold);
+        line([center - 86, y], [center - 48, y], 0.32, chipGold);
+        line([center + 48, y], [center + 86, y], 0.32, chipGold);
         const bend = center - 32 + (lane % 3) * 12;
-        line([center - 48, y], [bend, y], 0.13, gray);
-        line([bend, y], [bend, 145 + lane * 15], 0.13, gray);
-        line([bend, 145 + lane * 15], [center + 48, 145 + lane * 15], 0.13, gray);
-        line([center - 64, y], [center - 48, y], 0.18, chipGold);
-        line([center + 48, y], [center + 64, y], 0.18, chipGold);
+        line([center - 48, y], [bend, y], 0.21, gray);
+        line([bend, y], [bend, 145 + lane * 15], 0.21, gray);
+        line([bend, 145 + lane * 15], [center + 48, 145 + lane * 15], 0.21, gray);
+        line([center - 64, y], [center - 48, y], 0.29, chipGold);
+        line([center + 48, y], [center + 64, y], 0.29, chipGold);
       }
       for (let pin = 0; pin < 5; pin += 1) {
         const x = center - 44 + pin * 22;
-        line([x, 87], [x, 105], 0.19, chipGold);
-        line([x, 275], [x, 293], 0.19, chipGold);
-        line([x, 121], [x, 139], 0.11, gray);
-        line([x, 241], [x, 259], 0.11, gray);
+        line([x, 87], [x, 105], 0.3, chipGold);
+        line([x, 275], [x, 293], 0.3, chipGold);
+        line([x, 121], [x, 139], 0.18, gray);
+        line([x, 241], [x, 259], 0.18, gray);
       }
       for (let pad = 0; pad < 4; pad += 1) {
         const x = center - 27 + pad * 18;
         context.strokeStyle = chipGold;
-        context.globalAlpha = 0.18;
+        context.globalAlpha = 0.29;
         context.strokeRect(x - 2, 153, 4, 4);
         context.strokeRect(x - 2, 223, 4, 4);
-        line([x, 157], [x, 174 + (pad % 2) * 8], 0.12, gray);
-        line([x, 206 - (pad % 2) * 8], [x, 223], 0.12, gray);
+        line([x, 157], [x, 174 + (pad % 2) * 8], 0.2, gray);
+        line([x, 206 - (pad % 2) * 8], [x, 223], 0.2, gray);
       }
-      line([center - 27, 174], [center + 27, 174], 0.12, gray);
-      line([center - 27, 206], [center + 27, 206], 0.12, gray);
+      line([center - 27, 174], [center + 27, 174], 0.2, gray);
+      line([center - 27, 206], [center + 27, 206], 0.2, gray);
       // Wrapping happens beyond the faded edges; no visible reset or scene cut.
+      context.lineWidth = 0.8;
       const offset = (elapsed * 13) % 192;
       for (let column = -4; column < Math.ceil(worldWidth / 48) + 4; column += 1) {
         const x = column * 48 + offset;
