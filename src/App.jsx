@@ -36,7 +36,7 @@ const navigation = [
 const experience = [
   {
     period: "SEP 2026 - PRESENT",
-    role: "Software Engineering Intern",
+    role: "Software Engineer",
     organization: "RideKova",
     website: RIDEKOVA,
     location: "Purdue University",
@@ -290,7 +290,7 @@ export default function App() {
             <p className="hero-kicker hero-intro">Purdue University</p>
             <h1 className="hero-intro">Siddharth Gunti.</h1>
             <p className="hero-deck hero-intro">Computer Engineering @ Purdue</p>
-            <p className="hero-secondary hero-intro">Software Engineering @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
+            <p className="hero-secondary hero-intro">Software Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
             <div className="hero-actions hero-intro">
               <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
               <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
