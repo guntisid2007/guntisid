@@ -38,6 +38,8 @@
     .job,.project { margin-bottom:13px; }
     .job .row,.project .row { margin-bottom:5px; }
     .research-title { font-weight:700; }
+    .honors-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:32px; row-gap:5px; margin:0 0 0 14px; padding:0; }
+    .honors-list li { margin:0; }
     @media screen and (max-width:8.75in) {
       .page { width:calc(100% - 24px); min-height:auto; margin:12px auto; padding:24px clamp(18px,5vw,36px) 28px; }
       .screen-actions { margin-top:12px; }
@@ -55,6 +57,7 @@
       ul { margin-left:18px; }
       li { margin-bottom:4px; }
       .job,.project { margin-bottom:10px; }
+      .honors-list { grid-template-columns:1fr; }
     }
     @media print {
       html,body { background:#fff; }
@@ -167,8 +170,13 @@
     </section>
     <section class="section">
       <h2 class="section-title">SELECTED HONORS</h2>
-      <p><span class="strong">HackGT 13.0:</span> 90th Percentile Overall</p>
-      <p>Eagle Scout | State-Level VEX Design Award | AP Scholar with Distinction | PSAT/NMSQT Commended Student</p>
+      <ul class="honors-list">
+        <li><span class="strong">HackGT 13.0:</span> 90th Percentile Overall</li>
+        <li>Eagle Scout</li>
+        <li>State-Level VEX Design Award</li>
+        <li>AP Scholar with Distinction</li>
+        <li>PSAT/NMSQT Commended Student</li>
+      </ul>
     </section>
   </main>
 </body>
