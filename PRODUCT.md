@@ -37,7 +37,7 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - Research setting: Research Support India (RSI), Hosur, India
 - Research method: one-second operational samples over 721 seconds, examining voltage, current, power, flowmeter pressure, and hydrogen flow rate
 - Research limitations must remain explicit: cell temperature was not recorded, the monitoring window was short, and the work should not claim more causal certainty than the paper supports.
-- Wireshark: modular fiber-tethered drone platform at Purdue University, Sep 2026-present; radio-independent command and data for inspection, underground, and disaster-response use; developing toward NASA's 2027 Gateways to Blue Skies Competition.
+- Wireshark: fiber-optic, modular tethered-drone platform at Purdue University, Sep 2026-present; radio-independent command and data for inspection, underground, and disaster-response use; developing toward NASA's 2027 Gateways to Blue Skies Competition.
 - Sidekick: Purdue University, 2026-present; voice AI assistant integrating Parakeet speech recognition with Gemma, conversational context, and wake-word activation.
 
 ## Required experiences

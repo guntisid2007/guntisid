@@ -102,7 +102,7 @@ const projects = [
     type: "Autonomous Systems & Communications",
     role: "Researcher / Co-Developer",
     icon: AirplaneTilt,
-    title: "Wireshark",
+    title: "Wireshark: Fiber-Optic Drone",
     description:
       "Developing a reusable drone communication architecture that replaces radio-frequency command and data links with fiber optics for reliable operation in environments where wireless communication is unavailable, unreliable, or undesirable.",
     detail: "The system is being designed around applications such as infrastructure inspection, tunnels, industrial environments, and disaster-response operations.",
@@ -111,7 +111,7 @@ const projects = [
     status: "In Development",
     link: `${ASSET_BASE}Fiber-Tethered-Drone-Project-Brief.pdf`,
     linkLabel: "View Project Brief",
-    linkAriaLabel: "View Wireshark Project Brief, opens in a new tab",
+    linkAriaLabel: "View Wireshark Fiber-Optic Drone Project Brief, opens in a new tab",
   },
   {
     type: "Voice AI",
