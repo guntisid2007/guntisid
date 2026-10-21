@@ -18,7 +18,7 @@ import MobileNavigation from "./components/MobileNavigation";
 import HardwareFlow from "./components/HardwareFlow";
 import Words from "./components/Words";
 import CountUp from "./components/CountUp";
-import { watchReveal } from "./components/motion";
+import { usePointerGlow, watchReveal } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
@@ -226,6 +226,7 @@ function SocialLinks({ className = "" }) {
 
 export default function App() {
   const [activeHref, setActiveHref] = useState("");
+  usePointerGlow();
 
   useEffect(() => {
     const stopReveals = [...document.querySelectorAll("[data-reveal]")].map((element) =>
@@ -303,7 +304,7 @@ export default function App() {
         <section className="stats-band" aria-label="Selected results">
           <dl>
             {stats.map((stat, index) => (
-              <div key={stat.caption} data-reveal style={{ "--reveal-delay": `${index * 55}ms` }}>
+              <div key={stat.caption} data-reveal data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
                 <dt className="stat-value"><CountUp value={stat.value} /></dt>
                 <dd>{stat.caption}</dd>
                 <dd className="stat-source">{stat.source}</dd>
@@ -319,7 +320,7 @@ export default function App() {
           </div>
           <div className="experience-grid">
             {experience.map((item, index) => (
-              <article key={`${item.organization}-${item.role}`} data-reveal style={{ "--reveal-delay": `${index * 55}ms` }}>
+              <article key={`${item.organization}-${item.role}`} data-reveal data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
                 <OrganizationMark item={item} />
                 <div className="experience-card-body">
                   <div className="experience-meta">
@@ -350,7 +351,7 @@ export default function App() {
             {projects.map((project, index) => {
               const ProjectIcon = project.icon;
               return (
-                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-reveal data-glow style={{ "--reveal-delay": `${index * 45}ms` }}>
                   <div className="project-main">
                     <div className="project-topline">
                       <span>{project.type}</span>

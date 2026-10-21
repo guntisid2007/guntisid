@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
@@ -31,4 +33,39 @@ export function watchReveal(element, onShow) {
   );
   observer.observe(element);
   return () => observer.disconnect();
+}
+
+/**
+ * Feeds the card glow in styles.css: one delegated pointer listener sets
+ * --gx and --gy on the `data-glow` card under a fine, hovering pointer.
+ */
+export function usePointerGlow() {
+  useEffect(() => {
+    const query = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+    let frame = 0;
+    let last = null;
+    const paint = () => {
+      frame = 0;
+      const card = last.target instanceof Element ? last.target.closest("[data-glow]") : null;
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--gx", `${last.clientX - rect.left}px`);
+      card.style.setProperty("--gy", `${last.clientY - rect.top}px`);
+    };
+    const onMove = (event) => {
+      last = event;
+      if (!frame) frame = requestAnimationFrame(paint);
+    };
+    const sync = () => {
+      document.removeEventListener("pointermove", onMove);
+      if (query.matches) document.addEventListener("pointermove", onMove, { passive: true });
+    };
+    sync();
+    query.addEventListener("change", sync);
+    return () => {
+      cancelAnimationFrame(frame);
+      query.removeEventListener("change", sync);
+      document.removeEventListener("pointermove", onMove);
+    };
+  }, []);
 }
