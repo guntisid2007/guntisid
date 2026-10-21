@@ -11,7 +11,17 @@ The repository includes a standalone web résumé at `public/resume.html` and Si
 - Phosphor Icons
 - Self-hosted Barlow Condensed, Manrope, and IBM Plex Mono
 
-Organization logos are stored in `public/assets/logos/` and referenced from the centralized experience data in `src/App.jsx`. The page is ordered for recruiter scanning: Experience, Projects, Skills, About, and Contact.
+Organization logos are stored in `public/assets/logos/` and referenced from the centralized experience data in `src/App.jsx`. The page is ordered for recruiter scanning: a stats band of selected results, Experience, Projects, Skills, About, and Contact.
+
+The `stats` array in `src/App.jsx` holds the stats band, and a project with `featured: true` renders full width with its `specs` as a spec sheet.
+
+## Link preview image
+
+`public/og-image.jpg` is rendered from `scripts/og-image.html`. After editing the card, rebuild it on macOS with the local Playwright Chromium:
+
+```bash
+./scripts/build-og-image.sh
+```
 
 ## Run locally
 
