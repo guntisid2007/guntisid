@@ -65,4 +65,4 @@ Sid makes complex systems legible. His strongest portfolio evidence combines han
 - Neon HUD styling
 - Inflated claims or invented metrics
 - A résumé download as the only way to read Sid’s experience
-- Motion or 3D that competes with the content
+- Motion or 3D that competes with the content. Motion stays subordinate to the content, and the only loops are the status LED pulse and the console caret. `prefers-reduced-motion` turns all of it off.

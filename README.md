@@ -7,13 +7,13 @@ The repository includes a standalone web résumé at `public/resume.html` and Si
 ## Stack
 
 - React 19 and Vite
-- CSS transitions and IntersectionObserver for restrained motion
+- CSS animations and IntersectionObserver for the motion pass, with a full `prefers-reduced-motion` fallback
 - Phosphor Icons
 - Self-hosted Barlow Condensed, Manrope, and IBM Plex Mono
 
 Organization logos are stored in `public/assets/logos/` and referenced from the centralized experience data in `src/App.jsx`. The page is ordered for recruiter scanning: a stats band of selected results, Experience, Projects, Skills, About, and Contact.
 
-The `stats` array in `src/App.jsx` holds the stats band, and a project with `featured: true` renders full width with its `specs` as a spec sheet.
+The `stats` array in `src/App.jsx` holds the stats band, and a project with `specs` renders full width with them as a spec sheet. A project with `console` data renders an illustrative terminal panel.
 
 ## Link preview image
 
