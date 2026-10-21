@@ -147,13 +147,14 @@ img {
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
   background: rgb(11 11 10 / 0%);
+  /* Always on, so only the background fades in and the blur never pops. */
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
   transition: background-color 320ms var(--ease-out);
 }
 
 .site-header[data-scrolled] {
   background: rgb(11 11 10 / 74%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  backdrop-filter: blur(18px) saturate(140%);
 }
 
 .site-header::after {
