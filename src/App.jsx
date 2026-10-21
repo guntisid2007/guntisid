@@ -17,6 +17,7 @@ import { Analytics } from "@vercel/analytics/react";
 import MobileNavigation from "./components/MobileNavigation";
 import HardwareFlow from "./components/HardwareFlow";
 import Words from "./components/Words";
+import CountUp from "./components/CountUp";
 import { watchReveal } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -303,7 +304,7 @@ export default function App() {
           <dl>
             {stats.map((stat, index) => (
               <div key={stat.caption} data-reveal style={{ "--reveal-delay": `${index * 55}ms` }}>
-                <dt className="stat-value">{stat.value}</dt>
+                <dt className="stat-value"><CountUp value={stat.value} /></dt>
                 <dd>{stat.caption}</dd>
                 <dd className="stat-source">{stat.source}</dd>
               </div>
