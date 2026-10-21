@@ -375,8 +375,8 @@ export default function App() {
                   </div>
                   {project.specs ? (
                     <dl className="project-specs" aria-label={`${project.title} specifications`}>
-                      {project.specs.map(([label, value]) => (
-                        <div key={label}>
+                      {project.specs.map(([label, value], index) => (
+                        <div key={label} style={{ "--i": index }}>
                           <dt>{label}</dt>
                           <dd>{value}</dd>
                         </div>
