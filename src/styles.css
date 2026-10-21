@@ -168,7 +168,6 @@ img {
   backdrop-filter: blur(18px) saturate(140%);
 }
 
-/* Reading progress: a gold hairline over the header's bottom border. */
 .site-header::after {
   position: absolute;
   right: 0;

@@ -6,11 +6,7 @@ function Line({ text }) {
   return text;
 }
 
-/**
- * A terminal transcript that streams in line by line the first time it is
- * seen. "$" starts a command, "#" a comment, and a first word followed by two
- * spaces names the stage that wrote the line.
- */
+/** In `lines`, "$" starts a command, "#" a comment, and a first word followed by two spaces names the stage that wrote the line. */
 export default function Console({ title, note = "Illustrative", lines }) {
   return (
     <figure className="console" data-reveal>

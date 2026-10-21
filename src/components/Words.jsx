@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-/** Splits a heading into word spans for a `data-reveal="words"` entrance. */
+/** The words animate only inside a heading marked `data-reveal="words"`. */
 export default function Words({ children }) {
   return children.split(" ").map((word, index) => (
     <Fragment key={index}>

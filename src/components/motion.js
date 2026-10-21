@@ -35,10 +35,7 @@ export function watchReveal(element, onShow) {
   return () => observer.disconnect();
 }
 
-/**
- * Feeds the card glow in styles.css: one delegated pointer listener sets
- * --gx and --gy on the `data-glow` card under a fine, hovering pointer.
- */
+/** Feeds the `data-glow` card glow in styles.css. */
 export function usePointerGlow() {
   useEffect(() => {
     const query = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
@@ -70,10 +67,6 @@ export function usePointerGlow() {
   }, []);
 }
 
-/**
- * Sets --p (0 to 1 over the document's scroll) and `data-scrolled` (past
- * 24px) on the header, at most once a frame.
- */
 export function useHeaderScroll(header) {
   useEffect(() => {
     let frame = 0;

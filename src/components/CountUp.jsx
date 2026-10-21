@@ -3,10 +3,6 @@ import { prefersReducedMotion, watchReveal } from "./motion";
 
 const ROLL_MS = 1400;
 
-/**
- * A stat such as "29K" that counts up from 0 to its number the first time it
- * is seen, keeping the suffix. Screen readers get only the final value.
- */
 export default function CountUp({ value }) {
   const [, digits, suffix] = value.match(/^(\d+)(.*)$/);
   const counter = useRef(null);
