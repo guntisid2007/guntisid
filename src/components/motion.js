@@ -69,3 +69,30 @@ export function usePointerGlow() {
     };
   }, []);
 }
+
+/**
+ * Sets --p (0 to 1 over the document's scroll) and `data-scrolled` (past
+ * 24px) on the header, at most once a frame.
+ */
+export function useHeaderScroll(header) {
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      header.current.style.setProperty("--p", String(max > 0 ? Math.min(1, window.scrollY / max) : 0));
+      header.current.toggleAttribute("data-scrolled", window.scrollY > 24);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [header]);
+}

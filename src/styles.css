@@ -158,8 +158,27 @@ img {
   align-items: stretch;
   justify-content: space-between;
   border-bottom: 1px solid var(--line);
-  background: rgb(11 11 10 / 95%);
-  backdrop-filter: blur(18px);
+  background: rgb(11 11 10 / 0%);
+  transition: background-color 320ms var(--ease-out);
+}
+
+.site-header[data-scrolled] {
+  background: rgb(11 11 10 / 74%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+}
+
+/* Reading progress: a gold hairline over the header's bottom border. */
+.site-header::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--accent);
+  content: "";
+  transform: scaleX(var(--p, 0));
+  transform-origin: left;
 }
 
 .identity {

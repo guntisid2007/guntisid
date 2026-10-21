@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   AirplaneTilt,
   ArrowDown,
@@ -18,7 +18,7 @@ import MobileNavigation from "./components/MobileNavigation";
 import HardwareFlow from "./components/HardwareFlow";
 import Words from "./components/Words";
 import CountUp from "./components/CountUp";
-import { usePointerGlow, watchReveal } from "./components/motion";
+import { useHeaderScroll, usePointerGlow, watchReveal } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
@@ -226,7 +226,9 @@ function SocialLinks({ className = "" }) {
 
 export default function App() {
   const [activeHref, setActiveHref] = useState("");
+  const header = useRef(null);
   usePointerGlow();
+  useHeaderScroll(header);
 
   useEffect(() => {
     const stopReveals = [...document.querySelectorAll("[data-reveal]")].map((element) =>
@@ -260,7 +262,7 @@ export default function App() {
     <div className="site">
       <a className="skip-link" href="#main">Skip to content</a>
 
-      <header className="site-header">
+      <header className="site-header" ref={header}>
         <a className="identity" href="#top" aria-label="Sid Gunti, home">
           <span className="identity-mark" aria-hidden="true">SG</span>
           <span>SID GUNTI</span>
