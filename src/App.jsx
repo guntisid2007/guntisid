@@ -16,6 +16,8 @@ import {
 import { Analytics } from "@vercel/analytics/react";
 import MobileNavigation from "./components/MobileNavigation";
 import HardwareFlow from "./components/HardwareFlow";
+import Words from "./components/Words";
+import { watchReveal } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
@@ -225,27 +227,9 @@ export default function App() {
   const [activeHref, setActiveHref] = useState("");
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const revealElements = document.querySelectorAll("[data-reveal]");
-
-    if (reducedMotion) {
-      revealElements.forEach((element) => element.setAttribute("data-visible", "true"));
-    }
-
-    const revealObserver = reducedMotion
-      ? null
-      : new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.setAttribute("data-visible", "true");
-              revealObserver.unobserve(entry.target);
-            });
-          },
-          { threshold: 0.12 },
-        );
-
-    revealElements.forEach((element) => revealObserver?.observe(element));
+    const stopReveals = [...document.querySelectorAll("[data-reveal]")].map((element) =>
+      watchReveal(element, () => element.setAttribute("data-visible", "true")),
+    );
 
     const trackedSections = navigation
       .filter(({ href }) => href.startsWith("#"))
@@ -265,7 +249,7 @@ export default function App() {
     trackedSections.forEach((section) => sectionObserver.observe(section));
 
     return () => {
-      revealObserver?.disconnect();
+      stopReveals.forEach((stop) => stop());
       sectionObserver.disconnect();
     };
   }, []);
@@ -299,11 +283,11 @@ export default function App() {
         <section className="hero" id="top">
           <HardwareFlow />
           <div className="hero-copy">
-            <p className="hero-kicker hero-intro">Purdue University</p>
-            <h1 className="hero-intro">Siddharth Gunti.</h1>
-            <p className="hero-deck hero-intro">Computer Engineering @ Purdue</p>
-            <p className="hero-secondary hero-intro">Software Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
-            <div className="hero-actions hero-intro">
+            <p className="hero-kicker" data-reveal>Purdue University</p>
+            <h1 data-reveal="words" style={{ "--reveal-delay": "70ms" }}><Words>Siddharth Gunti.</Words></h1>
+            <p className="hero-deck" data-reveal style={{ "--reveal-delay": "200ms" }}>Computer Engineering @ Purdue</p>
+            <p className="hero-secondary" data-reveal style={{ "--reveal-delay": "260ms" }}>Software Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
+            <div className="hero-actions" data-reveal style={{ "--reveal-delay": "320ms" }}>
               <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
               <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
             </div>
@@ -328,9 +312,9 @@ export default function App() {
         </section>
 
         <section className="experience-section section-shell" id="experience" tabIndex={-1} aria-labelledby="experience-title">
-          <div className="section-heading" data-reveal>
-            <h2 id="experience-title">Experience</h2>
-            <p>Hands-on engineering, software development, research, and technical leadership with measurable results.</p>
+          <div className="section-heading">
+            <h2 id="experience-title" data-reveal="words"><Words>Experience</Words></h2>
+            <p data-reveal style={{ "--reveal-delay": "120ms" }}>Hands-on engineering, software development, research, and technical leadership with measurable results.</p>
           </div>
           <div className="experience-grid">
             {experience.map((item, index) => (
@@ -356,9 +340,9 @@ export default function App() {
         </section>
 
         <section className="work-section section-shell" id="work" tabIndex={-1} aria-labelledby="work-title">
-          <div className="section-heading compact" data-reveal>
-            <h2 id="work-title">Projects</h2>
-            <p>Selected hardware, software, research, and engineering projects focused on building and validating real systems.</p>
+          <div className="section-heading compact">
+            <h2 id="work-title" data-reveal="words"><Words>Projects</Words></h2>
+            <p data-reveal style={{ "--reveal-delay": "120ms" }}>Selected hardware, software, research, and engineering projects focused on building and validating real systems.</p>
           </div>
 
           <div className="project-grid">
@@ -402,9 +386,9 @@ export default function App() {
         </section>
 
         <section className="skills-section section-shell" id="skills" tabIndex={-1} aria-labelledby="skills-title">
-          <div className="section-heading compact" data-reveal>
-            <h2 id="skills-title">Skills and tools</h2>
-            <p>Languages, engineering tools, libraries, and technical areas used across software, hardware, and research projects.</p>
+          <div className="section-heading compact">
+            <h2 id="skills-title" data-reveal="words"><Words>Skills and tools</Words></h2>
+            <p data-reveal style={{ "--reveal-delay": "120ms" }}>Languages, engineering tools, libraries, and technical areas used across software, hardware, and research projects.</p>
           </div>
           <div className="skills-grid">
             {skillGroups.map((group, index) => (
@@ -417,10 +401,10 @@ export default function App() {
         </section>
 
         <section className="about-section section-shell" id="about" tabIndex={-1} aria-labelledby="about-title">
-          <div className="about-statement" data-reveal>
-            <h2 id="about-title">Curious enough to measure. Practical enough to build.</h2>
-            <p>I'm a Purdue engineering student pursuing Computer Engineering with interests spanning embedded systems, robotics, software, and hardware-software integration.</p>
-            <p>I enjoy working through the full engineering cycle: understand the system, build a prototype, test it, identify what failed, and improve the next version.</p>
+          <div className="about-statement">
+            <h2 id="about-title" data-reveal="words"><Words>Curious enough to measure. Practical enough to build.</Words></h2>
+            <p data-reveal style={{ "--reveal-delay": "160ms" }}>I'm a Purdue engineering student pursuing Computer Engineering with interests spanning embedded systems, robotics, software, and hardware-software integration.</p>
+            <p data-reveal style={{ "--reveal-delay": "220ms" }}>I enjoy working through the full engineering cycle: understand the system, build a prototype, test it, identify what failed, and improve the next version.</p>
           </div>
           <dl className="education-facts" data-reveal style={{ "--reveal-delay": "70ms" }}>
             <div><dt>Education</dt><dd>B.S. Computer Engineering, Purdue University</dd></div>
@@ -431,10 +415,10 @@ export default function App() {
         </section>
 
         <section className="contact-section section-shell" id="contact" tabIndex={-1} aria-labelledby="contact-title">
-          <div data-reveal>
-            <p className="section-label">Summer 2027</p>
-            <h2 id="contact-title">Build something that has to work.</h2>
-            <p>I'm seeking Summer 2027 engineering opportunities where I can contribute to real hardware and software systems, learn from experienced engineers, and take ownership of meaningful technical work.</p>
+          <div>
+            <p className="section-label" data-reveal>Summer 2027</p>
+            <h2 id="contact-title" data-reveal="words" style={{ "--reveal-delay": "60ms" }}><Words>Build something that has to work.</Words></h2>
+            <p data-reveal style={{ "--reveal-delay": "200ms" }}>I'm seeking Summer 2027 engineering opportunities where I can contribute to real hardware and software systems, learn from experienced engineers, and take ownership of meaningful technical work.</p>
           </div>
           <div data-reveal style={{ "--reveal-delay": "70ms" }}>
             <a className="contact-primary" href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Contact Me</a>
