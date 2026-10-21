@@ -661,7 +661,7 @@ img {
 
 .project-grid article {
   display: flex;
-  grid-column: span 2;
+  grid-column: span 3;
   min-height: 290px;
   flex-direction: column;
   padding: clamp(26px, 3vw, 38px);
@@ -669,9 +669,46 @@ img {
   transition: background-color 180ms ease, transform 180ms ease;
 }
 
-.project-grid article:nth-last-child(-n + 2) {
-  grid-column: span 3;
-  min-height: 240px;
+.project-grid article.is-featured {
+  display: grid;
+  grid-column: span 6;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+.project-main {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  flex-direction: column;
+}
+
+.project-specs {
+  margin: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.project-specs > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.project-specs dt {
+  padding-top: 3px;
+  color: var(--muted);
+  font: 0.62rem var(--mono);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.project-specs dd {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 0.9rem;
 }
 
 .project-grid article:hover {
@@ -711,7 +748,8 @@ img {
   text-transform: uppercase;
 }
 
-.project-grid article > p:not(.project-role) {
+.project-grid article > p:not(.project-role),
+.project-main > p:not(.project-role) {
   max-width: 64ch;
   margin-bottom: 18px;
   color: var(--muted);
@@ -1067,8 +1105,12 @@ footer a:focus-visible {
   }
 
   .project-grid article,
-  .project-grid article:nth-last-child(-n + 2) {
+  .project-grid article.is-featured {
     grid-column: auto;
+  }
+
+  .project-grid article.is-featured {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .about-section,

@@ -112,10 +112,16 @@ const projects = [
     title: "Wireshark: Fiber-Optic Drone",
     description:
       "Developing a reusable drone communication architecture that replaces radio-frequency command and data links with fiber optics for reliable operation in environments where wireless communication is unavailable, unreliable, or undesirable.",
-    detail: "The system is being designed around applications such as infrastructure inspection, tunnels, industrial environments, and disaster-response operations.",
     tools: ["Fiber Optics", "Communications", "Embedded Systems", "Systems Design"],
-    note: "Developing toward NASA's 2027 Gateways to Blue Skies Competition.",
     status: "In Development",
+    featured: true,
+    specs: [
+      ["Link", "Fiber-optic tether for command and data, no radio link"],
+      ["Platform", "Modular, tethered drone"],
+      ["Applications", "Infrastructure inspection, tunnels, industrial sites, disaster response"],
+      ["Target", "NASA Gateways to Blue Skies, 2027"],
+      ["Started", "Sep 2026, Purdue University"],
+    ],
     link: `${ASSET_BASE}Fiber-Tethered-Drone-Project-Brief.pdf`,
     linkLabel: "View Project Brief",
     linkAriaLabel: "View Wireshark Fiber-Optic Drone Project Brief, opens in a new tab",
@@ -359,8 +365,8 @@ export default function App() {
           <div className="project-grid">
             {projects.map((project, index) => {
               const ProjectIcon = project.icon;
-              return (
-                <article key={project.title} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+              const content = (
+                <>
                   <div className="project-topline">
                     <span>{project.type}</span>
                     <ProjectIcon size={25} weight="duotone" aria-hidden="true" />
@@ -378,6 +384,23 @@ export default function App() {
                       {project.linkLabel}<ArrowUpRight size={15} />
                     </a>
                   ) : null}
+                </>
+              );
+              return (
+                <article key={project.title} className={project.featured ? "is-featured" : undefined} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+                  {project.featured ? (
+                    <>
+                      <div className="project-main">{content}</div>
+                      <dl className="project-specs" aria-label={`${project.title} specifications`}>
+                        {project.specs.map(([label, value]) => (
+                          <div key={label}>
+                            <dt>{label}</dt>
+                            <dd>{value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </>
+                  ) : content}
                 </article>
               );
             })}
