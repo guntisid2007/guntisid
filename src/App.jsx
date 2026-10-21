@@ -18,6 +18,7 @@ import MobileNavigation from "./components/MobileNavigation";
 import HardwareFlow from "./components/HardwareFlow";
 import Words from "./components/Words";
 import CountUp from "./components/CountUp";
+import Console from "./components/Console";
 import { useHeaderScroll, usePointerGlow, watchReveal } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -137,6 +138,18 @@ const projects = [
       "Developed a local voice-assistant prototype combining speech recognition, language-model inference, conversational context, and wake-word activation into a unified interaction pipeline.",
     detail: "Integrated Parakeet for speech recognition and Gemma for language processing while experimenting with latency, activation behavior, and conversational flow.",
     tools: ["SwiftUI", "Ollama", "Local AI"],
+    console: {
+      title: "sidekick",
+      lines: [
+        "$ sidekick listen",
+        "# waiting for wake word",
+        "wake word detected",
+        "parakeet  transcribing speech",
+        `> "what's on my calendar today?"`,
+        "gemma  generating reply with conversation context",
+        "reply ready",
+      ],
+    },
   },
   {
     type: "Engineering Research",
@@ -364,6 +377,7 @@ export default function App() {
                     <p>{project.description}</p>
                     {project.detail ? <p>{project.detail}</p> : null}
                     {project.note ? <strong>{project.note}</strong> : null}
+                    {project.console ? <Console {...project.console} /> : null}
                     <ul className="tag-list" aria-label={`${project.title} technologies`}>
                       {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
                     </ul>
