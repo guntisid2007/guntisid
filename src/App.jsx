@@ -277,7 +277,10 @@ export default function App() {
 
       <header className="site-header" ref={header}>
         <a className="identity" href="#top" aria-label="Sid Gunti, home">
-          <span className="identity-mark" aria-hidden="true">SG</span>
+          <span className="identity-mark" aria-hidden="true">
+            <svg viewBox="0 0 34 34"><path d="M0.5 0.5H33.5V33.5H0.5Z" pathLength="1" /></svg>
+            <span>SG</span>
+          </span>
           <span>SID GUNTI</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -449,6 +452,7 @@ export default function App() {
         <span>© 2026 SIDDHARTH SHARMA GUNTI</span>
         <a href={`${ASSET_BASE}resume.html`}>RESUME</a>
         <a href="#top">RETURN TO TOP ↑</a>
+        <p className="footer-mark" aria-hidden="true" data-reveal>SID GUNTI</p>
       </footer>
       <Analytics />
     </div>
