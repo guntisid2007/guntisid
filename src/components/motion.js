@@ -55,22 +55,30 @@ export function usePointerGlow() {
   useEffect(() => {
     const query = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
     let frame = 0;
-    let last = null;
+    let pointer = null;
+    // Looked up from the point, not the event target, so a scroll that slides a
+    // new card under a still pointer moves that card's glow too.
     const paint = () => {
       frame = 0;
-      const card = last.target instanceof Element ? last.target.closest("[data-glow]") : null;
+      const card = document.elementFromPoint(pointer.x, pointer.y)?.closest("[data-glow]");
       if (!card) return;
       const rect = card.getBoundingClientRect();
-      card.style.setProperty("--gx", `${last.clientX - rect.left}px`);
-      card.style.setProperty("--gy", `${last.clientY - rect.top}px`);
+      card.style.setProperty("--gx", `${pointer.x - rect.left}px`);
+      card.style.setProperty("--gy", `${pointer.y - rect.top}px`);
+    };
+    const schedule = () => {
+      if (pointer && !frame) frame = requestAnimationFrame(paint);
     };
     const onMove = (event) => {
-      last = event;
-      if (!frame) frame = requestAnimationFrame(paint);
+      pointer = { x: event.clientX, y: event.clientY };
+      schedule();
     };
     const sync = () => {
       document.removeEventListener("pointermove", onMove);
-      if (query.matches) document.addEventListener("pointermove", onMove, { passive: true });
+      window.removeEventListener("scroll", schedule);
+      if (!query.matches) return;
+      document.addEventListener("pointermove", onMove, { passive: true });
+      window.addEventListener("scroll", schedule, { passive: true });
     };
     sync();
     query.addEventListener("change", sync);
@@ -78,6 +86,7 @@ export function usePointerGlow() {
       cancelAnimationFrame(frame);
       query.removeEventListener("change", sync);
       document.removeEventListener("pointermove", onMove);
+      window.removeEventListener("scroll", schedule);
     };
   }, []);
 }
