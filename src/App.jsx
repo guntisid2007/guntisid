@@ -19,7 +19,7 @@ import HardwareFlow from "./components/HardwareFlow";
 import Words from "./components/Words";
 import CountUp from "./components/CountUp";
 import Console from "./components/Console";
-import { useHeaderScroll, usePointerGlow, watchReveal } from "./components/motion";
+import { reveal, useHeaderScroll, usePointerGlow } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
 const LINKEDIN = "https://www.linkedin.com/in/siddharth-gunti-66ba212b8/";
@@ -244,10 +244,6 @@ export default function App() {
   useHeaderScroll(header);
 
   useEffect(() => {
-    const stopReveals = [...document.querySelectorAll("[data-reveal]")].map((element) =>
-      watchReveal(element, () => element.setAttribute("data-visible", "true")),
-    );
-
     const trackedSections = navigation
       .filter(({ href }) => href.startsWith("#"))
       .map(({ href }) => document.getElementById(href.slice(1)))
@@ -265,10 +261,7 @@ export default function App() {
 
     trackedSections.forEach((section) => sectionObserver.observe(section));
 
-    return () => {
-      stopReveals.forEach((stop) => stop());
-      sectionObserver.disconnect();
-    };
+    return () => sectionObserver.disconnect();
   }, []);
 
   return (
@@ -303,11 +296,11 @@ export default function App() {
         <section className="hero" id="top">
           <HardwareFlow />
           <div className="hero-copy">
-            <p className="hero-kicker" data-reveal>Purdue University</p>
-            <h1 data-reveal="words" style={{ "--reveal-delay": "70ms" }}><Words>Siddharth Gunti.</Words></h1>
-            <p className="hero-deck" data-reveal style={{ "--reveal-delay": "200ms" }}>Computer Engineering @ Purdue</p>
-            <p className="hero-secondary" data-reveal style={{ "--reveal-delay": "260ms" }}>Software Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
-            <div className="hero-actions" data-reveal style={{ "--reveal-delay": "320ms" }}>
+            <p className="hero-kicker" data-reveal ref={reveal}>Purdue University</p>
+            <h1 data-reveal="words" ref={reveal} style={{ "--reveal-delay": "70ms" }}><Words>Siddharth Gunti.</Words></h1>
+            <p className="hero-deck" data-reveal ref={reveal} style={{ "--reveal-delay": "200ms" }}>Computer Engineering @ Purdue</p>
+            <p className="hero-secondary" data-reveal ref={reveal} style={{ "--reveal-delay": "260ms" }}>Software Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
+            <div className="hero-actions" data-reveal ref={reveal} style={{ "--reveal-delay": "320ms" }}>
               <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
               <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
             </div>
@@ -322,7 +315,7 @@ export default function App() {
         <section className="stats-band" aria-label="Selected results">
           <dl>
             {stats.map((stat, index) => (
-              <div key={stat.caption} data-reveal data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
+              <div key={stat.caption} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
                 <dt className="stat-value"><CountUp value={stat.value} /></dt>
                 <dd>{stat.caption}</dd>
                 <dd className="stat-source">{stat.source}</dd>
@@ -333,12 +326,12 @@ export default function App() {
 
         <section className="experience-section section-shell" id="experience" tabIndex={-1} aria-labelledby="experience-title">
           <div className="section-heading">
-            <h2 id="experience-title" data-reveal="words"><Words>Experience</Words></h2>
-            <p data-reveal style={{ "--reveal-delay": "120ms" }}>Hands-on engineering, software development, research, and technical leadership with measurable results.</p>
+            <h2 id="experience-title" data-reveal="words" ref={reveal}><Words>Experience</Words></h2>
+            <p data-reveal ref={reveal} style={{ "--reveal-delay": "120ms" }}>Hands-on engineering, software development, research, and technical leadership with measurable results.</p>
           </div>
           <div className="experience-grid">
             {experience.map((item, index) => (
-              <article key={`${item.organization}-${item.role}`} data-reveal data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
+              <article key={`${item.organization}-${item.role}`} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
                 <OrganizationMark item={item} />
                 <div className="experience-card-body">
                   <div className="experience-meta">
@@ -361,15 +354,15 @@ export default function App() {
 
         <section className="work-section section-shell" id="work" tabIndex={-1} aria-labelledby="work-title">
           <div className="section-heading compact">
-            <h2 id="work-title" data-reveal="words"><Words>Projects</Words></h2>
-            <p data-reveal style={{ "--reveal-delay": "120ms" }}>Selected hardware, software, research, and engineering projects focused on building and validating real systems.</p>
+            <h2 id="work-title" data-reveal="words" ref={reveal}><Words>Projects</Words></h2>
+            <p data-reveal ref={reveal} style={{ "--reveal-delay": "120ms" }}>Selected hardware, software, research, and engineering projects focused on building and validating real systems.</p>
           </div>
 
           <div className="project-grid">
             {projects.map((project, index) => {
               const ProjectIcon = project.icon;
               return (
-                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-reveal data-glow style={{ "--reveal-delay": `${index * 45}ms` }}>
+                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 45}ms` }}>
                   <div className="project-main">
                     <div className="project-topline">
                       <span>{project.type}</span>
@@ -408,12 +401,12 @@ export default function App() {
 
         <section className="skills-section section-shell" id="skills" tabIndex={-1} aria-labelledby="skills-title">
           <div className="section-heading compact">
-            <h2 id="skills-title" data-reveal="words"><Words>Skills and tools</Words></h2>
-            <p data-reveal style={{ "--reveal-delay": "120ms" }}>Languages, engineering tools, libraries, and technical areas used across software, hardware, and research projects.</p>
+            <h2 id="skills-title" data-reveal="words" ref={reveal}><Words>Skills and tools</Words></h2>
+            <p data-reveal ref={reveal} style={{ "--reveal-delay": "120ms" }}>Languages, engineering tools, libraries, and technical areas used across software, hardware, and research projects.</p>
           </div>
           <div className="skills-grid">
             {skillGroups.map((group, index) => (
-              <div key={group.label} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+              <div key={group.label} data-reveal ref={reveal} style={{ "--reveal-delay": `${index * 45}ms` }}>
                 <h3>{group.label}</h3>
                 <p>{group.value}</p>
               </div>
@@ -423,11 +416,11 @@ export default function App() {
 
         <section className="about-section section-shell" id="about" tabIndex={-1} aria-labelledby="about-title">
           <div className="about-statement">
-            <h2 id="about-title" data-reveal="words"><Words>Curious enough to measure. Practical enough to build.</Words></h2>
-            <p data-reveal style={{ "--reveal-delay": "160ms" }}>I'm a Purdue engineering student pursuing Computer Engineering with interests spanning embedded systems, robotics, software, and hardware-software integration.</p>
-            <p data-reveal style={{ "--reveal-delay": "220ms" }}>I enjoy working through the full engineering cycle: understand the system, build a prototype, test it, identify what failed, and improve the next version.</p>
+            <h2 id="about-title" data-reveal="words" ref={reveal}><Words>Curious enough to measure. Practical enough to build.</Words></h2>
+            <p data-reveal ref={reveal} style={{ "--reveal-delay": "160ms" }}>I'm a Purdue engineering student pursuing Computer Engineering with interests spanning embedded systems, robotics, software, and hardware-software integration.</p>
+            <p data-reveal ref={reveal} style={{ "--reveal-delay": "220ms" }}>I enjoy working through the full engineering cycle: understand the system, build a prototype, test it, identify what failed, and improve the next version.</p>
           </div>
-          <dl className="education-facts" data-reveal style={{ "--reveal-delay": "70ms" }}>
+          <dl className="education-facts" data-reveal ref={reveal} style={{ "--reveal-delay": "70ms" }}>
             <div><dt>Education</dt><dd>B.S. Computer Engineering, Purdue University</dd></div>
             <div><dt>Academic Focus</dt><dd>Embedded Systems, Computer Hardware, Robotics, and Software</dd></div>
             <div><dt>Relevant Coursework</dt><dd>Multivariable Calculus, Physics, Introduction to Engineering</dd></div>
@@ -437,11 +430,11 @@ export default function App() {
 
         <section className="contact-section section-shell" id="contact" tabIndex={-1} aria-labelledby="contact-title">
           <div>
-            <p className="section-label" data-reveal>Summer 2027</p>
-            <h2 id="contact-title" data-reveal="words" style={{ "--reveal-delay": "60ms" }}><Words>Build something that has to work.</Words></h2>
-            <p data-reveal style={{ "--reveal-delay": "200ms" }}>I'm seeking Summer 2027 engineering opportunities where I can contribute to real hardware and software systems, learn from experienced engineers, and take ownership of meaningful technical work.</p>
+            <p className="section-label" data-reveal ref={reveal}>Summer 2027</p>
+            <h2 id="contact-title" data-reveal="words" ref={reveal} style={{ "--reveal-delay": "60ms" }}><Words>Build something that has to work.</Words></h2>
+            <p data-reveal ref={reveal} style={{ "--reveal-delay": "200ms" }}>I'm seeking Summer 2027 engineering opportunities where I can contribute to real hardware and software systems, learn from experienced engineers, and take ownership of meaningful technical work.</p>
           </div>
-          <div data-reveal style={{ "--reveal-delay": "70ms" }}>
+          <div data-reveal ref={reveal} style={{ "--reveal-delay": "70ms" }}>
             <a className="contact-primary" href={`mailto:${EMAIL}`}><EnvelopeSimple size={20} />Contact Me</a>
             <SocialLinks className="contact-links" />
           </div>
@@ -452,7 +445,7 @@ export default function App() {
         <span>© 2026 SIDDHARTH SHARMA GUNTI</span>
         <a href={`${ASSET_BASE}resume.html`}>RESUME</a>
         <a href="#top">RETURN TO TOP ↑</a>
-        <p className="footer-mark" aria-hidden="true" data-reveal>SID GUNTI</p>
+        <p className="footer-mark" aria-hidden="true" data-reveal ref={reveal}>SID GUNTI</p>
       </footer>
       <Analytics />
     </div>

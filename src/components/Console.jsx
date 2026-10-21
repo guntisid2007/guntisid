@@ -1,3 +1,5 @@
+import { reveal } from "./motion";
+
 function Line({ text }) {
   if (text.startsWith("$")) return <span className="console-command">{text}</span>;
   if (text.startsWith("#")) return <span className="console-comment">{text}</span>;
@@ -9,7 +11,7 @@ function Line({ text }) {
 /** In `lines`, "$" starts a command, "#" a comment, and a first word followed by two spaces names the stage that wrote the line. */
 export default function Console({ title, note = "Illustrative", lines }) {
   return (
-    <figure className="console" data-reveal>
+    <figure className="console" data-reveal ref={reveal}>
       <figcaption className="console-bar">
         <span className="console-dots" aria-hidden="true" />
         <span>{title}</span>

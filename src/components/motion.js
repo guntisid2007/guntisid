@@ -4,10 +4,23 @@ export function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+const waiting = new Map();
+let observer;
+
+function showSeen(entries) {
+  for (const { target, isIntersecting } of entries) {
+    const onShow = waiting.get(target);
+    if (!isIntersecting || !onShow) continue;
+    waiting.delete(target);
+    observer.unobserve(target);
+    onShow(!prefersReducedMotion());
+  }
+}
+
 /**
- * Calls `onShow(animate)` once, the first time `element` is seen. `animate` is
- * false when reduced motion is set or IntersectionObserver is missing, so the
- * caller shows its end state.
+ * Calls `onShow(animate)` once, the first time `element` is seen, and returns a
+ * cleanup. `animate` is false when reduced motion is set at that moment or
+ * IntersectionObserver is missing, so the caller shows its end state.
  */
 export function watchReveal(element, onShow) {
   if (prefersReducedMotion() || typeof IntersectionObserver === "undefined") {
@@ -19,20 +32,22 @@ export function watchReveal(element, onShow) {
   // waiting on a threshold a thin sliver may never cross, so it never sits invisible.
   const rect = element.getBoundingClientRect();
   if (rect.top < window.innerHeight && rect.bottom > 0) {
-    const timer = window.setTimeout(() => onShow(true), 20);
-    return () => window.clearTimeout(timer);
+    onShow(true);
+    return () => {};
   }
 
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry.isIntersecting) return;
-      observer.disconnect();
-      onShow(true);
-    },
-    { threshold: 0.12 },
-  );
+  observer ??= new IntersectionObserver(showSeen, { threshold: 0.12 });
+  waiting.set(element, onShow);
   observer.observe(element);
-  return () => observer.disconnect();
+  return () => {
+    waiting.delete(element);
+    observer.unobserve(element);
+  };
+}
+
+/** Ref callback for every `data-reveal` element. */
+export function reveal(element) {
+  return watchReveal(element, () => element.setAttribute("data-visible", "true"));
 }
 
 /** Feeds the `data-glow` card glow in styles.css. */
