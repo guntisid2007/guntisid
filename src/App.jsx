@@ -97,6 +97,13 @@ const experience = [
   },
 ];
 
+const stats = [
+  { value: "50+", caption: "Electrolyzer trials analyzed", source: "Research Support India" },
+  { value: "29K", caption: "Views on short-form content, ~20× typical", source: "The Station Food Market" },
+  { value: "20+", caption: "Volunteers led on a community build", source: "Eagle Scout Project" },
+  { value: "6", caption: "Person robotics team captained", source: "VEX Robotics 3327C" },
+];
+
 const projects = [
   {
     type: "Autonomous Systems & Communications",
@@ -301,6 +308,18 @@ export default function App() {
         <section className="profile-bar" aria-label="Profile links and availability">
           <p>Open to Summer 2027 Computer Engineering, Embedded Systems, and Software Engineering opportunities.</p>
           <SocialLinks className="profile-links" />
+        </section>
+
+        <section className="stats-band" aria-label="Selected results">
+          <dl>
+            {stats.map((stat, index) => (
+              <div key={stat.caption} data-reveal style={{ "--reveal-delay": `${index * 55}ms` }}>
+                <dt>{stat.caption}</dt>
+                <dd className="stat-value">{stat.value}</dd>
+                <dd className="stat-source">{stat.source}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <section className="experience-section section-shell" id="experience" tabIndex={-1} aria-labelledby="experience-title">
