@@ -101,7 +101,7 @@ const stats = [
   { value: "50+", caption: "Electrolyzer trials analyzed", source: "Research Support India" },
   { value: "29K", caption: "Views on short-form content, ~20× typical", source: "The Station Food Market" },
   { value: "20+", caption: "Volunteers led on a community build", source: "Eagle Scout Project" },
-  { value: "6", caption: "Person robotics team captained", source: "VEX Robotics 3327C" },
+  { value: "6", caption: "Robotics team members led as captain", source: "VEX Robotics 3327C" },
 ];
 
 const projects = [
@@ -114,7 +114,6 @@ const projects = [
       "Developing a reusable drone communication architecture that replaces radio-frequency command and data links with fiber optics for reliable operation in environments where wireless communication is unavailable, unreliable, or undesirable.",
     tools: ["Fiber Optics", "Communications", "Embedded Systems", "Systems Design"],
     status: "In Development",
-    featured: true,
     specs: [
       ["Link", "Fiber-optic tether for command and data, no radio link"],
       ["Platform", "Modular, tethered drone"],
@@ -320,8 +319,8 @@ export default function App() {
           <dl>
             {stats.map((stat, index) => (
               <div key={stat.caption} data-reveal style={{ "--reveal-delay": `${index * 55}ms` }}>
-                <dt>{stat.caption}</dt>
-                <dd className="stat-value">{stat.value}</dd>
+                <dt className="stat-value">{stat.value}</dt>
+                <dd>{stat.caption}</dd>
                 <dd className="stat-source">{stat.source}</dd>
               </div>
             ))}
@@ -365,42 +364,37 @@ export default function App() {
           <div className="project-grid">
             {projects.map((project, index) => {
               const ProjectIcon = project.icon;
-              const content = (
-                <>
-                  <div className="project-topline">
-                    <span>{project.type}</span>
-                    <ProjectIcon size={25} weight="duotone" aria-hidden="true" />
-                  </div>
-                  <p className="project-role">{project.role}{project.status ? <span className="project-status">{project.status}</span> : null}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  {project.detail ? <p>{project.detail}</p> : null}
-                  {project.note ? <strong>{project.note}</strong> : null}
-                  <ul className="tag-list" aria-label={`${project.title} technologies`}>
-                    {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
-                  </ul>
-                  {project.link ? (
-                    <a className={`project-link${project.status ? " project-link--brief" : ""}`} href={project.link} target="_blank" rel="noreferrer" aria-label={project.linkAriaLabel || `${project.linkLabel}, opens in a new tab`}>
-                      {project.linkLabel}<ArrowUpRight size={15} />
-                    </a>
-                  ) : null}
-                </>
-              );
               return (
-                <article key={project.title} className={project.featured ? "is-featured" : undefined} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
-                  {project.featured ? (
-                    <>
-                      <div className="project-main">{content}</div>
-                      <dl className="project-specs" aria-label={`${project.title} specifications`}>
-                        {project.specs.map(([label, value]) => (
-                          <div key={label}>
-                            <dt>{label}</dt>
-                            <dd>{value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    </>
-                  ) : content}
+                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-reveal style={{ "--reveal-delay": `${index * 45}ms` }}>
+                  <div className="project-main">
+                    <div className="project-topline">
+                      <span>{project.type}</span>
+                      <ProjectIcon size={25} weight="duotone" aria-hidden="true" />
+                    </div>
+                    <p className="project-role">{project.role}{project.status ? <span className="project-status">{project.status}</span> : null}</p>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    {project.detail ? <p>{project.detail}</p> : null}
+                    {project.note ? <strong>{project.note}</strong> : null}
+                    <ul className="tag-list" aria-label={`${project.title} technologies`}>
+                      {project.tools.map((tool) => <li key={tool}>{tool}</li>)}
+                    </ul>
+                    {project.link ? (
+                      <a className={`project-link${project.status ? " project-link--brief" : ""}`} href={project.link} target="_blank" rel="noreferrer" aria-label={project.linkAriaLabel || `${project.linkLabel}, opens in a new tab`}>
+                        {project.linkLabel}<ArrowUpRight size={15} />
+                      </a>
+                    ) : null}
+                  </div>
+                  {project.specs ? (
+                    <dl className="project-specs" aria-label={`${project.title} specifications`}>
+                      {project.specs.map(([label, value]) => (
+                        <div key={label}>
+                          <dt>{label}</dt>
+                          <dd>{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  ) : null}
                 </article>
               );
             })}
