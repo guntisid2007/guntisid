@@ -97,7 +97,8 @@ export function useHeaderScroll(header) {
     const update = () => {
       frame = 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      header.current.style.setProperty("--p", String(max > 0 ? Math.min(1, window.scrollY / max) : 0));
+      const progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      header.current.style.setProperty("--p", String(progress));
       header.current.toggleAttribute("data-scrolled", window.scrollY > 24);
     };
     const schedule = () => {
