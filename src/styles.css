@@ -501,97 +501,6 @@ img {
   font-size: 1.02rem;
 }
 
-/* Entrances only hide content on screen with motion allowed, so print and
-   reduced motion always show the finished page. Each one is an animation, not a
-   transition, so a card's own hover transitions keep their timing. */
-@media screen and (prefers-reduced-motion: no-preference) {
-  [data-reveal]:not([data-visible]) {
-    opacity: 0;
-  }
-
-  [data-reveal][data-visible]:not([data-reveal="words"]) {
-    animation: reveal-in 800ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
-  }
-
-  /* Display type enters word by word, lift and fade only, no blur at this size. */
-  [data-reveal="words"] .word {
-    display: inline-block;
-  }
-
-  [data-reveal="words"][data-visible] .word {
-    animation: word-in 700ms var(--ease-out) calc(var(--i) * 35ms + var(--reveal-delay, 0ms)) backwards;
-  }
-}
-
-@media (max-width: 600px) {
-  :root {
-    --reveal-blur: 4px;
-  }
-}
-
-@keyframes reveal-in {
-  from {
-    opacity: 0;
-    filter: blur(var(--reveal-blur));
-    transform: translate3d(0, 14px, 0);
-  }
-}
-
-@keyframes word-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 0.5em, 0);
-  }
-}
-
-/* A faint gold glow tracks the pointer across cards. It is a fixed-size layer
-   moved by transform, so following the pointer only composites. */
-@property --gx {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
-@property --gy {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  [data-glow] {
-    position: relative;
-    overflow: hidden;
-  }
-
-  [data-glow]::after {
-    --gx: inherit;
-    --gy: inherit;
-    position: absolute;
-    z-index: 0;
-    top: -260px;
-    left: -260px;
-    width: 520px;
-    height: 520px;
-    opacity: 0;
-    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%);
-    content: "";
-    pointer-events: none;
-    transform: translate3d(var(--gx), var(--gy), 0);
-    transition: opacity 320ms var(--ease-out);
-    will-change: transform;
-  }
-
-  [data-glow]:hover::after {
-    opacity: 1;
-  }
-
-  [data-glow] > * {
-    position: relative;
-    z-index: 1;
-  }
-}
-
 .experience-section {
   background: var(--ink);
 }
@@ -1369,6 +1278,97 @@ footer a:focus-visible {
   .organization-mark {
     width: 108px;
     height: 68px;
+  }
+}
+
+/* Entrances only hide content on screen with motion allowed, so print and
+   reduced motion always show the finished page. Each one is an animation, not a
+   transition, so a card's own hover transitions keep their timing. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-visible]) {
+    opacity: 0;
+  }
+
+  [data-reveal][data-visible]:not([data-reveal="words"]) {
+    animation: reveal-in 800ms var(--ease-out) var(--reveal-delay, 0ms) backwards;
+  }
+
+  /* Display type enters word by word, lift and fade only, no blur at this size. */
+  [data-reveal="words"] .word {
+    display: inline-block;
+  }
+
+  [data-reveal="words"][data-visible] .word {
+    animation: word-in 700ms var(--ease-out) calc(var(--i) * 35ms + var(--reveal-delay, 0ms)) backwards;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --reveal-blur: 4px;
+  }
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    filter: blur(var(--reveal-blur));
+    transform: translate3d(0, 14px, 0);
+  }
+}
+
+@keyframes word-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.5em, 0);
+  }
+}
+
+/* A faint gold glow tracks the pointer across cards. It is a fixed-size layer
+   moved by transform, so following the pointer only composites. */
+@property --gx {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --gy {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  [data-glow] {
+    position: relative;
+    overflow: hidden;
+  }
+
+  [data-glow]::after {
+    --gx: inherit;
+    --gy: inherit;
+    position: absolute;
+    z-index: 0;
+    top: -260px;
+    left: -260px;
+    width: 520px;
+    height: 520px;
+    opacity: 0;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%);
+    content: "";
+    pointer-events: none;
+    transform: translate3d(var(--gx), var(--gy), 0);
+    transition: opacity 320ms var(--ease-out);
+    will-change: transform;
+  }
+
+  [data-glow]:hover::after {
+    opacity: 1;
+  }
+
+  [data-glow] > * {
+    position: relative;
+    z-index: 1;
   }
 }
 
