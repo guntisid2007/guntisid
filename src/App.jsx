@@ -56,7 +56,7 @@ const experience = [
   },
   {
     period: "AUG 2026 - PRESENT",
-    role: "Digital Media & Web Intern",
+    role: "Digital Media & Website Manager",
     organization: "The Station Food Market",
     location: "West Lafayette, Indiana",
     bullets: [
