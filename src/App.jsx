@@ -191,7 +191,7 @@ const skillGroups = [
   { label: "Hardware & Engineering", value: "Robotics, Embedded Systems, Fiber-Optic Communications, Pneumatics, Engineering Design" },
   { label: "Data & Libraries", value: "Pandas, Matplotlib, scikit-learn" },
   { label: "Developer Tools", value: "Git, GitHub, Linux, Microsoft Excel" },
-  { label: "Agentic AI", value: "Codex, Claude Code" },
+  { label: "Agentic AI", value: "Codex, Claude Code; multi-agent workflows, code generation, debugging, refactoring, and code review" },
 ];
 
 function EvidenceLink({ href, children, external = false, primary = false }) {
