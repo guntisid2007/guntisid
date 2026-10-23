@@ -191,7 +191,7 @@ const skillGroups = [
   { label: "Hardware & Engineering", value: "Robotics, Embedded Systems, Fiber-Optic Communications, Pneumatics, Engineering Design" },
   { label: "Data & Libraries", value: "Pandas, Matplotlib, scikit-learn" },
   { label: "Developer Tools", value: "Git, GitHub, Linux, Microsoft Excel" },
-  { label: "AI Development Tools", value: "Codex, Claude, ChatGPT, Gemini, LLM APIs, Speech Recognition, Rapid Prototyping" },
+  { label: "Agentic AI", value: "Codex, Claude Code" },
 ];
 
 function EvidenceLink({ href, children, external = false, primary = false }) {
