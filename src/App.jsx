@@ -40,7 +40,7 @@ const navigation = [
 const experience = [
   {
     period: "SEP 2026 - PRESENT",
-    role: "Software Engineer",
+    role: "Full-Stack Engineer",
     organization: "RideKova",
     website: RIDEKOVA,
     location: "Purdue University",
@@ -299,7 +299,7 @@ export default function App() {
             <p className="hero-kicker" data-reveal ref={reveal}>Purdue University</p>
             <h1 data-reveal="words" ref={reveal} style={{ "--reveal-delay": "70ms" }}><Words>Siddharth Gunti.</Words></h1>
             <p className="hero-deck" data-reveal ref={reveal} style={{ "--reveal-delay": "200ms" }}>Computer Engineering @ Purdue</p>
-            <p className="hero-secondary" data-reveal ref={reveal} style={{ "--reveal-delay": "260ms" }}>Software Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
+            <p className="hero-secondary" data-reveal ref={reveal} style={{ "--reveal-delay": "260ms" }}>Full-Stack Engineer @ <a className="company-link" href={RIDEKOVA} target="_blank" rel="noreferrer">RideKova</a></p>
             <div className="hero-actions" data-reveal ref={reveal} style={{ "--reveal-delay": "320ms" }}>
               <EvidenceLink href="#experience" primary>View experience</EvidenceLink>
               <EvidenceLink href={`${ASSET_BASE}resume.html`}>Open resume</EvidenceLink>
