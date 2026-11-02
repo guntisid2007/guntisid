@@ -24,7 +24,7 @@
     h1 { margin:0; text-align:center; font-size:21.5pt; line-height:1.02; font-weight:700; letter-spacing:-.02em; }
     .contact { margin:5px 0 15px; text-align:center; font-size:8.2pt; line-height:1.24; }
     .contact a { white-space:nowrap; }
-    .section { margin-top:14px; }
+    .section { margin-top:12px; }
     .section-title { margin:0 0 7px; border-bottom:3px double var(--rule); padding-bottom:4px; font-size:11.4pt; line-height:1.02; font-weight:700; }
     .row { display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
     .left { min-width:0; }
@@ -32,10 +32,10 @@
     .strong { font-weight:700; }
     .italic { font-style:italic; }
     p { margin:0 0 7px; }
-    ul { margin:5px 0 12px 9px; padding:0; }
-    li { margin:0 0 6.5px; padding:0; line-height:1.11; }
+    ul { margin:5px 0 5px 9px; padding:0; }
+    li { margin:0 0 4px; padding:0; line-height:1.11; }
     .edu-line { margin-bottom:7px; }
-    .job,.project { margin-bottom:13px; }
+    .job,.project { margin-bottom:5px; }
     .job .row,.project .row { margin-bottom:5px; }
     .research-title { font-weight:700; }
     .honors-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:32px; row-gap:5px; margin:0 0 0 14px; padding:0; }
@@ -66,13 +66,13 @@
       .page { width:8.5in; height:11in; min-height:0; margin:0; padding:.30in .4in .24in; overflow:hidden; box-shadow:none; }
       h1 { font-size:21.5pt; line-height:1.02; }
       .contact { margin:5px 0 15px; font-size:8.2pt; line-height:1.24; }
-      .section { margin-top:14px; }
+      .section { margin-top:12px; }
       .section-title { margin-bottom:7px; padding-bottom:4px; font-size:11.4pt; line-height:1.02; }
       p { margin-bottom:7px; }
-      ul { margin-top:5px; margin-bottom:12px; margin-left:9px; }
-      li { margin-bottom:6.5px; line-height:1.11; }
+      ul { margin-top:5px; margin-bottom:5px; margin-left:9px; }
+      li { margin-bottom:4px; line-height:1.11; }
       .edu-line { margin-bottom:7px; }
-      .job,.project { margin-bottom:13px; break-inside:avoid; }
+      .job,.project { margin-bottom:5px; break-inside:avoid; }
       .job .row,.project .row { margin-bottom:5px; }
       .section-title,.row { break-after:avoid; }
       a { color:var(--ink); }
@@ -97,11 +97,10 @@
       <!-- High school removed; Purdue-only education section -->
       <div class="row edu-line"><div class="left"><span class="strong">Purdue University</span> - <span class="italic">B.S. Computer Engineering</span> | West Lafayette, IN</div><div class="date">Expected May 2029</div></div>
       <p class="edu-line"><span class="strong">Academic Standing:</span> Sophomore</p>
-      <p class="edu-line"><span class="strong">Relevant Coursework:</span> Physics, Multivariable Calculus, Introduction to Engineering</p>
     </section>
     <section class="section">
       <h2 class="section-title">TECHNICAL SKILLS</h2>
-      <p><span class="strong">Programming / Tools:</span> Java, Python, C++, HTML/CSS, Git, GitHub, Pandas, Matplotlib, Microsoft Excel</p>
+      <p><span class="strong">Programming / Tools:</span> TypeScript, React Native, Firebase, Firestore, Jest, Java, Python, C++, HTML/CSS, Git/GitHub, Pandas, Matplotlib</p>
       <p><span class="strong">Agentic AI:</span> Codex, Claude Code; multi-agent workflows, code generation, debugging, refactoring, and code review</p>
     </section>
     <section class="section">
@@ -109,22 +108,22 @@
       <div class="job">
         <div class="row"><div class="left"><span class="italic">Full-Stack Engineer</span> - <a class="strong" href="https://www.ridekova.com/" target="_blank" rel="noreferrer">RideKova</a> | Purdue University</div><div class="date">Sep 2026-Present</div></div>
         <ul>
-          <li>Develop and ship software patches; debug <a href="https://www.ridekova.com/" target="_blank" rel="noreferrer">RideKova</a> issues to improve reliability and user experience.</li>
-          <li>Pull, manage, and push production changes through Git/GitHub with a three-person development team.</li>
-          <li>Test features, troubleshoot product behavior, and deploy fixes in an early-stage startup environment.</li>
+          <li>Implemented and tested TypeScript, React Native, and Firebase features, including reusable ride cards, editable trips, public discussions, and indexed profile search.</li>
+          <li>Collaborated in a three-person engineering team using Git and GitHub to review, integrate, and maintain production-ready changes.</li>
+          <li>Built automated Jest and Firebase Emulator tests for UI behavior, backend transactions, and Firestore security rules.</li>
         </ul>
       </div>
       <div class="job">
         <div class="row"><div class="left"><span class="italic">Digital Media &amp; Website Manager</span> - <span class="strong">The Station Food Market</span> | West Lafayette, IN</div><div class="date">Aug 2026-Present</div></div>
         <ul>
-          <li>Maintain website content across products, events, and promotions.</li>
-          <li>Produced short-form content reaching 29K views, about 20× typical performance.</li>
+          <li>Improved and maintained the restaurant’s website, updating menu listings, product details, promotions, and links to online ordering.</li>
+          <li>Created and managed Instagram content that generated 224K+ views from 43K+ viewers in 90 days, with 75% of views coming from non-followers.</li>
         </ul>
       </div>
       <div class="job">
         <div class="row"><div class="left"><span class="italic">Engineering Research Intern</span> - <span class="strong">Research Support India, Inc.</span> | Hosur, India</div><div class="date">Summer 2025</div></div>
         <ul>
-          <li>Analyzed 50+ electrolyzer trials in Python/Pandas to identify performance trends.</li>
+          <li>Analyzed alkaline electrolyzer operating data using Python, Pandas, and linear regression to characterize voltage, current, and power trends.</li>
           <li>Produced Matplotlib visualizations and a 20-page technical report reviewed by engineers.</li>
         </ul>
       </div>
@@ -132,8 +131,8 @@
         <div class="row"><div class="left"><span class="italic">Captain, Build Lead &amp; Treasurer</span> - <span class="strong">VEX Robotics - Team 3327C</span> | Royersford, PA</div><div class="date">Sep 2022-Mar 2026</div></div>
         <ul>
           <li>Led a six-person team through robot design, construction, testing, and competition strategy.</li>
-          <li>Redesigned drivetrain and structural systems after diagnosing mechanical failures.</li>
-          <li>Integrated pneumatic mechanisms to expand robot functionality and competition strategy.</li>
+          <li>Redesigned drivetrain spacing and wheel layout to address mechanical failures and improve robot mobility.</li>
+          <li>Integrated a pneumatic clamp to grip and secure game objects during competition.</li>
         </ul>
       </div>
     </section>
@@ -143,16 +142,16 @@
       <div class="project">
         <div class="row"><div class="left"><span class="italic">Researcher / Co-Developer</span> - <span class="strong">Wireshark: Fiber-Optic Drone</span> | Purdue University</div><div class="date">Sep 2026-Present</div></div>
         <ul>
-          <li>Research hardware-software integration for a modular drone and fiber-optic data/control link.</li>
+          <li>Selected components for a modular fiber-optic drone platform and began drafting a technical paper on its hardware and communications architecture.</li>
           <li>Define communications architecture for reliable command and data transfer without radio links.</li>
           <li>Assess inspection, underground, and disaster-response applications for NASA's Gateways to Blue Skies Competition.</li>
         </ul>
       </div>
       <div class="project">
-        <div class="row"><div class="left"><span class="italic">Developer</span> - <span class="strong">Sidekick</span> | Purdue University</div><div class="date">2026-Present</div></div>
+        <div class="row"><div class="left"><span class="italic">Co-Founder &amp; Developer</span> - <a class="strong" href="https://wiresharks.tech/" target="_blank" rel="noreferrer">Wiresharks</a></div><div class="date">Sep 2026-Present</div></div>
         <ul>
-          <li>Co-develop a voice AI assistant integrating Parakeet speech recognition with Gemma for context-aware responses.</li>
-          <li>Maintain conversational context and trigger question answering through “Sidekick” wake-word activation.</li>
+          <li>Co-develop raptor, an autonomous cybersecurity agent, and its Harness runtime for authorized repository security reviews.</li>
+          <li>Develop and maintain the Wiresharks product website, presenting agent capabilities, workflows, and the local-model roadmap.</li>
         </ul>
       </div>
       <div class="project">
