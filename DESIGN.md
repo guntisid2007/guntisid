@@ -36,6 +36,7 @@ The motion is a deliberate high-motion pass ported from wiresharks.tech and redr
 - The Wireshark spec rows rise in 90ms apart. Its In Development status has a square gold LED that pulses on a 2.4s loop.
 - The Sidekick card holds a console panel labelled Illustrative. Its transcript restates the pipeline described on the page, claims no metrics, streams in line by line, and ends on a blinking caret.
 - The `SG` mark's square outline draws itself on load, then its letters fade in.
+- On the first load of a browser session, on viewports 768px and wider, a swarm of ten labelled agent cursors (`SwarmBuildIntro`) builds each `data-build-id` block in page order over about 7 seconds. A status pill at bottom center counts the blocks and offers Skip, then Replay. The unbuilt state is set by script only, so without script the page renders whole. The agents, their tasks, colors, and timing are a data array at the top of the component.
 - A giant, faint `SID GUNTI` wordmark rises out of the footer edge when it scrolls into view.
 - Buttons and cards use small hover and active feedback.
 - The site has no parallax, WebGL, scroll-jacking, or animation-only content.

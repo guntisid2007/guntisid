@@ -1,0 +1,222 @@
+/* Swarm build intro. Blocks are unbuilt only while the intro runs: the script
+   sets data-build-state on each [data-build-id] block and removes it once the
+   block is built, so with no script the page is always whole. The children
+   dim rather than the block, so the block's dashed outline stays visible. */
+[data-build-id][data-build-state],
+[data-build-id][data-build-state] > * {
+  transition: none;
+}
+
+[data-build-id][data-build-state="pending"] {
+  outline: 1px dashed var(--line);
+  outline-offset: -6px;
+  transform: translate3d(0, 6px, 0);
+}
+
+[data-build-id][data-build-state="pending"] > * {
+  opacity: 0.12;
+}
+
+[data-build-id][data-build-state="built"] {
+  outline: 1px dashed transparent;
+  outline-offset: -6px;
+  transition:
+    outline-color var(--swarm-build) var(--ease-out),
+    transform var(--swarm-build) var(--ease-out);
+}
+
+[data-build-id][data-build-state="built"] > * {
+  transition: opacity var(--swarm-build) var(--ease-out);
+}
+
+/* Fixed and clipped, so agents over blocks far down the page never add scroll. */
+.swarm-overlay {
+  position: fixed;
+  z-index: 45;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: opacity 350ms ease;
+}
+
+.swarm-overlay.is-leaving {
+  opacity: 0;
+}
+
+.swarm-monogram {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 104px;
+  height: 104px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  background: rgb(11 11 10 / 72%);
+  color: var(--accent);
+  font: 500 3.4rem/1 var(--display);
+  letter-spacing: 0.02em;
+  transform: translate(-50%, -50%);
+  transition: opacity 400ms ease, transform 400ms var(--ease-out);
+}
+
+.swarm-monogram.is-gone {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.92);
+}
+
+/* The agent's origin is the arrow tip. */
+.swarm-agent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--agent);
+  will-change: transform;
+}
+
+.swarm-arrow {
+  position: absolute;
+  top: -0.5px;
+  left: -0.5px;
+  overflow: visible;
+  transform-origin: 0.5px 0.5px;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 55%));
+}
+
+.swarm-arrow path {
+  fill: var(--agent);
+  stroke: var(--ink);
+  stroke-linejoin: round;
+  stroke-width: 1.1;
+}
+
+.swarm-label {
+  position: absolute;
+  top: 18px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgb(11 11 10 / 88%);
+  padding: 2px 8px;
+  color: var(--muted-strong);
+  font: 400 11px/1.5 var(--mono);
+  white-space: nowrap;
+}
+
+.swarm-label > span:empty {
+  display: none;
+}
+
+.swarm-label b {
+  color: var(--agent);
+  font-weight: 500;
+}
+
+.swarm-agent.is-flipped .swarm-label {
+  right: 4px;
+  left: auto;
+}
+
+.swarm-pulse {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--agent);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.swarm-agent.is-working .swarm-pulse {
+  animation: swarm-pulse 650ms ease-out infinite;
+}
+
+@keyframes swarm-pulse {
+  from {
+    opacity: 0.9;
+    transform: scale(0.35);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* Only the button takes the pointer; the rest of the pill lets clicks through. */
+.swarm-status {
+  position: fixed;
+  z-index: 50;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  display: flex;
+  max-width: calc(100vw - 24px);
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgb(11 11 10 / 86%);
+  padding: 5px 5px 5px 16px;
+  color: var(--paper);
+  font: 400 12px/1.4 var(--mono);
+  pointer-events: none;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  backdrop-filter: blur(10px);
+}
+
+.swarm-status.is-minimal {
+  padding-left: 5px;
+}
+
+.swarm-status-count {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.swarm-status-bar {
+  width: 64px;
+  height: 2px;
+  overflow: hidden;
+  background: var(--line);
+}
+
+.swarm-status-bar > span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+  transition: transform 300ms var(--ease-out);
+}
+
+.swarm-status button {
+  min-height: 28px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  padding: 0 12px;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  pointer-events: auto;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.swarm-status button:hover,
+.swarm-status button:focus-visible {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.swarm-status button:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .swarm-status-bar {
+    display: none;
+  }
+}

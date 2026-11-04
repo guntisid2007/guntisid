@@ -19,6 +19,7 @@ import HardwareFlow from "./components/HardwareFlow";
 import Words from "./components/Words";
 import CountUp from "./components/CountUp";
 import Console from "./components/Console";
+import SwarmBuildIntro from "./components/SwarmBuildIntro";
 import { reveal, useHeaderScroll, usePointerGlow } from "./components/motion";
 
 const ASSET_BASE = import.meta.env.BASE_URL;
@@ -42,6 +43,7 @@ const experience = [
     period: "SEP 2026 - PRESENT",
     role: "Full-Stack Engineer",
     organization: "RideKova",
+    buildId: "experience-kova",
     website: RIDEKOVA,
     location: "Purdue University",
     bullets: [
@@ -58,6 +60,7 @@ const experience = [
     period: "AUG 2026 - PRESENT",
     role: "Digital Media & Website Manager",
     organization: "The Station Food Market",
+    buildId: "experience-station",
     location: "West Lafayette, Indiana",
     bullets: [
       "Manage and update web content for products, promotions, events, and customer-facing information.",
@@ -73,6 +76,7 @@ const experience = [
     period: "SUMMER 2025",
     role: "Engineering Research Intern",
     organization: "Research Support India",
+    buildId: "experience-rsi",
     website: "https://www.rsindia.net/",
     location: "Hosur, India",
     bullets: [
@@ -88,6 +92,7 @@ const experience = [
     period: "SEP 2022 - MAR 2026",
     role: "Captain, Build Lead & Treasurer",
     organization: "VEX Robotics, Team 3327C",
+    buildId: "experience-vex",
     location: "Royersford, Pennsylvania",
     bullets: [
       "Led a six-person competition team through robot design, fabrication, testing, troubleshooting, and match strategy.",
@@ -114,6 +119,7 @@ const projects = [
     role: "Researcher / Co-Developer",
     icon: AirplaneTilt,
     title: "Wireshark: Fiber-Optic Drone",
+    buildId: "project-wireshark",
     description:
       "Developing a reusable drone communication architecture that replaces radio-frequency command and data links with fiber optics for reliable operation in environments where wireless communication is unavailable, unreliable, or undesirable.",
     tools: ["Fiber Optics", "Communications", "Embedded Systems", "Systems Design"],
@@ -134,6 +140,7 @@ const projects = [
     role: "Developer",
     icon: Waveform,
     title: "Sidekick",
+    buildId: "project-sidekick",
     description:
       "Developed a local voice-assistant prototype combining speech recognition, language-model inference, conversational context, and wake-word activation into a unified interaction pipeline.",
     detail: "Integrated Parakeet for speech recognition and Gemma for language processing while experimenting with latency, activation behavior, and conversational flow.",
@@ -156,6 +163,7 @@ const projects = [
     role: "Researcher",
     icon: ChartLineUp,
     title: "Electrolyzer Performance Analysis",
+    buildId: "project-electrolyzer",
     description:
       "Analyzed experimental electrolyzer voltage, current, and power data using Python to characterize short-term system behavior and identify performance trends.",
     detail: "The dataset captured 721 seconds of operation, including a voltage increase from approximately 2.5 V to 3.0 V. Long-term conclusions are limited by the short test duration and unavailable cell-temperature measurements.",
@@ -169,6 +177,7 @@ const projects = [
     role: "Project Lead",
     icon: Tree,
     title: "Eagle Scout Service Project",
+    buildId: "project-eagle-scout",
     description:
       "Planned and led a community infrastructure project involving 20+ volunteers, the refurbishment of 13 park benches, and construction of a public information kiosk.",
     detail: "Managed materials, scheduling, volunteer coordination, construction, and a project budget exceeding $500.",
@@ -179,6 +188,7 @@ const projects = [
     role: "Developer",
     icon: Code,
     title: "Java Swing Idle Game",
+    buildId: "project-idle-game",
     description:
       "Built an object-oriented desktop game in Java featuring upgrade systems, timers, progression mechanics, persistent state logic, and large-number calculations.",
     detail: "Designed the application around reusable classes and event-driven Swing components.",
@@ -293,7 +303,7 @@ export default function App() {
       </header>
 
       <main id="main" tabIndex={-1}>
-        <section className="hero" id="top">
+        <section className="hero" id="top" data-build-id="hero">
           <HardwareFlow />
           <div className="hero-copy">
             <p className="hero-kicker" data-reveal ref={reveal}>Purdue University</p>
@@ -307,12 +317,12 @@ export default function App() {
           </div>
         </section>
 
-        <section className="profile-bar" aria-label="Profile links and availability">
+        <section className="profile-bar" data-build-id="profile" aria-label="Profile links and availability">
           <p>Open to Summer 2027 Computer Engineering, Embedded Systems, and Software Engineering opportunities.</p>
           <SocialLinks className="profile-links" />
         </section>
 
-        <section className="stats-band" aria-label="Selected results">
+        <section className="stats-band" data-build-id="stats" aria-label="Selected results">
           <dl>
             {stats.map((stat, index) => (
               <div key={stat.caption} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
@@ -331,7 +341,7 @@ export default function App() {
           </div>
           <div className="experience-grid">
             {experience.map((item, index) => (
-              <article key={`${item.organization}-${item.role}`} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
+              <article key={`${item.organization}-${item.role}`} data-build-id={item.buildId} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 55}ms` }}>
                 <OrganizationMark item={item} />
                 <div className="experience-card-body">
                   <div className="experience-meta">
@@ -362,7 +372,7 @@ export default function App() {
             {projects.map((project, index) => {
               const ProjectIcon = project.icon;
               return (
-                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 45}ms` }}>
+                <article key={project.title} className={project.specs ? "is-featured" : undefined} data-build-id={project.buildId} data-reveal ref={reveal} data-glow style={{ "--reveal-delay": `${index * 45}ms` }}>
                   <div className="project-main">
                     <div className="project-topline">
                       <span>{project.type}</span>
@@ -399,7 +409,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="skills-section section-shell" id="skills" tabIndex={-1} aria-labelledby="skills-title">
+        <section className="skills-section section-shell" id="skills" data-build-id="skills" tabIndex={-1} aria-labelledby="skills-title">
           <div className="section-heading compact">
             <h2 id="skills-title" data-reveal="words" ref={reveal}><Words>Skills and tools</Words></h2>
             <p data-reveal ref={reveal} style={{ "--reveal-delay": "120ms" }}>Languages, engineering tools, libraries, and technical areas used across software, hardware, and research projects.</p>
@@ -414,7 +424,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="about-section section-shell" id="about" tabIndex={-1} aria-labelledby="about-title">
+        <section className="about-section section-shell" id="about" data-build-id="about" tabIndex={-1} aria-labelledby="about-title">
           <div className="about-statement">
             <h2 id="about-title" data-reveal="words" ref={reveal}><Words>Curious enough to measure. Practical enough to build.</Words></h2>
             <p data-reveal ref={reveal} style={{ "--reveal-delay": "160ms" }}>I'm a Purdue engineering student pursuing Computer Engineering with interests spanning embedded systems, robotics, software, and hardware-software integration.</p>
@@ -428,7 +438,7 @@ export default function App() {
           </dl>
         </section>
 
-        <section className="contact-section section-shell" id="contact" tabIndex={-1} aria-labelledby="contact-title">
+        <section className="contact-section section-shell" id="contact" data-build-id="contact" tabIndex={-1} aria-labelledby="contact-title">
           <div>
             <p className="section-label" data-reveal ref={reveal}>Summer 2027</p>
             <h2 id="contact-title" data-reveal="words" ref={reveal} style={{ "--reveal-delay": "60ms" }}><Words>Build something that has to work.</Words></h2>
@@ -447,6 +457,7 @@ export default function App() {
         <a href="#top">RETURN TO TOP ↑</a>
         <p className="footer-mark" aria-hidden="true" data-reveal ref={reveal}>SID GUNTI</p>
       </footer>
+      <SwarmBuildIntro />
       <Analytics />
     </div>
   );
